@@ -1,9 +1,9 @@
-// Place your settings in this file
+// Windows Console Settings
 // Reference: https://technet.microsoft.com/en-us/library/cc978570.aspx, https://technet.microsoft.com/en-us/library/mt427362.aspx
 {
     // Defines the colors in the color well on the Colors tab of the console Properties or Defaults dialog box. Each of the 16 ColorTable x entries corresponds to one of the registry entries ColorTable00–ColorTable15.
     //              "BBGGRR" (original value commented)
-    "Black"       : "000000",
+    "Black"       : "000000", // 000000
     "DarkBlue"    : "C00000", // 800000
     "DarkGreen"   : "00C000", // 008000
     "DarkCyan"    : "C0C000", // 808000
@@ -15,17 +15,22 @@
     "Blue"        : "FF0080", // FF0000
     "Green"       : "00C080", // 00FF00
     "Cyan"        : "80C000", // FFFF00
-    "Red"         : "0000FF",
+    "Red"         : "0000FF", // 0000FF
     "Magenta"     : "8000FF", // FF00FF
     "Yellow"      : "0080FF", // 00FFFF
-    "White"       : "FFFFFF",
+    "White"       : "FFFFFF", // FFFFFF
 
     // 'false' enables new key shortcuts; 'true' disables them.
     "CtrlKeyShortcutsDisabled" : false,
 
-
+    // The code page console uses, avaliable values are listed in following link:
+    // https://msdn.microsoft.com/en-us/library/windows/desktop/dd317756(v=vs.85).aspx
     "CodePage"                 : 936,
-    "CursorSize"               : 0x64,       # 0x19: Small (25%); 0x32: Medium (50%); 0x64: Large (100%);
+
+    // Specifies the percentage of a character cell that the cursor occupies, avaliable values are:
+    // 'small'(25%), 'medium'(50%) and 'large'(100%).
+    "CursorSize"               : "large",
+
     "ExtendedEditKey"          : true,
     "FilterOnPaste"            : true,
     "FaceName"                 : "Inziu Iosevka SC",
