@@ -1,0 +1,46 @@
+// Place your settings in this file
+// Reference: https://technet.microsoft.com/en-us/library/cc978570.aspx, https://technet.microsoft.com/en-us/library/mt427362.aspx
+{
+    // Defines the colors in the color well on the Colors tab of the console Properties or Defaults dialog box. Each of the 16 ColorTable x entries corresponds to one of the registry entries ColorTable00–ColorTable15.
+    //              "BBGGRR" (original value commented)
+    "Black"       : "000000",
+    "DarkBlue"    : "C00000", // 800000
+    "DarkGreen"   : "00C000", // 008000
+    "DarkCyan"    : "C0C000", // 808000
+    "DarkRed"     : "0000C0", // 000080
+    "DarkMagenta" : "C000C0", // 800080
+    "DarkYellow"  : "00C0C0", // 008080
+    "Gray"        : "808080", // C0C0C0
+    "DarkGray"    : "FF8000", // 808080
+    "Blue"        : "FF0080", // FF0000
+    "Green"       : "00C080", // 00FF00
+    "Cyan"        : "80C000", // FFFF00
+    "Red"         : "0000FF",
+    "Magenta"     : "8000FF", // FF00FF
+    "Yellow"      : "0080FF", // 00FFFF
+    "White"       : "FFFFFF",
+
+    // 'false' enables new key shortcuts; 'true' disables them.
+    "CtrlKeyShortcutsDisabled" : false,
+
+
+    "CodePage"                 : 936,
+    "CursorSize"               : 0x64,       # 0x19: Small (25%); 0x32: Medium (50%); 0x64: Large (100%);
+    "ExtendedEditKey"          : true,
+    "FilterOnPaste"            : true,
+    "FaceName"                 : "Inziu Iosevka SC",
+    "ForceV2"                  : true,
+    "FontSize"                 : 0x180000   # 14pt
+    "HistoryBufferSize"        : 999
+    "HistoryNoDup"             : true
+    "InsertMode"               : true
+    "LineSelection"            : true      # Line wrapping selection.
+    "LineWrap"                 : true      # Wraps text when resize console windows.
+    "NumberOfHistoryBuffers"   : 999
+    "ScreenBufferSize"         : 0x270F0064 # Number of lines: 0x270F (9999); Number of columns: 0x64 (100);
+    "ScreenColors"             : 0xF0       # 0xF: Background color is White; 0x0: Foreground color is Black.
+    "QuickEdit"                : true      # Able to copy and paste using mouse.
+    "WindowAlpha"              : 0xFF       # Adjust opacity between 30% and 100%: 0x4C to 0xFF -or- 76 to 255.
+    "WindowPosition"           : 0x3C00A0   # Left margin: 0x3C (60); Top Margin: 0xA0 (160);
+    "WindowSize"               : 0x190064   # Hight: 0x19 (25); Width: 0x64 (100);
+}
