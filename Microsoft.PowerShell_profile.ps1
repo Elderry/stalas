@@ -7,14 +7,19 @@ Set-Alias mg '~\OneDrive\Collections\Adults\magick.ps1'
 Set-Alias au '~\Projects\Personal\chocolatey-packages\update_all.ps1'
 $tasks = '~\OneDrive\Collections\Tasks'
 
+# WSL Commands
+Remove-Item Alias:ls
+function ls { bash -c "ls --color -A -I NTUSER.\* -I ntuser.\* $args" }
+function vim { bash -c "vim $args" }
+function lsb_release { bash -c "lsb_release $args" }
+function cowsay { bash -c "echo $input | cowsay $args" }
+function fortune { bash -c "fortune $args" }
+function cat { bash -c "cat $args" }
+
 # Modules
 $ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
-if (Test-Path($ChocolateyProfile)) {
-    Import-Module "$ChocolateyProfile"
-}
-if (!$global:GitPromptSettings) {
-    Import-Module posh-git
-}
+if (Test-Path($ChocolateyProfile)) { Import-Module "$ChocolateyProfile" }
+if (!$global:GitPromptSettings) { Import-Module posh-git }
 $global:GitPromptSettings.BeforeText = '['
 $global:GitPromptSettings.AfterText  = '] '
 

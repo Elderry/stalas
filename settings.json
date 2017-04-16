@@ -1,5 +1,8 @@
 // Windows Console Settings
-// Reference: https://technet.microsoft.com/en-us/library/cc978570.aspx, https://technet.microsoft.com/en-us/library/mt427362.aspx
+// Author    : Elderry
+// References: https://technet.microsoft.com/en-us/library/cc978570.aspx,
+//             https://technet.microsoft.com/en-us/library/mt427362.aspx,
+//             https://msdn.microsoft.com/en-us/library/dd891381.aspx
 {
     // Defines the colors in the color well on the Colors tab of the console Properties or Defaults dialog box. Each of the 16 ColorTable x entries corresponds to one of the registry entries ColorTable00–ColorTable15.
     //              "BBGGRR" (original value commented)
@@ -25,25 +28,57 @@
 
     // The code page console uses, avaliable values are listed in following link:
     // https://msdn.microsoft.com/en-us/library/windows/desktop/dd317756(v=vs.85).aspx
-    "CodePage"                 : 936,
+    "CodePage" : 936,
 
     // Specifies the percentage of a character cell that the cursor occupies, avaliable values are:
     // 'small'(25%), 'medium'(50%) and 'large'(100%).
-    "CursorSize"               : "large",
+    "CursorSize" : "large",
 
-    "ExtendedEditKey"          : true,
-    "FilterOnPaste"            : true,
-    "FaceName"                 : "Inziu Iosevka SC",
-    "ForceV2"                  : true,
-    "FontSize"                 : 0x180000   # 14pt
-    "HistoryBufferSize"        : 999
-    "HistoryNoDup"             : true
-    "InsertMode"               : true
-    "LineSelection"            : true      # Line wrapping selection.
-    "LineWrap"                 : true      # Wraps text when resize console windows.
-    "NumberOfHistoryBuffers"   : 999
-    "ScreenBufferSize"         : 0x270F0064 # Number of lines: 0x270F (9999); Number of columns: 0x64 (100);
-    "ScreenColors"             : 0xF0       # 0xF: Background color is White; 0x0: Foreground color is Black.
+    // 'True' enables the full set of keyboard selection keys; 'false' disables them.
+    "ExtendedEditKey" : true,
+
+    // 'True' enables new paste behavior.
+    "FilterOnPaste" : true,
+
+    // Specifies the name of an alternate command window font. If there is no font name in the value of this entry,
+    // the system uses raster fonts.
+    "FaceName" : "Inziu Iosevka SC",
+
+    // 'True' enables all new console features; 'false' disables all new features.
+    "ForceV2" : true,
+
+    // Specifies the size of the font used in the command window.
+    "FontSize" : 14,
+
+    // Specifies the number of commands that can be stored in each command history buffer.
+    "HistoryBufferSize" : 999,
+
+    // Specifies whether to remove duplicates in the history buffer.
+    "HistoryNoDup" : true,
+
+    // Specifies how the system responds when the user types over existing characters.
+    "InsertMode" : true,
+
+    // 'True' enables line selection; 'false' to use block mode only.
+    "LineSelection" : true,
+
+    // 'True' wraps text when you resize console windows.
+    "LineWrap" : true,
+
+    // Specifies the number of history buffers allocated to store commands.
+    "NumberOfHistoryBuffers" : 999,
+
+    // Determines the size of the screen buffer (the screen that is retained in memory).
+    // If the size of the screen displayed on the monitor is smaller than the screen buffer, you can scroll to see the
+    // entire screen. You cannot display a console screen that is larger than the screen buffer.
+    "ScreenBufferSize.Lines" : 9999,
+    // This option is disabled if 'LineWrap' is set to true.
+    "ScreenBufferSize.Columns" : 100,
+
+    // Specifies the colors of console windows, possible values are the index of color in the color table above(0-15).
+    "ScreenColors.Background" : 15,
+    "ScreenColors.Foreground" : 0,
+
     "QuickEdit"                : true      # Able to copy and paste using mouse.
     "WindowAlpha"              : 0xFF       # Adjust opacity between 30% and 100%: 0x4C to 0xFF -or- 76 to 255.
     "WindowPosition"           : 0x3C00A0   # Left margin: 0x3C (60); Top Margin: 0xA0 (160);
