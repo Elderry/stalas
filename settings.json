@@ -79,8 +79,17 @@
     "ScreenColors.Background" : 15,
     "ScreenColors.Foreground" : 0,
 
-    "QuickEdit"                : true      # Able to copy and paste using mouse.
-    "WindowAlpha"              : 0xFF       # Adjust opacity between 30% and 100%: 0x4C to 0xFF -or- 76 to 255.
-    "WindowPosition"           : 0x3C00A0   # Left margin: 0x3C (60); Top Margin: 0xA0 (160);
-    "WindowSize"               : 0x190064   # Hight: 0x19 (25); Width: 0x64 (100);
+    // Specifies whether QuickEdit mode is enabled. In QuickEdit mode, users can cut and paste text by using the mouse.
+    "QuickEdit" : true,
+
+    // Sets opacity value between 30% and 100%.
+    "WindowAlpha" : 100,
+
+    // Specifies the position of the command window on the user's screen.
+    "WindowPosition.LeftMargin" : 60,
+    "WindowPosition.TopMargin" : 160,
+
+    // Specifies the size of the command window.
+    "WindowSize.Height" : 25,
+    "WindowSize.Width" :100
 }
