@@ -4,7 +4,8 @@
 //             https://technet.microsoft.com/en-us/library/mt427362.aspx,
 //             https://msdn.microsoft.com/en-us/library/dd891381.aspx
 {
-    // Defines the colors in the color well on the Colors tab of the console Properties or Defaults dialog box. Each of the 16 ColorTable x entries corresponds to one of the registry entries ColorTable00–ColorTable15.
+    // Defines the colors in the color well on the Colors tab of the console Properties or Defaults dialog box.
+    // Each of the 16 ColorTable x entries corresponds to one of the registry entries ColorTable00-ColorTable15.
     //              "BBGGRR" (original value commented)
     "Black"       : "000000", // 000000
     "DarkBlue"    : "C00000", // 800000

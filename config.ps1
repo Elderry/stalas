@@ -3,25 +3,22 @@ $cmdRegPath     = Join-Path $consoleRegPath '%SystemRoot%_System32_cmd.exe'
 $poshRegPath    = Join-Path $consoleRegPath '%SystemRoot%_System32_WindowsPowerShell_v1.0_powershell.exe'
 $posh32RegPath  = Join-Path $consoleRegPath '%SystemRoot%_SysWOW64_WindowsPowerShell_v1.0_powershell.exe'
 
-$colorTable = [ordered]@{
-                  # 0xBBGGRR
-    "Black"       = 0x000000
-    "DarkBlue"    = 0xC00000 #0x800000
-    "DarkGreen"   = 0x00C000 #0x008000
-    "DarkCyan"    = 0xC0C000 #0x808000
-    "DarkRed"     = 0x0000C0 #0x000080
-    "DarkMagenta" = 0xC000C0 #0x800080
-    "DarkYellow"  = 0x00C0C0 #0x008080
-    "Gray"        = 0x808080 #0xC0C0C0
-    "DarkGray"    = 0xFF8000 #0x808080
-    "Blue"        = 0xFF0080 #0xFF0000
-    "Green"       = 0x00C080 #0x00FF00
-    "Cyan"        = 0x80C000 #0xFFFF00
-    "Red"         = 0x0000FF
-    "Magenta"     = 0x8000FF #0xFF00FF
-    "Yellow"      = 0x0080FF #0x00FFFF
-    "White"       = 0xFFFFFF
+$colorTable = (
+    "Black",    "DarkBlue", "DarkGreen", "DarkCyan", "DarkRed", "DarkMagenta", "DarkYellow", "Gray",
+    "DarkGray",     "Blue",     "Green",     "Cyan",     "Red",     "Magenta",     "Yellow", "White"
+)
+
+$config = @{}
+
+$settings = ((Get-Content .\settings.json) -Replace '\/\/.*' | ConvertFrom-Json)[1].PSObject.Properties
+foreach ($i in $settings.GetEnumerator()) {
+    switch ($i.Name) {
+        { $colorTable.Contains($i.Name) } {
+            $config.Add('ColorTable' + ('{0:D2}' -f $colorTable.IndexOf($i.Name)), $i.Value)
+        }
+    }
 }
+
 $config = @{
     'CtrlKeyShortcutsDisabled' = $false
     'CodePage'                 = 936
@@ -50,10 +47,6 @@ function Remove-RegistryValue([string] $path, [string] $name) {
     if ($exists -ne $null) {
         Remove-ItemProperty -Path $path -Name $name | Out-Null
     }
-}
-
-for($i = 0; $i -lt $colorTable.Count; $i++) {
-    $config.Add('ColorTable' + ('{0:D2}' -f $i), $colorTable[$i])
 }
 
 foreach($i in $config.GetEnumerator()) {
