@@ -9,7 +9,7 @@ $tasks = '~\OneDrive\Collections\Tasks'
 
 # WSL Commands
 Remove-Item Alias:ls
-function ls { bash -c "ls --color -A -I NTUSER.\* -I ntuser.\* $args" }
+function ls { bash -c "source ~/.bashrc; ls $args" }
 function vim { bash -c "vim $args" }
 function lsb_release { bash -c "lsb_release $args" }
 function cowsay { bash -c "echo $input | cowsay $args" }
