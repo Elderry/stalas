@@ -9,12 +9,17 @@ $colorTable = (
 )
 
 $config = @{}
-
-$settings = ((Get-Content .\settings.json) -Replace '\/\/.*' | ConvertFrom-Json)[1].PSObject.Properties
-foreach ($i in $settings.GetEnumerator()) {
-    switch ($i.Name) {
-        { $colorTable.Contains($i.Name) } {
-            $config.Add('ColorTable' + ('{0:D2}' -f $colorTable.IndexOf($i.Name)), $i.Value)
+((Get-Content .\settings.json) -Replace '\/\/.*' | ConvertFrom-Json)[1].PSObject.Properties |
+ForEach-Object {
+    $name = $_.Name
+    $value = $_.Value
+    switch ($name) {
+        { $colorTable.Contains($name) } {
+            $config.Add('ColorTable' + ('{0:D2}' -f $colorTable.IndexOf($name)), '0X' + $value -as [int])
+        }
+        'CursorSize' {
+            $value = switch ($value) { 'small' { 25 } 'medium' { 50 } 'large' { 100 } }
+            $config.Add($name, $value)
         }
     }
 }
