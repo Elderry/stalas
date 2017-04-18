@@ -17,34 +17,18 @@ ForEach-Object {
         { $colorTable.Contains($name) } {
             $config.Add('ColorTable' + ('{0:D2}' -f $colorTable.IndexOf($name)), '0X' + $value -as [int])
         }
-        'CursorSize' {
-            $value = switch ($value) { 'small' { 25 } 'medium' { 50 } 'large' { 100 } }
-            $config.Add($name, $value)
-        }
+        'CursorSize' { $config.Add($name, $(switch ($value) { 'small' { 25 } 'medium' { 50 } 'large' { 100 } })) }
+        'ScreenBufferSize.Lines'   { $config.ScreenBufferSize += $value * 65536 }
+        'ScreenBufferSize.Columns' { $config.ScreenBufferSize += $value }
+        'ScreenColors.Background' { $config.ScreenColors += $value * 16 }
+        'ScreenColors.Foreground' { $config.ScreenColors += $value }
+        'WindowAlpha' { $config.WindowAlpha = $value * 2.55 -as [int] }
+        'WindowPosition.LeftMargin' { $config.WindowPosition += $value * 65536 }
+        'WindowPosition.TopMargin'  { $config.WindowPosition += $value }
+        'WindowSize.Height' { $config.WindowPosition += $value * 65536 }
+        'WindowSize.Width'  { $config.WindowPosition += $value }
+        default { $config.Add($name, $value) }
     }
-}
-
-$config = @{
-    'CtrlKeyShortcutsDisabled' = $false
-    'CodePage'                 = 936
-    'CursorSize'               = 0x64       # 0x19: Small (25%); 0x32: Medium (50%); 0x64: Large (100%);
-    'ExtendedEditKey'          = $true
-    'FilterOnPaste'            = $true
-    'FaceName'                 = 'Inziu Iosevka SC'
-    'ForceV2'                  = $true
-    'FontSize'                 = 0x180000   # 14pt
-    'HistoryBufferSize'        = 999
-    'HistoryNoDup'             = $true
-    'InsertMode'               = $true
-    'LineSelection'            = $true      # Line wrapping selection.
-    'LineWrap'                 = $true      # Wraps text when resize console windows.
-    'NumberOfHistoryBuffers'   = 999
-    'ScreenBufferSize'         = 0x270F0064 # Number of lines: 0x270F (9999); Number of columns: 0x64 (100);
-    'ScreenColors'             = 0xF0       # 0xF: Background color is White; 0x0: Foreground color is Black.
-    'QuickEdit'                = $true      # Able to copy and paste using mouse.
-    'WindowAlpha'              = 0xFF       # Adjust opacity between 30% and 100%: 0x4C to 0xFF -or- 76 to 255.
-    'WindowPosition'           = 0x3C00A0   # Left margin: 0x3C (60); Top Margin: 0xA0 (160);
-    'WindowSize'               = 0x190064   # Hight: 0x19 (25); Width: 0x64 (100);
 }
 
 function Remove-RegistryValue([string] $path, [string] $name) {

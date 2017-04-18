@@ -15,6 +15,7 @@ function lsb_release { bash -c "lsb_release $args" }
 function cowsay { bash -c "echo $input | cowsay $args" }
 function fortune { bash -c "fortune $args" }
 function cat { bash -c "cat $args" }
+function ifconfig { bash -c "ifconfig $args" }
 
 # Modules
 $ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
