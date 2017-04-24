@@ -10,4 +10,4 @@ elif [ $system = Darwin ]; then
     extendRegexr=-E
 fi
 
-sed $extendRegexr -e "s/\s+#\[$system\]//" -e '/#\[\w+\]/ d' <.bashrc >~/$filename
+sed $extendRegexr -e "s/\s+#\[$system\]//" -e '/#\[\w+\]/ d' <'Profile - Bash.bashrc' >~/$filename

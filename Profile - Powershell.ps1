@@ -28,7 +28,7 @@ function prompt {
     $origLastExitCode = $LASTEXITCODE
     Write-VcsStatus
     Write-Host ($PWD.Path -replace ($HOME -replace '\\', '\\'), '~') -ForegroundColor DarkBlue
-    Write-Host "$env:USERNAME@$env:USERDOMAIN" -ForegroundColor DarkGray -NoNewline
+    Write-Host "$env:USERNAME@$((Get-Culture).TextInfo.ToTitleCase($env:USERDOMAIN.ToLower()))" -ForegroundColor DarkGray -NoNewline
     $LASTEXITCODE = $origLastExitCode
     return " $('>' * ($nestedPromptLevel + 1)) "
 }

@@ -49,7 +49,7 @@
     "ForceV2" : true,
 
     // Specifies the size of the font used in the command window.
-    "FontSize" : 14,
+    "FontSize" : 24,
 
     // Specifies the number of commands that can be stored in each command history buffer.
     "HistoryBufferSize" : 999,

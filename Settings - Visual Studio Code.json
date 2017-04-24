@@ -1,0 +1,25 @@
+// Place your settings in this file to overwrite the default settings
+{
+    "editor.detectIndentation": false,
+    "editor.fontFamily": "Inziu Iosevka SC",
+    "editor.fontSize": 20,
+    "editor.rulers": [120],
+    "editor.renderWhitespace": "boundary",
+    "editor.wordWrap": "bounded",
+    "editor.wordWrapColumn": 120,
+
+    "files.autoSave": "onFocusChange",
+    "files.eol": "\n",
+    "files.hotExit": "off",
+
+    "html.format.endWithNewline": true,
+    "html.format.extraLiners": "",
+
+    "workbench.colorTheme": "Default Light+",
+    "workbench.iconTheme": "seti",
+
+    "hexdump.width": 32,
+    "powershell.startAutomatically": false,
+    "vim.useCtrlKeys": false,
+    "window.zoomLevel": 0
+}
