@@ -1,8 +1,10 @@
 $consoleRegPath = 'HKCU:\Console'
-$cmdPath        = Join-Path $consoleRegPath '%SystemRoot%_System32_cmd.exe'
-$poshPath       = Join-Path $consoleRegPath '%SystemRoot%_System32_WindowsPowerShell_v1.0_powershell.exe'
-$posh32Path     = Join-Path $consoleRegPath '%SystemRoot%_SysWOW64_WindowsPowerShell_v1.0_powershell.exe'
-$poshNativePath = Join-Path $consoleRegPath '%SystemRoot%_sysnative_WindowsPowerShell_v1.0_powershell.exe'
+$regPaths = @{
+    'cmd'        = Join-Path $consoleRegPath '%SystemRoot%_System32_cmd.exe'
+    'posh'       = Join-Path $consoleRegPath '%SystemRoot%_System32_WindowsPowerShell_v1.0_powershell.exe'
+    'posh32'     = Join-Path $consoleRegPath '%SystemRoot%_SysWOW64_WindowsPowerShell_v1.0_powershell.exe'
+    'poshNative' = Join-Path $consoleRegPath '%SystemRoot%_sysnative_WindowsPowerShell_v1.0_powershell.exe'
+}
 
 $colorTable = (
     "Black",    "DarkBlue", "DarkGreen", "DarkCyan", "DarkRed", "DarkMagenta", "DarkYellow", "Gray",
@@ -33,26 +35,25 @@ ForEach-Object {
     }
 }
 
-function Remove-RegistryValue([string] $path, [string] $name) {
+function Set-Registry([string] $path, [string] $name, $value, [string] $type) {
+    New-ItemProperty -Path $path -Name $name -Value $value -PropertyType $type -Force -ErrorAction SilentlyContinue |
+        Out-Null
+}
+
+function Remove-Registry([string] $path, [string] $name) {
     $exists = Get-ItemProperty $path -Name $name -ErrorAction SilentlyContinue
     if ($exists -ne $null) { Remove-ItemProperty -Path $path -Name $name | Out-Null }
 }
 
-foreach($i in $config.GetEnumerator()) {
-    switch ($i) {
+$config.GetEnumerator() | ForEach-Object {
+    $name = $_.Name
+    $value = $_.Value
+    switch ($value) {
         { $_ -is [int] -or $_ -is [bool] } { $type = 'DWORD' }
         { $_ -is [string]                } { $type = 'SZ'    }
     }
-    New-ItemProperty -Path $consoleRegPath -Name $i.Name -Value $i.Value -PropertyType $type -Force | Out-Null
-    if ($i.Name -ne 'CodePage') {
-        Remove-RegistryValue $cmdPath        $i.Name
-        Remove-RegistryValue $poshPath       $i.Name
-        Remove-RegistryValue $posh32Path     $i.Name
-        Remove-RegistryValue $poshNativePath $i.Name
-    } else {
-        New-ItemProperty -Path $cmdPath        -Name $i.Name -Value $i.Value -PropertyType $type -Force | Out-Null
-        New-ItemProperty -Path $poshPath       -Name $i.Name -Value $i.Value -PropertyType $type -Force | Out-Null
-        New-ItemProperty -Path $posh32Path     -Name $i.Name -Value $i.Value -PropertyType $type -Force | Out-Null
-        New-ItemProperty -Path $poshNativePath -Name $i.Name -Value $i.Value -PropertyType $type -Force | Out-Null
+    switch ($name) {
+        'CodePage' { $regPaths.GetEnumerator() | ForEach-Object { Set-Registry $_.Value $name $value $type } }
+        default    { $regPaths.GetEnumerator() | ForEach-Object { Remove-Registry $_.Value $name } }
     }
 }

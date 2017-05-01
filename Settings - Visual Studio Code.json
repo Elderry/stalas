@@ -20,6 +20,5 @@
 
     "hexdump.width": 32,
     "powershell.startAutomatically": false,
-    "vim.useCtrlKeys": false,
-    "window.zoomLevel": 0
+    "vim.useCtrlKeys": false
 }
