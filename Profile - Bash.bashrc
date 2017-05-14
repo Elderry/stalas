@@ -21,4 +21,4 @@ export BWTS_HOME=$REAL_HOME/Projects/BWTS/
 
 # Posh-Git
 source $REAL_HOME/Projects/Personal/posh-git-sh/git-prompt.sh
-PROMPT_COMMAND='__posh_git_ps1 "" " \[\033[01;34m\]\w\n\[\033[01;32m\]\u@\h\[\033[00m\] > "'$PROMPT_COMMAND
+PROMPT_COMMAND='__posh_git_ps1 "" "\[\033[01;34m\]\w\n\[\033[01;32m\]\u@\h\[\033[00m\] > "'

@@ -27,8 +27,8 @@ ForEach-Object {
         'ScreenColors.Background' { $config.ScreenColors += $value * 16 }
         'ScreenColors.Foreground' { $config.ScreenColors += $value }
         'WindowAlpha' { $config.WindowAlpha = $value * 2.55 -as [int] }
-        'WindowPosition.LeftMargin' { $config.WindowPosition += $value * 65536 }
-        'WindowPosition.TopMargin'  { $config.WindowPosition += $value }
+        'WindowPosition.LeftMargin' { $config.WindowPosition += $value }
+        'WindowPosition.TopMargin'  { $config.WindowPosition += $value * 65536 }
         'WindowSize.Height' { $config.WindowSize += $value * 65536 }
         'WindowSize.Width'  { $config.WindowSize += $value }
         default { $config.Add($name, $value) }
@@ -52,6 +52,9 @@ $config.GetEnumerator() | ForEach-Object {
         { $_ -is [int] -or $_ -is [bool] } { $type = 'DWORD' }
         { $_ -is [string]                } { $type = 'SZ'    }
     }
+    Set-Registry $consoleRegPath $name $value $type
+    # Clean up unnecessary entries.
+    # 'CodePage' is a special entry that only works while setting on specific profiles.
     switch ($name) {
         'CodePage' { $regPaths.GetEnumerator() | ForEach-Object { Set-Registry $_.Value $name $value $type } }
         default    { $regPaths.GetEnumerator() | ForEach-Object { Remove-Registry $_.Value $name } }

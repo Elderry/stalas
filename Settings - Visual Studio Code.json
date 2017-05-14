@@ -8,17 +8,21 @@
     "editor.wordWrap": "bounded",
     "editor.wordWrapColumn": 120,
 
+    "files.autoGuessEncoding": true,
     "files.autoSave": "onFocusChange",
     "files.eol": "\n",
     "files.hotExit": "off",
+    "files.insertFinalNewline": true,
 
     "html.format.endWithNewline": true,
     "html.format.extraLiners": "",
 
-    "workbench.colorTheme": "Default Light+",
-    "workbench.iconTheme": "seti",
+    "window.openFilesInNewWindow": "on",
+    "window.openFoldersInNewWindow": "on",
 
-    "hexdump.width": 32,
+    "workbench.colorTheme": "Default Light+",
+    "workbench.iconTheme": "vs-seti",
+
     "powershell.startAutomatically": false,
     "vim.useCtrlKeys": false
 }

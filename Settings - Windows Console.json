@@ -87,8 +87,8 @@
     "WindowAlpha" : 100,
 
     // Specifies the position of the command window on the user's screen.
-    "WindowPosition.LeftMargin" : 60,
-    "WindowPosition.TopMargin" : 160,
+    "WindowPosition.LeftMargin" : 240,
+    "WindowPosition.TopMargin" : 60,
 
     // Specifies the size of the command window.
     "WindowSize.Height" : 25,
