@@ -1,6 +1,3 @@
-# Git Environment
-. $env:LOCALAPPDATA\GitHub\shell.ps1 -SkipSSHSetup
-
 # Custom Variables
 Set-Alias vc "${env:ProgramFiles(x86)}\Microsoft VS Code\Code.exe"
 Set-Alias mg '~\OneDrive\Collections\Adults\magick.ps1'
