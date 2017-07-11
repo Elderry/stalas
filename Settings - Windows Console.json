@@ -6,23 +6,24 @@
 {
     // Defines the colors in the color well on the Colors tab of the console Properties or Defaults dialog box.
     // Each of the 16 ColorTable x entries corresponds to one of the registry entries ColorTable00-ColorTable15.
+    // Reference: https://github.com/Microsoft/vscode/blob/master/src/vs/workbench/parts/terminal/electron-browser/terminalColorRegistry.ts
     //              "BBGGRR" (original value commented)
-    "Black"       : "000000", // 000000
-    "DarkBlue"    : "C00000", // 800000
-    "DarkGreen"   : "00C000", // 008000
-    "DarkCyan"    : "C0C000", // 808000
-    "DarkRed"     : "0000C0", // 000080
-    "DarkMagenta" : "C000C0", // 800080
-    "DarkYellow"  : "00C0C0", // 008080
-    "Gray"        : "808080", // C0C0C0
-    "DarkGray"    : "FF8000", // 808080
-    "Blue"        : "FF0080", // FF0000
-    "Green"       : "00C080", // 00FF00
-    "Cyan"        : "80C000", // FFFF00
-    "Red"         : "0000FF", // 0000FF
-    "Magenta"     : "8000FF", // FF00FF
-    "Yellow"      : "0080FF", // 00FFFF
-    "White"       : "FFFFFF", // FFFFFF
+    "Black"       : "000000", // 000000 Black
+    "DarkBlue"    : "A55104", // 800000 Blue
+    "DarkGreen"   : "00BC00", // 008000 Green
+    "DarkCyan"    : "BC9805", // 808000 Cyan
+    "DarkRed"     : "3131CD", // 000080 Red
+    "DarkMagenta" : "BC05BC", // 800080 Magenta
+    "DarkYellow"  : "009894", // 008080 Yellow
+    "Gray"        : "666666", // C0C0C0 White
+    "DarkGray"    : "555555", // 808080 BrightDark
+    "Blue"        : "EA8E3B", // FF0000 BrightBlue
+    "Green"       : "14CE14", // 00FF00 BrightGreen
+    "Cyan"        : "DBB829", // FFFF00 BrightCyan
+    "Red"         : "4C4CF1", // 0000FF BrightRed
+    "Magenta"     : "D670D6", // FF00FF BrightMagenta
+    "Yellow"      : "00BAB5", // 00FFFF BrightYellow
+    "White"       : "FFFFFF", // FFFFFF BrightWhite
 
     // 'false' enables new key shortcuts; 'true' disables them.
     "CtrlKeyShortcutsDisabled" : false,

@@ -24,8 +24,8 @@ $global:GitPromptSettings.AfterText  = '] '
 function prompt {
     $origLastExitCode = $LASTEXITCODE
     Write-VcsStatus
-    Write-Host ($PWD.Path -replace ($HOME -replace '\\', '\\'), '~') -ForegroundColor DarkBlue
-    Write-Host "$env:USERNAME@$((Get-Culture).TextInfo.ToTitleCase($env:USERDOMAIN.ToLower()))" -ForegroundColor DarkGray -NoNewline
+    Write-Host ($PWD.Path -replace ($HOME -replace '\\', '\\'), '~') -ForegroundColor Blue
+    Write-Host "$env:USERNAME@$((Get-Culture).TextInfo.ToTitleCase($env:USERDOMAIN.ToLower()))" -ForegroundColor Green -NoNewline
     $LASTEXITCODE = $origLastExitCode
     return " $('>' * ($nestedPromptLevel + 1)) "
 }

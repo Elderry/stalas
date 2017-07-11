@@ -2,7 +2,7 @@
 {
     "editor.detectIndentation": false,
     "editor.fontFamily": "Inziu Iosevka SC",
-    "editor.fontSize": 20,
+    "editor.fontSize": 18,
     "editor.rulers": [120],
     "editor.renderWhitespace": "boundary",
     "editor.wordWrap": "bounded",
