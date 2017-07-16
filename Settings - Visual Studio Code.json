@@ -5,17 +5,11 @@
     "editor.fontSize": 18,
     "editor.rulers": [120],
     "editor.renderWhitespace": "boundary",
-    "editor.wordWrap": "bounded",
-    "editor.wordWrapColumn": 120,
 
-    "files.autoGuessEncoding": true,
     "files.autoSave": "onFocusChange",
     "files.eol": "\n",
     "files.hotExit": "off",
     "files.insertFinalNewline": true,
-
-    "html.format.endWithNewline": true,
-    "html.format.extraLiners": "",
 
     "window.openFilesInNewWindow": "on",
     "window.openFoldersInNewWindow": "on",
@@ -23,6 +17,8 @@
     "workbench.colorTheme": "Default Light+",
     "workbench.iconTheme": "vs-seti",
 
+    "powershell.enableProfileLoading": true,
+    "powershell.integratedConsole.showOnStartup": false,
     "vim.disableAnnoyingNeovimMessage": true,
     "vim.useCtrlKeys": false
 }

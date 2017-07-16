@@ -6,7 +6,8 @@
 {
     // Defines the colors in the color well on the Colors tab of the console Properties or Defaults dialog box.
     // Each of the 16 ColorTable x entries corresponds to one of the registry entries ColorTable00-ColorTable15.
-    // Reference: https://github.com/Microsoft/vscode/blob/master/src/vs/workbench/parts/terminal/electron-browser/terminalColorRegistry.ts
+    // Reference: https://github.com/Microsoft/vscode/blob/master/src/vs/workbench/parts/terminal/electron-browser/terminalColorRegistry.ts,
+    //            Commits on Jul 12, 2017 
     //              "BBGGRR" (original value commented)
     "Black"       : "000000", // 000000 Black
     "DarkBlue"    : "A55104", // 800000 Blue

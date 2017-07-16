@@ -5,14 +5,15 @@ Set-Alias au '~\Projects\Personal\chocolatey-packages\update_all.ps1'
 $tasks = '~\OneDrive\Collections\Tasks'
 
 # WSL Commands
-Remove-Item Alias:ls
-function ls { bash -c "source ~/.bashrc; ls $args" }
-function vim { bash -c "vim $args" }
-function lsb_release { bash -c "lsb_release $args" }
+function cat { bash -c "cat $args" }
 function cowsay { bash -c "echo $input | cowsay $args" }
 function fortune { bash -c "fortune $args" }
-function cat { bash -c "cat $args" }
 function ifconfig { bash -c "ifconfig $args" }
+Remove-Item Alias:ls
+function ls { bash -c "source ~/.bashrc; ls $args" }
+function lsb_release { bash -c "lsb_release $args" }
+function vi { bash -c "vim $args" }
+function vim { bash -c "vim $args" }
 
 # Modules
 $ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
