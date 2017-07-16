@@ -60,3 +60,19 @@ $config.GetEnumerator() | ForEach-Object {
         default    { $regPaths.GetEnumerator() | ForEach-Object { Remove-Registry $_.Value $name } }
     }
 }
+
+# Build PS.lnk
+$path = "$Home\OneDrive\Collections\AppBackup\Desktop\PS.lnk"
+$WshShell = New-Object -ComObject WScript.Shell
+$Shortcut = $WshShell.CreateShortcut($path)
+$Shortcut.TargetPath = "$Env:SystemRoot\system32\WindowsPowerShell\v1.0\powershell.exe"
+$Shortcut.WorkingDirectory = "$Home"
+if (Test-Path $path) { Remove-Item $path }
+$Shortcut.Save()
+
+# Build PSA.lnk
+$bytes = [System.IO.File]::ReadAllBytes($path)
+$bytes[0x15] = $bytes[0x15] -bor 0x20
+$path = $path -replace 'PS', 'PSA'
+if (Test-Path $path) { Remove-Item $path }
+[System.IO.File]::WriteAllBytes($path, $bytes)
