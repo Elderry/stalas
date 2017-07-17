@@ -1,3 +1,10 @@
+$desktopPath = "$Home\OneDrive\Collections\AppBackup\Desktop"
+$poshShortcut = 'PS.lnk'
+$poshAdminShortcut = 'PSA.lnk'
+$bashShortcut = 'BS.lnk'
+$cmdShortcut = 'CD.lnk'
+$cmdAdminShortcut = 'CDA.lnk'
+
 $consoleRegPath = 'HKCU:\Console'
 $regPaths = @{
     'cmd'        = Join-Path $consoleRegPath '%SystemRoot%_System32_cmd.exe'
@@ -61,18 +68,28 @@ $config.GetEnumerator() | ForEach-Object {
     }
 }
 
-# Build PS.lnk
-$path = "$Home\OneDrive\Collections\AppBackup\Desktop\PS.lnk"
-$WshShell = New-Object -ComObject WScript.Shell
-$Shortcut = $WshShell.CreateShortcut($path)
-$Shortcut.TargetPath = "$Env:SystemRoot\system32\WindowsPowerShell\v1.0\powershell.exe"
-$Shortcut.WorkingDirectory = "$Home"
-if (Test-Path $path) { Remove-Item $path }
-$Shortcut.Save()
+function Set-Shortcut([string] $Path, [string] $Target, [string] $Icon, [switch] $RequireAdmin) {
+    $wshShell = New-Object -ComObject WScript.Shell
+    $shortcut = $WshShell.CreateShortcut($Path)
+    $shortcut.TargetPath = $Target
+    $shortcut.WorkingDirectory = "$Home"
+    if ($Icon -and (Test-Path $Icon)) { $shortcut.IconLocation = $Icon }
+    if (Test-Path $Path) { Remove-Item $Path }
+    $shortcut.Save()
+    if ($RequireAdmin) {
+        $bytes = [System.IO.File]::ReadAllBytes($Path)
+        $bytes[0x15] = $bytes[0x15] -bor 0x20
+        [System.IO.File]::WriteAllBytes($Path, $bytes)
+    }
+}
 
-# Build PSA.lnk
-$bytes = [System.IO.File]::ReadAllBytes($path)
-$bytes[0x15] = $bytes[0x15] -bor 0x20
-$path = $path -replace 'PS', 'PSA'
-if (Test-Path $path) { Remove-Item $path }
-[System.IO.File]::WriteAllBytes($path, $bytes)
+$poshPath = "$Env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe"
+$cmdPath  = "$Env:SystemRoot\System32\cmd.exe"
+$bashPath = "$Env:SystemRoot\System32\bash.exe"
+$bashIcon = "$Env:UserProfile\AppData\Local\lxss\bash.ico"
+
+Set-Shortcut (Join-Path $desktopPath $poshShortcut) $poshPath
+Set-Shortcut (Join-Path $desktopPath $poshAdminShortcut) $poshPath -RequireAdmin
+Set-Shortcut (Join-Path $desktopPath $cmdShortcut) $cmdPath
+Set-Shortcut (Join-Path $desktopPath $cmdAdminShortcut) $cmdPath -RequireAdmin
+Set-Shortcut (Join-Path $desktopPath $bashShortcut) $bashPath $bashIcon

@@ -22,8 +22,8 @@ export BWTS_HOME=$REAL_HOME/Projects/BWTS/
 
 # Posh-Git
 # Color reference: https://help.ubuntu.com/community/CustomizingBashPrompt
-BLUE='\[\e[1;34m\]'
-GREEN='\[\e[1;32m\]'
-RESET='\[\e[0m\]'
+BLUE='\e[1;34m'
+GREEN='\e[1;32m'
+RESET='\e[0m'
 source $REAL_HOME/Projects/Personal/posh-git-sh/git-prompt.sh
 PROMPT_COMMAND='__posh_git_ps1 "" "${BLUE}\w\n${GREEN}\u@\h${RESET} > "'
