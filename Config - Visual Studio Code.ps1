@@ -1,1 +1,3 @@
-Copy-Item 'Settings - Visual Studio Code.json' (Join-Path $Env:AppData 'Code\User\settings.json')
+$target = Join-Path $Env:AppData 'Code\User\settings.json'
+(Get-Content 'Settings - Visual Studio Code.json') -replace '\s+//\[Windows\]' -notmatch '\[macOS\]' |
+    Set-Content $target

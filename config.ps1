@@ -4,11 +4,11 @@ function Write-Split([string] $prefix, [string] $key, [string] $suffix) {
     $hyphen = ($total - $length) / 2
     $hyphenBefore = '-' * [math]::floor($hyphen)
     $hyphenAfter  = '-' * [math]::ceiling($hyphen)
-    Write-Host $hyphenBefore -ForegroundColor DarkMagenta -NoNewLine
-    Write-Host " $prefix[" -ForegroundColor Green -NoNewLine
-    Write-Host "$key" -ForegroundColor Magenta -NoNewLine
-    Write-Host "]$suffix " -ForegroundColor Green -NoNewLine
-    Write-Host $hyphenAfter -ForegroundColor DarkMagenta
+    Write-Host $hyphenBefore -ForegroundColor DarkBlue -NoNewLine
+    Write-Host " $prefix[" -ForegroundColor DarkGreen -NoNewLine
+    Write-Host "$key" -ForegroundColor DarkRed -NoNewLine
+    Write-Host "]$suffix " -ForegroundColor DarkGreen -NoNewLine
+    Write-Host $hyphenAfter -ForegroundColor DarkBlue
 }
 
 Write-Host

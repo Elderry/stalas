@@ -11,14 +11,15 @@
     "files.hotExit": "off",
     "files.insertFinalNewline": true,
 
+    "terminal.integrated.cursorStyle": "line",
+    "terminal.integrated.fontLigatures": true,
+
     "window.openFilesInNewWindow": "on",
-    "window.openFoldersInNewWindow": "on",
 
     "workbench.colorTheme": "Default Light+",
-    "workbench.iconTheme": "vs-seti",
 
-    "powershell.enableProfileLoading": true,
-    "powershell.integratedConsole.showOnStartup": false,
+    "powershell.integratedConsole.showOnStartup": false, //[Windows]
+
     "vim.disableAnnoyingNeovimMessage": true,
     "vim.useCtrlKeys": false
 }

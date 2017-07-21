@@ -3,7 +3,7 @@ export HISTSIZE=1000
 export HISTFILESIZE=2000
 
 # Add some color
-export LS_COLORS='ow=34'
+export LS_COLORS='ow=34' #[Linux]
 
 # Aliases
 ls() { command ls --color -A -I NTUSER.\* -I ntuser.\* "$@"; } #[Linux]
