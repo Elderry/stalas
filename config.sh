@@ -1,31 +1,31 @@
 #!/bin/sh
 
-DARK_RED='\e[31m'
-DARK_GREEN='\e[32m'
-DARK_BLUE='\e[34m'
-RESET='\e[0m'
-echo "\n${DARK_BLUE}--------------- Elderry's Config Files ---------------\n"
+DARK_RED='\033[31m'
+DARK_GREEN='\033[32m'
+DARK_BLUE='\033[34m'
+RESET='\033[0m'
+echo "\n${DARK_BLUE}--------------- Elderry's Config Files ---------------"
 
-function Write-Split() {
+function split() {
     total=50
     length=$((${#1} + ${#2} + ${#3}))
     left=$(($total - $length))
-    hyphen = $(($left / 2))
-    for i in {1..$hyphen}; do echo -n '-'; done
-    echo " ${DARK_GREEN}${1}[${DARK_RED}${2}]${DARK_GREEN}${3} ${DARK_BLUE}"
-    for i in {1..$(($hyphen + $left % 2))}; do echo -n '-'; done
-    echo '\n'
+    hyphen=$(($left / 2))
+    for i in $(seq 1 $hyphen); do printf '-'; done
+    printf " ${DARK_GREEN}${1}[${DARK_RED}${2}${DARK_GREEN}]${3}${DARK_BLUE} "
+    for i in $(seq 1 $(($hyphen + $left % 2))); do printf '-'; done
+    echo ''
 }
 
-function Config() {
-    echo '\n'
-    Write-Split 'Going to config ' $1 '.'
-    $2
-    Write-Split 'Config of ' $1 ' finished.'
+function config() {
+    echo ''
+    split 'Going to config ' "$1" '.'
+    "$2"
+    split 'Config of ' "$1" ' finished.'
 }
 
-Config 'Bash'               'Config - Bash.sh'
-Config 'Vim'                'Config - Vim.sh'
-Config 'Visual Studio Code' 'Config - Visual Studio Code.sh'
+config 'Bash'               'Config - Bash.sh'
+config 'Vim'                'Config - Vim.sh'
+config 'Visual Studio Code' 'Config - Visual Studio Code.sh'
 
 echo "\n--------------- Elderry's Config Files ---------------${RESET}\n"
