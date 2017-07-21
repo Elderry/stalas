@@ -1,4 +1,4 @@
-#!bin/sh
+#!/bin/sh
 
 DARK_RED='\e[31m'
 DARK_GREEN='\e[32m'

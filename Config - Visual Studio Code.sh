@@ -1,4 +1,4 @@
-#!bin/sh
+#!/bin/sh
 
 sed -Ee 's|\s+//\[macOS\]||'              \
      -e '/\/\/\[Windows\]/ d'             \

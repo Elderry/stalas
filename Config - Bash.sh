@@ -1,4 +1,4 @@
-#!bin/sh
+#!/bin/sh
 
 system=$(uname -s)
 if [ $system = Linux ]; then
