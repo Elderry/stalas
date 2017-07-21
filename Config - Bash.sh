@@ -8,4 +8,4 @@ elif [ $system = Darwin ]; then
     filename=.bash_profile
 fi
 
-sed -e "s/\s*#\[$system\]//" -e '/#\[\w+\]/ d' <'Profile - Bash.bashrc' >~/$filename
+sed -e "s/\s*#\[$system\]//" -e '/#\[\w*\]/ d' <'Profile - Bash.bashrc' >~/$filename
