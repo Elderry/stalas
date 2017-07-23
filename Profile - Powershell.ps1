@@ -2,18 +2,20 @@
 Set-Alias vc "${env:ProgramFiles(x86)}\Microsoft VS Code\Code.exe"
 Set-Alias mg '~\OneDrive\Collections\Adults\magick.ps1'
 Set-Alias au '~\Projects\Personal\chocolatey-packages\update_all.ps1'
-$tasks = '~\OneDrive\Collections\Tasks'
 
 # WSL Commands
-function cat { bash -c "cat $args" }
+function bash_file { $args = $args -replace '\\', '/'; bash -c "$((Get-PSCallStack)[1].Command) '$args'" }
+
+function cat { bash_file $args }
 function cowsay { bash -c "echo $input | cowsay $args" }
 function fortune { bash -c "fortune $args" }
 function ifconfig { bash -c "ifconfig $args" }
 Remove-Item Alias:ls
 function ls { bash -c "source ~/.bashrc; ls $args" }
 function lsb_release { bash -c "lsb_release $args" }
-function vi { bash -c "vim $args" }
-function vim { bash -c "vim $args" }
+function touch { bash -c "touch $args" }
+function vi { bash_file $args }
+function vim { bash_file $args }
 
 # Modules
 $ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
