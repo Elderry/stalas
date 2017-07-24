@@ -16,7 +16,7 @@
     "DarkRed"     : "3131CD", // 000080 Red
     "DarkMagenta" : "BC05BC", // 800080 Magenta
     "DarkYellow"  : "009894", // 008080 Yellow
-    "Gray"        : "666666", // C0C0C0 White
+    "Gray"        : "AAAAAA", // C0C0C0 White
     "DarkGray"    : "555555", // 808080 BrightDark
     "Blue"        : "EA8E3B", // FF0000 BrightBlue
     "Green"       : "14CE14", // 00FF00 BrightGreen
