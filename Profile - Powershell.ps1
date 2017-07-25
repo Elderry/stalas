@@ -56,6 +56,12 @@ $global:GitPromptSettings.AfterStashBackgroundColor = $GitBackgroundColor
 $global:GitPromptSettings.StashBackgroundColor = $GitBackgroundColor
 $global:GitPromptSettings.ErrorBackgroundColor = $GitBackgroundColor
 
+$global:GitPromptSettings.LocalDefaultStatusForegroundColor = [ConsoleColor]::Green
+$global:GitPromptSettings.LocalWorkingStatusForegroundColor = [ConsoleColor]::Red
+$global:GitPromptSettings.BeforeIndexForegroundColor = [ConsoleColor]::Green
+$global:GitPromptSettings.IndexForegroundColor = [ConsoleColor]::Green
+$global:GitPromptSettings.WorkingForegroundColor = [ConsoleColor]::Red
+
 Set-PSReadlineOption -TokenKind Number -ForegroundColor Green
 Set-PSReadlineOption -TokenKind Member -ForegroundColor Magenta
 

@@ -30,11 +30,14 @@ export BWTS=$REAL_HOME/Projects/BWTS/
 
 # Posh-Git
 # Color reference: https://help.ubuntu.com/community/CustomizingBashPrompt
-BLUE='\e[1;34m'
-GREEN='\e[1;32m'
 RESET='\e[0m'
+REVERT='\e[7m'
+GREEN='\e[1;32m'
+BLUE='\e[1;34m'
+MAGNETA='\e[35m'
+MAGNETA_BACK='\e[45m'
 source $REAL_HOME/Projects/Personal/posh-git-sh/git-prompt.sh
-PROMPT_COMMAND='__posh_git_ps1 "" "${BLUE}\w\n${GREEN}\u@\h${RESET} > "'
+PROMPT_COMMAND='__posh_git_ps1 "" "${BLUE}${REVERT} \w ${RESET}${BLUE}\n${REVERT}${GREEN} \u@\h ${RESET}${GREEN}${MAGNETA_BACK}${RESET}${REVERT}${MAGNETA}$ ${RESET}${MAGNETA}${RESET}"'
 
 # Java
 JAVA_HOME=$(/usr/libexec/java_home -v 1.8) #[macOS]
