@@ -65,11 +65,23 @@ function IsAdmin {
     return $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
 }
 
+function IsGitDirectory {
+    if (Test-Path '.git') { return $true }
+    $path = Get-Item $PWD
+    while ($path.Parent) {
+        if (Test-Path (Join-Path $path.Parent.FullName '.git')) {
+            return $true
+        }
+        $path = $path.Parent
+    }
+    return $false
+}
+
 function prompt {
 
     # Git
     Write-VcsStatus
-    if (Test-Path '.git') {
+    if (IsGitDirectory) {
         Write-Host '' -ForegroundColor $GitBackgroundColor -BackgroundColor $DirectoryBackgroundColor -NoNewline
     }
 
