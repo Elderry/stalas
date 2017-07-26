@@ -20,7 +20,7 @@ function split() {
 function config() {
     echo ''
     split 'Going to config ' "$1" '.'
-    "$2"
+    ./"$2"
     split 'Config of ' "$1" ' finished.'
 }
 
