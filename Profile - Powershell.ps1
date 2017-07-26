@@ -108,6 +108,3 @@ function prompt {
 
     return ' '
 }
-
-# PSReadLine Colors
-
