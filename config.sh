@@ -1,10 +1,10 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-DARK_RED='\033[31m'
-DARK_GREEN='\033[32m'
-DARK_BLUE='\033[34m'
-RESET='\033[0m'
-echo "\n${DARK_BLUE}--------------- Elderry's Config Files ---------------"
+DARK_RED='\e[31m'
+DARK_GREEN='\e[32m'
+DARK_BLUE='\e[34m'
+RESET='\e[0m'
+echo -e "\n${DARK_BLUE}--------------- Elderry's Config Files ---------------"
 
 function split() {
     total=50
@@ -28,4 +28,4 @@ config 'Bash'               'Config - Bash.sh'
 config 'Vim'                'Config - Vim.sh'
 config 'Visual Studio Code' 'Config - Visual Studio Code.sh'
 
-echo "\n--------------- Elderry's Config Files ---------------${RESET}\n"
+echo -e "\n--------------- Elderry's Config Files ---------------${RESET}\n"

@@ -15,7 +15,7 @@ export HISTFILESIZE=2000
 
 # Aliases
 alias ls='ls -G' #[macOS]
-alias echo='echo -e' #[Linux]
+alias echo='echo -e'
 alias docker='"/mnt/c/Program Files/Docker/Docker/resources/bin/docker.exe"' #[Linux]
 # Currently this doesn't work becase of an encoding issue: https://github.com/docker/compose/issues/2775
 # alias docker-compose='"/mnt/c/Program Files/Docker/Docker/resources/bin/docker-compose.exe"' #[Linux]
