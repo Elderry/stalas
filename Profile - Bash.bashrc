@@ -30,13 +30,13 @@ export BWTS=$REAL_HOME/Projects/BWTS/
 
 # Posh-Git
 # Color reference: https://help.ubuntu.com/community/CustomizingBashPrompt
-RESET='\e[0m'
-GREEN_MAGNETA='\e[92;105m'
-BLUE_WHITE='\e[94;107m'
-MAGNETA_WHITE='\e[95;107m'
-WHITE_BLUE='\e[97;104m'
-WHITE_GREEN='\e[97;102m'
-WHITE_MAGNETA='\e[97;105m'
+RESET='\[\e[0m\]'
+GREEN_MAGNETA='\[\e[92;105m\]'
+BLUE_WHITE='\[\e[94;107m\]'
+MAGNETA_WHITE='\[\e[95;107m\]'
+WHITE_BLUE='\[\e[97;104m\]'
+WHITE_GREEN='\[\e[97;102m\]'
+WHITE_MAGNETA='\[\e[97;105m\]'
 source $REAL_HOME/Projects/Personal/posh-git-sh/git-prompt.sh
 path="${WHITE_BLUE} \w ${BLUE_WHITE}"
 user="${WHITE_GREEN} \u@\h ${GREEN_MAGNETA}"
