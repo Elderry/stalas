@@ -1,3 +1,11 @@
+[Adblock]
+! Version: 1.0
+! Title: Elderry's List
+! Last modified:
+! Expires: 4 days (update frequency)
+! Homepage:
+! 
+
 @@||github.com/$document
 @@||chocolatey.org/$document
 @@||bing.com/$document
