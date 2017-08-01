@@ -1,53 +1,29 @@
-[Adblock]
-! Version: 1.0
+[Adblock Plus 2.0]
+! Version: 1.1
 ! Title: Elderry's List
-! Last modified:
-! Expires: 4 days (update frequency)
-! Homepage:
-! 
+! Expires: 5 days
+! Homepage: https://github.com/Elderry/config
+!
 
-@@||github.com/$document
-@@||chocolatey.org/$document
+@@||appveyor.com/$document
+@@||askubuntu.com/$document
+@@||atlassian.*/$document
 @@||bing.com/$document
+@@||chsi.com.cn/$document
+@@||chocolatey.org/$document
+@@||github.com/$document
+@@||google.com/$document
 @@||live.com/$document
-@@||visualstudio.com/$document
 @@||microsoft.com/$document
 @@||office.com/$document
-@@||appveyor.com/$document
-@@||ustc.edu.cn/$document
-@@||chsi.com.cn/$document
-@@||wikipedia.org/$document
+@@||safaribooksonline.com/$document
+@@||sipspf.org.cn/$document
 @@||stackexchange.com/$document
 @@||stackoverflow.com/$document
 @@||superuser.com/$document
-@@||askubuntu.com/$document
-@@||google.com/$document
-@@||atlassian.*/$document
-@@||sipspf.org.cn/$document
-@@||safaribooksonline.com/$document
-
-sina.com.cn##DIV.side-btns-2w
-sina.com.cn##DIV.side-btns-wrap
-sina.com.cn##DIV.desktop-side-tool
-sina.com.cn##DIV.CCC-float-bar-right
-sina.com.cn##DIV.bottom-tool
-sina.com.cn##DIV.sinaad-toolkit-box
-sina.com.cn##DIV.sinaads-float
-sina.com.cn##DIV.content_wrappr_right
-sina.com.cn##DIV.left-module
-sina.com.cn##DIV.right
-sina.com.cn##DIV.relative-news
-sina.com.cn##DIV.article-info
-sina.com.cn##DIV.feed-wrap
-sina.com.cn##DIV.real-time-window
-sina.com.cn##DIV.fin_art_weixin
-sina.com.cn##DIV.lcs1_w
-sina.com.cn##DIV.sidebar
-sina.com.cn##IFRAME.sina-iframe-content
-sina.com.cn##DIV.fnc_lcswcf
-sina.com.cn##DIV.content_aboutNews
-sina.com.cn##DIV.side-btns-2wm
-sina.com.cn##DIV.nav-h
+@@||ustc.edu.cn/$document
+@@||visualstudio.com/$document
+@@||wikipedia.org/$document
 
 taobao.com##DIV#J_Feedback
 taobao.com##DIV.tshop-psm-shop-ww-hover
@@ -81,11 +57,6 @@ tieba.baidu.com##DIV.aside
 tieba.baidu.com##DIV.right_section
 tieba.baidu.com##DIV.focum_recommend
 tieba.baidu.com##DIV.video_frs_head
-pan.baidu.com##DL.module-hot-rec
-pan.baidu.com##DIV#web-single-bottom
-pan.baidu.com##DIV#web-right-view
-pan.baidu.com##DIV#web-multi-bottom
-pos.baidu.com
 
 uac.10010.com##SPAN.sl-delect
 
