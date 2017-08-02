@@ -68,8 +68,10 @@ tieba.baidu.com##DIV.aside
 tieba.baidu.com##DIV.right_section
 tieba.baidu.com##DIV.focum_recommend
 tieba.baidu.com##DIV.video_frs_head
+pan.baidu.com##DL.module-hot-rec
 
 uac.10010.com##SPAN.sl-delect
+10010.com##DIV#234952
 
 movie.douban.com##DIV#dale_movie_home_top_right
 movie.douban.com##DIV#movie_home_left_bottom
