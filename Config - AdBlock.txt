@@ -1,6 +1,6 @@
 [Adblock Plus 2.0]
 ! Title: Elderry's List
-! Expires: 5 days
+! Expires: 1 days
 ! Homepage: https://github.com/Elderry/config
 !
 
@@ -11,7 +11,7 @@
 @@||chsi.com.cn/$document
 @@||chocolatey.org/$document
 @@||github.com/$document
-@@||google.com/$document
+@@||google.*/$document
 @@||live.com/$document
 @@||microsoft.com/$document
 @@||office.com/$document
@@ -24,6 +24,17 @@
 @@||visualstudio.com/$document
 @@||wikipedia.org/$document
 @@||zhihu.com/$document
+
+sina.com.cn##DIV#moodcounter
+sina.com.cn##DIV#relatedNewsWrap
+sina.com.cn##DIV.article-info
+sina.com.cn##DIV.desktop-side-tool
+sina.com.cn##DIV.right
+
+leju.com##DIV#bb_navBox
+leju.com##DIV#zygw_live_layer
+leju.com##DIV.dll_contright
+leju.com##DIV.l_remen
 
 taobao.com##DIV#J_Feedback
 taobao.com##DIV.tshop-psm-shop-ww-hover
