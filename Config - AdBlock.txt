@@ -1,5 +1,4 @@
 [Adblock Plus 2.0]
-! Version: 1.1
 ! Title: Elderry's List
 ! Expires: 5 days
 ! Homepage: https://github.com/Elderry/config
@@ -24,6 +23,7 @@
 @@||ustc.edu.cn/$document
 @@||visualstudio.com/$document
 @@||wikipedia.org/$document
+@@||zhihu.com/$document
 
 taobao.com##DIV#J_Feedback
 taobao.com##DIV.tshop-psm-shop-ww-hover

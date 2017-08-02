@@ -86,7 +86,7 @@
     "QuickEdit" : true,
 
     // Sets opacity value between 30% and 100%.
-    "WindowAlpha" : 100,
+    "WindowAlpha" : 90,
 
     // Specifies the position of the command window on the user's screen.
     "WindowPosition.LeftMargin" : 240,
