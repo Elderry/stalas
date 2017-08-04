@@ -1,7 +1,7 @@
 [Adblock Plus 2.0]
 ! Title: Elderry's List
 ! Expires: 1 days
-! Homepage: https://github.com/Elderry/config
+! Homepage: https://github.com/Elderry/config/blob/master/Config%20-%20AdBlock.txt
 !
 
 @@||appveyor.com/$document
@@ -25,11 +25,19 @@
 @@||wikipedia.org/$document
 @@||zhihu.com/$document
 
+sina.com.cn##DIV#CCCFloatBarRight
 sina.com.cn##DIV#moodcounter
 sina.com.cn##DIV#relatedNewsWrap
+sina.com.cn##DIV.ad
 sina.com.cn##DIV.article-info
 sina.com.cn##DIV.desktop-side-tool
+sina.com.cn##DIV.relative-news
 sina.com.cn##DIV.right
+sina.com.cn##DIV.right-module
+sina.com.cn##DIV.sinaAd
+tech.sina.com.cn##DIV.tech-fix-btn
+tech.sina.com.cn##DIV.tech-right
+tech.sina.com.cn##DIV.ty-card[data-info^="ad_none"]
 
 leju.com##DIV#bb_navBox
 leju.com##DIV#zygw_live_layer
