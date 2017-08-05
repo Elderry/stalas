@@ -29,18 +29,23 @@ sina.com.cn##DIV#CCCFloatBarRight
 sina.com.cn##DIV#moodcounter
 sina.com.cn##DIV#relatedNewsWrap
 sina.com.cn##DIV.ad
+sina.com.cn##DIV.art-con-right
 sina.com.cn##DIV.article-info
+sina.com.cn##DIV.bb_navBox
 sina.com.cn##DIV.desktop-side-tool
+sina.com.cn##DIV.moreinfo
+sina.com.cn##DIV.newslist
 sina.com.cn##DIV.relative-news
 sina.com.cn##DIV.right
 sina.com.cn##DIV.right-module
 sina.com.cn##DIV.sinaAd
+sina.com.cn##DIV.topic-hot
 tech.sina.com.cn##DIV.tech-fix-btn
 tech.sina.com.cn##DIV.tech-right
 tech.sina.com.cn##DIV.ty-card[data-info^="ad_none"]
 
-leju.com##DIV#bb_navBox
 leju.com##DIV#zygw_live_layer
+leju.com##DIV.bb_navBox
 leju.com##DIV.dll_contright
 leju.com##DIV.l_remen
 
