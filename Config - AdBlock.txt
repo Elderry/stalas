@@ -50,12 +50,16 @@ leju.com##DIV.dll_contright
 leju.com##DIV.l_remen
 
 taobao.com##DIV#J_Feedback
-taobao.com##DIV.tshop-psm-shop-ww-hover
-taobao.com##DIV.page-footer-hidden
-taobao.com##DIV#tstart
 taobao.com##DIV#J_Toolbar
-login.taobao.com##SPAN.nickx
+taobao.com##DIV#J_xiaomi_dialog
+taobao.com##DIV#p4p_ad
+taobao.com##DIV#tstart
+taobao.com##DIV.banner
+taobao.com##DIV.tshop-psm-shop-ww-hover
+taobao.com##DIV.J_guess-you-like
+taobao.com##DIV.page-footer-hidden
 cart.taobao.com##DIV#interested
+login.taobao.com##SPAN.nickx
 
 tmall.com##DIV.mui-mbar-outer
 tmall.com##DIV.tstart-tdog-enable
