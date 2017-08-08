@@ -7,7 +7,6 @@
 @@||appveyor.com/$document
 @@||askubuntu.com/$document
 @@||atlassian.*/$document
-@@||bing.com/$document
 @@||chsi.com.cn/$document
 @@||chocolatey.org/$document
 @@||github.com/$document
@@ -24,6 +23,12 @@
 @@||visualstudio.com/$document
 @@||wikipedia.org/$document
 @@||zhihu.com/$document
+
+v.qq.com##DIV.mod_float_banner
+v.qq.com##DIV.x_vcoin_att
+
+bing.com##DIV#ev_talkbox_wrapper
+bing.com##LI.b_ad
 
 sina.com.cn##DIV#CCCFloatBarRight
 sina.com.cn##DIV#moodcounter
@@ -47,14 +52,20 @@ sina.com.cn##DIV.sinaAd
 sina.com.cn##DIV.sinaad-toolkit-box
 sina.com.cn##DIV.tb-ad0
 sina.com.cn##DIV.topic-hot
+tech.sina.com.cn##DIV.sidebar
 tech.sina.com.cn##DIV.tech-fix-btn
 tech.sina.com.cn##DIV.tech-right
 tech.sina.com.cn##DIV.ty-card[data-info^="ad_none"]
 
 leju.com##DIV#zygw_live_layer
+leju.com##DIV.art-con-right
 leju.com##DIV.bb_navBox
 leju.com##DIV.dll_contright
 leju.com##DIV.l_remen
+leju.com##DIV.moreinfo
+leju.com##DIV.newslist
+leju.com##DIV.topic-hot
+leju.com##DIV.z_contact
 
 taobao.com##DIV#J_Feedback
 taobao.com##DIV#J_Toolbar
@@ -68,34 +79,34 @@ taobao.com##DIV.page-footer-hidden
 cart.taobao.com##DIV#interested
 login.taobao.com##SPAN.nickx
 
-tmall.com##DIV.mui-mbar-outer
-tmall.com##DIV.tstart-tdog-enable
-tmall.com##DIV.tshop-psm-shop-ww-hover
 tmall.com##DIV.ald
-tmall.com##DIV.tm-layout
 tmall.com##DIV.col-extra
 tmall.com##DIV.col-sub
+tmall.com##DIV.mui-mbar-outer
+tmall.com##DIV.tm-layout
+tmall.com##DIV.tshop-psm-shop-ww-hover
+tmall.com##DIV.tstart-tdog-enable
 
-ithome.com##DIV#side_func
-ithome.com##DIV.sidebar
-ithome.com##DIV#tt50
-ithome.com##DIV.related_post
-ithome.com##DIV.rela-post
-ithome.com##DIV.shareto
 ithome.com##DIV#hd_float
+ithome.com##DIV#side_func
+ithome.com##DIV#tt50
+ithome.com##DIV.shareto
+ithome.com##DIV.sidebar
+ithome.com##DIV.rela-post
+ithome.com##DIV.related_post
 
-gamersky.com##DIV.Mid2_R
 gamersky.com##DIV.bdshare-slide-button-box
+gamersky.com##DIV.Mid2_R
 
-tieba.baidu.com##UL.tbui_aside_float_bar
-tieba.baidu.com##DIV.aside
-tieba.baidu.com##DIV.right_section
-tieba.baidu.com##DIV.focum_recommend
-tieba.baidu.com##DIV.video_frs_head
 pan.baidu.com##DL.module-hot-rec
+tieba.baidu.com##DIV.aside
+tieba.baidu.com##DIV.focum_recommend
+tieba.baidu.com##DIV.right_section
+tieba.baidu.com##DIV.video_frs_head
+tieba.baidu.com##UL.tbui_aside_float_bar
 
-uac.10010.com##SPAN.sl-delect
 10010.com##DIV#234952
+uac.10010.com##SPAN.sl-delect
 
 movie.douban.com##DIV#dale_movie_home_top_right
 movie.douban.com##DIV#movie_home_left_bottom
