@@ -57,6 +57,15 @@ finance.sina.com.cn##DIV#lcs_wrap
 finance.sina.com.cn##DIV#lcs1_w
 finance.sina.com.cn##DIV#most_read
 finance.sina.com.cn##IFRAME.sina-iframe-content
+games.sina.com.cn##DIV#leftFlashDiv
+games.sina.com.cn##DIV#news_article_right_with_product
+games.sina.com.cn##DIV#tuijian
+games.sina.com.cn##DIV.aboutnews
+games.sina.com.cn##DIV.app_wrap
+games.sina.com.cn##DIV.footPart1
+games.sina.com.cn##DIV.frendlinkwap
+games.sina.com.cn##DIV.intro
+games.sina.com.cn##DIV.ltit
 tech.sina.com.cn##DIV.sidebar
 tech.sina.com.cn##DIV.tech-fix-btn
 tech.sina.com.cn##DIV.tech-right
@@ -66,6 +75,7 @@ leju.com##DIV#zygw_live_layer
 leju.com##DIV.art-con-right
 leju.com##DIV.bb_navBox
 leju.com##DIV.dll_contright
+leju.com##DIV.g_tclick
 leju.com##DIV.l_remen
 leju.com##DIV.moreinfo
 leju.com##DIV.newslist
