@@ -41,6 +41,7 @@ sina.com.cn##DIV.adsytjad
 sina.com.cn##DIV.art-con-right
 sina.com.cn##DIV.article-info
 sina.com.cn##DIV.bb_navBox
+sina.com.cn##DIV.bottom-tool
 sina.com.cn##DIV.brandfocusad
 sina.com.cn##DIV.desktop-side-tool
 sina.com.cn##DIV.moreinfo
@@ -52,6 +53,10 @@ sina.com.cn##DIV.sinaAd
 sina.com.cn##DIV.sinaad-toolkit-box
 sina.com.cn##DIV.tb-ad0
 sina.com.cn##DIV.topic-hot
+finance.sina.com.cn##DIV#lcs_wrap
+finance.sina.com.cn##DIV#lcs1_w
+finance.sina.com.cn##DIV#most_read
+finance.sina.com.cn##IFRAME.sina-iframe-content
 tech.sina.com.cn##DIV.sidebar
 tech.sina.com.cn##DIV.tech-fix-btn
 tech.sina.com.cn##DIV.tech-right
