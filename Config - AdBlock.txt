@@ -93,6 +93,9 @@ taobao.com##DIV.J_guess-you-like
 taobao.com##DIV.page-footer-hidden
 cart.taobao.com##DIV#interested
 login.taobao.com##SPAN.nickx
+s.taobao.com##DIV#mainsrp-p4pBottom
+s.taobao.com##DIV#mainsrp-p4pRight
+s.taobao.com##DIV.grid-right
 
 tmall.com##DIV.ald
 tmall.com##DIV.col-extra
