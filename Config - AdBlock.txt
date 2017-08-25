@@ -12,6 +12,7 @@
 @@||github.com/$document
 @@||google.*/$document
 @@||live.com/$document
+@@||lucidchart.com/$document
 @@||microsoft.com/$document
 @@||office.com/$document
 @@||safaribooksonline.com/$document
@@ -24,7 +25,14 @@
 @@||wikipedia.org/$document
 @@||zhihu.com/$document
 
+alitrip.com##A#J_ems_trip_bar_fixed
+alitrip.com##DIV#chn-header-act-main
+alitrip.com##DIV.mui-mbar
+alitrip.com##DIV.mui-mbar-tabs
+alitrip.com##DIV.smart-banner-pc
+
 v.qq.com##DIV.mod_float_banner
+v.qq.com##DIV.x_tips
 v.qq.com##DIV.x_vcoin_att
 
 bing.com##DIV#ev_talkbox_wrapper
@@ -53,9 +61,11 @@ sina.com.cn##DIV.sinaAd
 sina.com.cn##DIV.sinaad-toolkit-box
 sina.com.cn##DIV.tb-ad0
 sina.com.cn##DIV.topic-hot
+finance.sina.com.cn##BLOCKQUOTE.fin_reference
 finance.sina.com.cn##DIV#lcs_wrap
 finance.sina.com.cn##DIV#lcs1_w
 finance.sina.com.cn##DIV#most_read
+finance.sina.com.cn##DIV.hotnews
 finance.sina.com.cn##IFRAME.sina-iframe-content
 games.sina.com.cn##DIV#leftFlashDiv
 games.sina.com.cn##DIV#news_article_right_with_product
@@ -91,7 +101,16 @@ taobao.com##DIV.banner
 taobao.com##DIV.tshop-psm-shop-ww-hover
 taobao.com##DIV.J_guess-you-like
 taobao.com##DIV.page-footer-hidden
+buy.tmall.com##DIV#J_Banners
+buy.tmall.com##DIV#J_GlobalRobotEntry
+buy.tmall.com##DIV#J_P4pAdvert
+buy.tmall.com##DIV#J_SalePromotion
+buyertrade.taobao.com##DIV#alimm-pillar
 cart.taobao.com##DIV#interested
+i.taobao.com##DIV#J_TB_rightp4p
+i.taobao.com##DIV.m-guess-you-like
+i.taobao.com##DIV.m-someone-like-you
+i.taobao.com##DIV.mt-fix-in-bottom
 login.taobao.com##SPAN.nickx
 s.taobao.com##DIV#mainsrp-p4pBottom
 s.taobao.com##DIV#mainsrp-p4pRight
@@ -112,6 +131,7 @@ ithome.com##DIV.shareto
 ithome.com##DIV.sidebar
 ithome.com##DIV.rela-post
 ithome.com##DIV.related_post
+ithome.com##IFRAME.dajia
 
 gamersky.com##DIV.bdshare-slide-button-box
 gamersky.com##DIV.Mid2_R
