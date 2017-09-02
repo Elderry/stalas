@@ -1,5 +1,5 @@
 ﻿# Custom Variables
-Set-Alias vc "${env:ProgramFiles(x86)}\Microsoft VS Code\Code.exe"
+Set-Alias vc "${env:ProgramFiles}\Microsoft VS Code\Code.exe"
 Set-Alias mg '~\OneDrive\Collections\Adults\magick.ps1'
 Set-Alias au '~\Projects\Personal\chocolatey-packages\update_all.ps1'
 
