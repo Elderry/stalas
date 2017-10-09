@@ -9,6 +9,16 @@ function bash_file { $args = $args -replace '\\', '/'; bash -c "$((Get-PSCallSta
 function cat { bash_file $args }
 function cowsay { bash -c "echo $input | cowsay $args" }
 function fortune { bash -c "fortune $args" }
+function git_prune {
+    git branch --merged master | Select-Object -Skip 1 |
+        Foreach-Object {
+            $branch = $_ -Replace ' '
+            git branch -d $branch
+            Write-Host 'Branch [' -NoNewline
+            Write-Host $branch -ForegroundColor Red -NoNewline
+            Write-Host '] was removed.'
+        }
+}
 function ifconfig { bash -c "ifconfig $args" }
 Remove-Item Alias:ls
 function ls { bash -c "source ~/.bashrc; ls $args" }
