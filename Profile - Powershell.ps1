@@ -113,7 +113,7 @@ function prompt {
 
     # Host symbol
     $symbol = if (IsAdmin) { '#' } else { '$' }
-    Write-Host "$symbol " -ForegroundColor White -BackgroundColor $HostBackgroundColor -NoNewline
+    Write-Host " $symbol " -ForegroundColor White -BackgroundColor $HostBackgroundColor -NoNewline
     Write-Host '' -ForegroundColor $HostBackgroundColor -NoNewline
 
     return ' '
