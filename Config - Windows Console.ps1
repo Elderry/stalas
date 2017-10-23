@@ -1,7 +1,6 @@
 $desktopPath = "$Home\OneDrive\Collections\AppBackup\Desktop"
 $poshShortcut = 'PS.lnk'
 $poshAdminShortcut = 'PSA.lnk'
-$bashShortcut = 'BS.lnk'
 $cmdShortcut = 'CD.lnk'
 $cmdAdminShortcut = 'CDA.lnk'
 
@@ -68,13 +67,12 @@ $config.GetEnumerator() | ForEach-Object {
     }
 }
 
-function Set-Shortcut([string] $Path, [string] $Target, [string] $Icon, [switch] $RequireAdmin) {
+function Set-Shortcut([string] $Path, [string] $Target, [switch] $RequireAdmin) {
+    if (Test-Path $Path) { Remove-Item $Path }
     $wshShell = New-Object -ComObject WScript.Shell
     $shortcut = $WshShell.CreateShortcut($Path)
     $shortcut.TargetPath = $Target
     $shortcut.WorkingDirectory = "$Home"
-    if ($Icon -and (Test-Path $Icon)) { $shortcut.IconLocation = $Icon }
-    if (Test-Path $Path) { Remove-Item $Path }
     $shortcut.Save()
     if ($RequireAdmin) {
         $bytes = [System.IO.File]::ReadAllBytes($Path)
@@ -85,11 +83,8 @@ function Set-Shortcut([string] $Path, [string] $Target, [string] $Icon, [switch]
 
 $poshPath = "$Env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe"
 $cmdPath  = "$Env:SystemRoot\System32\cmd.exe"
-$bashPath = "$Env:SystemRoot\System32\bash.exe"
-$bashIcon = "$Env:UserProfile\AppData\Local\lxss\bash.ico"
 
 Set-Shortcut (Join-Path $desktopPath $poshShortcut) $poshPath
 Set-Shortcut (Join-Path $desktopPath $poshAdminShortcut) $poshPath -RequireAdmin
 Set-Shortcut (Join-Path $desktopPath $cmdShortcut) $cmdPath
 Set-Shortcut (Join-Path $desktopPath $cmdAdminShortcut) $cmdPath -RequireAdmin
-Set-Shortcut (Join-Path $desktopPath $bashShortcut) $bashPath $bashIcon
