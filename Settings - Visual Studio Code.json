@@ -12,7 +12,6 @@
     "files.insertFinalNewline": true,
 
     "terminal.integrated.cursorStyle": "line",
-    "terminal.integrated.fontLigatures": true,
 
     "window.openFilesInNewWindow": "on",
 
