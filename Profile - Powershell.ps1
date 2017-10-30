@@ -23,6 +23,7 @@ function ifconfig { bash -c "ifconfig $args" }
 Remove-Item Alias:ls
 function ls { bash -c "source ~/.bashrc; ls $args" }
 function lsb_release { bash -c "lsb_release $args" }
+function sh { $args = $args -replace '\\', '/'; bash $args }
 function touch { bash -c "touch $args" }
 function vi { bash_file $args }
 function vim { bash_file $args }
