@@ -14,9 +14,6 @@ function git_prune {
         Foreach-Object {
             $branch = $_ -Replace ' '
             git branch -d $branch
-            Write-Host 'Branch [' -NoNewline
-            Write-Host $branch -ForegroundColor Red -NoNewline
-            Write-Host '] was removed.'
         }
 }
 function ifconfig { bash -c "ifconfig $args" }
