@@ -10,7 +10,7 @@ function cat { bash_file $args }
 function cowsay { bash -c "echo $input | cowsay $args" }
 function fortune { bash -c "fortune $args" }
 function git_drop {
-    git checkout .
+    git reset --hard
     git clean -fd
 }
 function git_prune {
