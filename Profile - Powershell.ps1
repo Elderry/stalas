@@ -9,6 +9,10 @@ function bash_file { $args = $args -replace '\\', '/'; bash -c "$((Get-PSCallSta
 function cat { bash_file $args }
 function cowsay { bash -c "echo $input | cowsay $args" }
 function fortune { bash -c "fortune $args" }
+function git_drop {
+    git checkout .
+    git clean -fd
+}
 function git_prune {
     git branch --merged master | Select-Object -Skip 1 |
         Foreach-Object {
