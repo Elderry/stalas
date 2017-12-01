@@ -6,6 +6,10 @@
     "editor.rulers": [120],
     "editor.renderWhitespace": "boundary",
 
+    "explorer.openEditors.visible": 0,
+
+    "extensions.ignoreRecommendations": true,
+
     "files.autoSave": "onFocusChange",
     "files.eol": "\n",
     "files.hotExit": "off",
@@ -20,6 +24,5 @@
     "powershell.integratedConsole.showOnStartup": false, //[Windows]
     "powershell.startAutomatically": false, //[Windows]
 
-    "vim.disableAnnoyingNeovimMessage": true,
     "vim.useCtrlKeys": false
 }
