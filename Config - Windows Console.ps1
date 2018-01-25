@@ -1,16 +1,23 @@
+if (-not (Test-Path $Env:PWSH_HOME)) {
+    Write-Host -ForegroundColor 'Red' 'Failed to configure Windows Console, please install Powershell Core first.'
+    Write-Host 'Link: https://github.com/PowerShell/PowerShell/releases'
+    exit
+}
+
 $desktopPath = "$Home\OneDrive\Collections\AppBackup\Desktop"
-$poshShortcut = 'PS.lnk'
-$poshAdminShortcut = 'PSA.lnk'
+$pwshShortcut = 'PS.lnk'
+$pwshAdminShortcut = 'PSA.lnk'
 $cmdShortcut = 'CD.lnk'
 $cmdAdminShortcut = 'CDA.lnk'
 
 $consoleRegPath = 'HKCU:\Console'
-$regPaths = @{
-    'cmd'        = Join-Path $consoleRegPath '%SystemRoot%_System32_cmd.exe'
-    'posh'       = Join-Path $consoleRegPath '%SystemRoot%_System32_WindowsPowerShell_v1.0_powershell.exe'
-    'posh32'     = Join-Path $consoleRegPath '%SystemRoot%_SysWOW64_WindowsPowerShell_v1.0_powershell.exe'
-    'poshNative' = Join-Path $consoleRegPath '%SystemRoot%_sysnative_WindowsPowerShell_v1.0_powershell.exe'
-}
+$regPaths = (
+    (Join-Path $consoleRegPath '%SystemRoot%_System32_cmd.exe'),
+    (Join-Path $consoleRegPath ((Join-Path $Env:PWSH_HOME 'pwsh.exe') -Replace '\\', '_')),
+    (Join-Path $consoleRegPath '%SystemRoot%_System32_WindowsPowerShell_v1.0_powershell.exe'),
+    (Join-Path $consoleRegPath '%SystemRoot%_SysWOW64_WindowsPowerShell_v1.0_powershell.exe'),
+    (Join-Path $consoleRegPath '%SystemRoot%_sysnative_WindowsPowerShell_v1.0_powershell.exe')
+)
 
 $colorTable = (
     "Black",    "DarkBlue", "DarkGreen", "DarkCyan", "DarkRed", "DarkMagenta", "DarkYellow", "Gray",
@@ -62,8 +69,8 @@ $config.GetEnumerator() | ForEach-Object {
     # Clean up unnecessary entries.
     # 'CodePage' is a special entry that only works while setting on specific profiles.
     switch ($name) {
-        'CodePage' { $regPaths.GetEnumerator() | ForEach-Object { Set-Registry $_.Value $name $value $type } }
-        default    { $regPaths.GetEnumerator() | ForEach-Object { Remove-Registry $_.Value $name } }
+        'CodePage' { $regPaths | ForEach-Object { Set-Registry $_ $name $value $type } }
+        default    { $regPaths | ForEach-Object { Remove-Registry $_ $name } }
     }
 }
 
@@ -81,10 +88,10 @@ function Set-Shortcut([string] $Path, [string] $Target, [switch] $RequireAdmin) 
     }
 }
 
-$poshPath = "$Env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe"
-$cmdPath  = "$Env:SystemRoot\System32\cmd.exe"
+$pwshPath = Join-Path $Env:PWSH_HOME 'pwsh.exe'
+$cmdPath  = Join-Path $Env:SystemRoot 'System32/cmd.exe'
 
-Set-Shortcut (Join-Path $desktopPath $poshShortcut) $poshPath
-Set-Shortcut (Join-Path $desktopPath $poshAdminShortcut) $poshPath -RequireAdmin
+Set-Shortcut (Join-Path $desktopPath $pwshShortcut) $pwshPath
+Set-Shortcut (Join-Path $desktopPath $pwshAdminShortcut) $pwshPath -RequireAdmin
 Set-Shortcut (Join-Path $desktopPath $cmdShortcut) $cmdPath
 Set-Shortcut (Join-Path $desktopPath $cmdAdminShortcut) $cmdPath -RequireAdmin
