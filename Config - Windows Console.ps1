@@ -76,8 +76,7 @@ $config.GetEnumerator() | ForEach-Object {
 
 function Set-Shortcut([string] $Path, [string] $Target, [switch] $RequireAdmin) {
     if (Test-Path $Path) { Remove-Item $Path }
-    $wshShell = New-Object -ComObject WScript.Shell
-    $shortcut = $WshShell.CreateShortcut($Path)
+    $shortcut = $(New-Object -ComObject WScript.Shell).CreateShortcut($Path)
     $shortcut.TargetPath = $Target
     $shortcut.WorkingDirectory = "$Home"
     $shortcut.Save()
@@ -88,6 +87,13 @@ function Set-Shortcut([string] $Path, [string] $Target, [switch] $RequireAdmin) 
     }
 }
 
+function Update-Shortcut([string] $Path) {
+    $shortcut = $(New-Object -ComObject WScript.Shell).CreateShortcut($Path)
+    if (Test-Path $shortcut.TargetPath) { return }
+    $shortcut.TargetPath = Join-Path $Env:PWSH_HOME 'pwsh.exe'
+    $shortcut.Save()
+}
+
 $pwshPath = Join-Path $Env:PWSH_HOME 'pwsh.exe'
 $cmdPath  = Join-Path $Env:SystemRoot 'System32/cmd.exe'
 
@@ -95,3 +101,7 @@ Set-Shortcut (Join-Path $desktopPath $pwshShortcut) $pwshPath
 Set-Shortcut (Join-Path $desktopPath $pwshAdminShortcut) $pwshPath -RequireAdmin
 Set-Shortcut (Join-Path $desktopPath $cmdShortcut) $cmdPath
 Set-Shortcut (Join-Path $desktopPath $cmdAdminShortcut) $cmdPath -RequireAdmin
+
+Get-ChildItem $desktopPath |
+    Where-Object { $_.Name -Match '`\w+\.lnk' } |
+    ForEach-Object { Update-Shortcut $_.FullName }
