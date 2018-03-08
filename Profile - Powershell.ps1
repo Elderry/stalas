@@ -113,12 +113,12 @@ function prompt {
     # User
     $user = " $Env:USERNAME@$((Get-Culture).TextInfo.ToTitleCase($env:USERDOMAIN.ToLower())) "
     Write-Host $user -ForegroundColor White -BackgroundColor $UserBackgroundColor -NoNewline
-    Write-Host '' -ForegroundColor $UserBackgroundColor -BackgroundColor $HostBackgroundColor -NoNewline
+    # Write-Host '' -ForegroundColor $UserBackgroundColor -BackgroundColor $HostBackgroundColor -NoNewline
 
     # Host symbol
     $symbol = if (IsAdmin) { '#' } else { '$' }
     Write-Host " $symbol " -ForegroundColor White -BackgroundColor $HostBackgroundColor -NoNewline
-    Write-Host '' -ForegroundColor $HostBackgroundColor -NoNewline
+    # Write-Host '' -ForegroundColor $HostBackgroundColor -NoNewline
 
     return ' '
 }
