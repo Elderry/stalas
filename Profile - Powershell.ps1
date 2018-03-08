@@ -74,8 +74,10 @@ $global:GitPromptSettings.BeforeIndexForegroundColor = [ConsoleColor]::Green
 $global:GitPromptSettings.IndexForegroundColor = [ConsoleColor]::Green
 $global:GitPromptSettings.WorkingForegroundColor = [ConsoleColor]::Red
 
-Set-PSReadlineOption -TokenKind Number -ForegroundColor Green
-Set-PSReadlineOption -TokenKind Member -ForegroundColor Magenta
+Set-PSReadLineOption -Colors @{
+    "Number" = [ConsoleColor]::Green
+    "Member" = [ConsoleColor]::Magenta
+}
 
 function IsAdmin {
     $identity = [Security.Principal.WindowsIdentity]::GetCurrent()
