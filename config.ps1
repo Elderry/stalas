@@ -26,6 +26,7 @@ Config 'Powershell'         'Config - Powershell.ps1'
 Config 'Visual Studio Code' 'Config - Visual Studio Code.ps1'
 Config 'Bash'               'Config - Bash.sh'
 Config 'Vim'                'Config - Vim.sh'
+Config 'Hyper'              'Config - Hyper.ps1'
 
 Write-Host
 Write-Host "--------------- Elderry's Config Files ---------------" -ForegroundColor DarkBlue
