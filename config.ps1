@@ -11,8 +11,20 @@ function Write-Split([string] $prefix, [string] $key, [string] $suffix) {
     Write-Host $hyphenAfter -ForegroundColor DarkBlue
 }
 
-Write-Host
-Write-Host "--------------- Elderry's Config Files ---------------" -ForegroundColor DarkBlue
+$pwsh = 'C:\Program Files\PowerShell'
+if (Test-Path $pwsh) {
+    Get-ChildItem $pwsh | ForEach-Object {
+        if ($_.Name -match '\d+(\.\d+)*') {
+            [Environment]::SetEnvironmentVariable('PWSH_HOME', (Join-Path $pwsh $_.Name), 'User')
+        }
+    }
+} else {
+    Write-Host -ForegroundColor 'Red' 'Failed to configure, please install Powershell Core first.'
+    Write-Host 'Link: https://github.com/PowerShell/PowerShell/releases'
+    exit
+}
+
+Write-Host "`n--------------- Elderry's Config Files ---------------" -ForegroundColor DarkBlue
 
 function Config([string] $name, [string] $script) {
     Write-Host
@@ -28,6 +40,4 @@ Config 'Bash'               'Config - Bash.sh'
 Config 'Vim'                'Config - Vim.sh'
 Config 'Hyper'              'Config - Hyper.ps1'
 
-Write-Host
-Write-Host "--------------- Elderry's Config Files ---------------" -ForegroundColor DarkBlue
-Write-Host
+Write-Host "`n--------------- Elderry's Config Files ---------------`n" -ForegroundColor DarkBlue

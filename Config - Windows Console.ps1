@@ -1,9 +1,3 @@
-if (-not (Test-Path $Env:PWSH_HOME)) {
-    Write-Host -ForegroundColor 'Red' 'Failed to configure Windows Console, please install Powershell Core first.'
-    Write-Host 'Link: https://github.com/PowerShell/PowerShell/releases'
-    exit
-}
-
 $desktopPath = "$Home\OneDrive\Collections\AppBackup\Desktop"
 $pwshShortcut = 'PS.lnk'
 $pwshAdminShortcut = 'PSA.lnk'
