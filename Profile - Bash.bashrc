@@ -40,8 +40,8 @@ WHITE_MAGNETA='\[\e[97;105m\]'
 source $REAL_HOME/Projects/Personal/posh-git-sh/git-prompt.sh
 path="${WHITE_BLUE} \w ${BLUE_WHITE}"
 user="${WHITE_GREEN} \u@\h ${GREEN_MAGNETA}"
-host="${WHITE_MAGNETA} $ ${MAGNETA_WHITE}${RESET} "
-PROMPT_COMMAND='__posh_git_ps1 "" "${path}\n${user}${host}"'
+host="${WHITE_MAGNETA} $ ${MAGNETA_WHITE}"
+PROMPT_COMMAND='__posh_git_ps1 "" "${path}\n${user}${host}${RESET} "'
 
 # Java
 JAVA_HOME=$(/usr/libexec/java_home -v 1.8) #[macOS]
