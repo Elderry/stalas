@@ -33,14 +33,14 @@ module.exports = {
     borderColor: '#f2f2f2',
 
     // custom css to embed in the main window
-    css: '',
-
-    // custom css to embed in the terminal window
-    termCSS: `
+    css: `
         .tab_textActive { color: blue; background: #f2f2f2; }
         .tab_tab { background: gray; }
         .header_windowHeader { background: darkMagenta; }
     `,
+
+    // custom css to embed in the terminal window
+    termCSS: '',
 
     // set to `true` (without backticks) if you're using a Linux setup that doesn't show native menus
     // default: `false` on Linux, `true` on Windows (ignored on macOS)
