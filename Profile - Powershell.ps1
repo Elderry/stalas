@@ -14,11 +14,24 @@ function git_drop {
     git clean -fd
 }
 function git_prune {
-    git branch --merged master | Select-Object -Skip 1 |
-        Foreach-Object {
-            $branch = $_ -Replace ' '
-            git branch -d $branch
+    $branches = git branch -l |
+        ForEach-Object { $_.Trim() } |
+        Where-Object { -Not $_.StartsWith('*') } |
+        Where-Object { -Not ($_ -eq 'master') }
+    if ($branches.Length -eq 0) {
+        Write-Host 'No branch is going to be deleted.'
+        return
+    }
+    Write-Host 'Going to ' -NoNewline
+    Write-Host 'DELETE' -ForegroundColor 'RED' -NoNewline
+    Write-Host ' these branches:'
+    Write-Host $branches
+    $choice = Read-Host 'Yes(y) or no(n)?'
+    if ($choice -eq 'y') {
+        foreach ($branch in $branches) {
+            git branch -D $branch
         }
+    }
 }
 function ifconfig { bash -c "ifconfig $args" }
 Remove-Item Alias:ls
@@ -32,9 +45,10 @@ function vim { bash_file $args }
 # Modules
 $ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
 if (Test-Path($ChocolateyProfile)) { Import-Module "$ChocolateyProfile" }
-if (!$global:GitPromptSettings) { Import-Module posh-git }
+if (!$global:GitPromptSettings) { Import-Module 'posh-git' }
 $global:GitPromptSettings.BeforeText = ' ['
 $global:GitPromptSettings.AfterText  = '] '
+Import-Module 'Jump.Location'
 
 # Colors
 $host.PrivateData.ErrorBackgroundColor    = 'White'
