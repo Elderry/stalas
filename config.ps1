@@ -43,10 +43,13 @@ if (Test-Path $pwsh) {
 
 Write-Host "`n--------------- Elderry's Config Files ---------------" -ForegroundColor DarkBlue
 
-function Config([string] $name, [string] $script) {
+function Config([string] $name, [string] $type) {
     Write-Host
     Write-Split 'Going to config ' $name '.'
-    switch -wildcard ($script) { '*.ps1' { & ".\$_" } '*.sh' { bash $_ } }
+    switch ($type) {
+        'ps1' { &  ".\Config - $name.$_" }
+        'sh'  { bash "Config - $name.$_" }
+    }
     Write-Split 'Config of ' $name ' finished.'
 }
 
@@ -56,6 +59,6 @@ if ($targets.Length -ne 0) {
         if (-not $targets.Contains($_.Name)) { $configs.Remove($_.Name) }
     }
 }
-$configs.GetEnumerator() | ForEach-Object { Config $_.Name "Config - ${_.Name}.$_Value" }
+$configs.GetEnumerator() | ForEach-Object { Config $_.Name $_.Value }
 
 Write-Host "`n--------------- Elderry's Config Files ---------------`n" -ForegroundColor DarkBlue

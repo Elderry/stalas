@@ -1,15 +1,21 @@
-New-PSDrive -Name 'HKCR' -PSProvider 'Registry' -Root 'HKEY_CLASSES_ROOT'
+New-PSDrive -Name 'HKCR' -PSProvider 'Registry' -Root 'HKEY_CLASSES_ROOT' | Out-Null
+
+function Remove-Registry([String] $registry) {
+    if (Test-Path -LiteralPath $registry) {
+        Remove-Item -LiteralPath -Recurse $registry
+    }
+}
 
 # Baidu Yun
-Remove-Item -LiteralPath 'HKCR:\*\shellex\ContextMenuHandlers\YunShellExt' | Out-Null
-Remove-Item 'HKCR:\Directory\shellex\ContextMenuHandlers\YunShellExt'      | Out-Null
+Remove-Registry 'HKCR:\*\shellex\ContextMenuHandlers\YunShellExt'
+Remove-Registry 'HKCR:\Directory\shellex\ContextMenuHandlers\YunShellExt'
 
 # Git
-Remove-Item -Recurse 'HKCR:\Directory\Background\shell\git_gui'   | Out-Null
-Remove-Item -Recurse 'HKCR:\Directory\Background\shell\git_shell' | Out-Null
-Remove-Item -Recurse 'HKCR:\Directory\shell\git_gui'              | Out-Null
-Remove-Item -Recurse 'HKCR:\Directory\shell\git_shell'            | Out-Null
-Remove-Item -Recurse 'HKLM:\SOFTWARE\Classes\Directory\Background\shell\git_gui'   | Out-Null
-Remove-Item -Recurse 'HKLM:\SOFTWARE\Classes\Directory\Background\shell\git_shell' | Out-Null
-Remove-Item -Recurse 'HKLM:\SOFTWARE\Classes\Directory\shell\git_gui'              | Out-Null
-Remove-Item -Recurse 'HKLM:\SOFTWARE\Classes\Directory\shell\git_shell'            | Out-Null
+Remove-Registry 'HKCR:\Directory\Background\shell\git_gui'
+Remove-Registry 'HKCR:\Directory\Background\shell\git_shell'
+Remove-Registry 'HKCR:\Directory\shell\git_gui'
+Remove-Registry 'HKCR:\Directory\shell\git_shell'
+Remove-Registry 'HKLM:\SOFTWARE\Classes\Directory\Background\shell\git_gui'
+Remove-Registry 'HKLM:\SOFTWARE\Classes\Directory\Background\shell\git_shell'
+Remove-Registry 'HKLM:\SOFTWARE\Classes\Directory\shell\git_gui'
+Remove-Registry 'HKLM:\SOFTWARE\Classes\Directory\shell\git_shell'
