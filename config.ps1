@@ -1,14 +1,31 @@
+#Requires -RunAsAdministrator
+
+param (
+    [ValidateSet("Windows Console", "Powershell", "Visual Studio Code", "Bash", "Vim", "Hyper", "Registry")]
+    [string[]] $targets
+)
+
+$configs = @{
+    'Windows Console'    = 'ps1';
+    'PowerShell'         = 'ps1';
+    'Visual Studio Code' = 'ps1';
+    'Bash'               = 'sh' ;
+    'Vim'                = 'sh' ;
+    'Hyper'              = 'ps1';
+    'Registry'           = 'ps1';
+}
+
 function Write-Split([string] $prefix, [string] $key, [string] $suffix) {
     $total = 50
     $length = $prefix.Length + $key.Length + $suffix.Length
     $hyphen = ($total - $length) / 2
-    $hyphenBefore = '-' * [math]::floor($hyphen)
-    $hyphenAfter  = '-' * [math]::ceiling($hyphen)
-    Write-Host $hyphenBefore -ForegroundColor DarkBlue -NoNewLine
-    Write-Host " $prefix[" -ForegroundColor DarkGreen -NoNewLine
-    Write-Host "$key" -ForegroundColor DarkRed -NoNewLine
-    Write-Host "]$suffix " -ForegroundColor DarkGreen -NoNewLine
-    Write-Host $hyphenAfter -ForegroundColor DarkBlue
+    $hyphen_before = '-' * [Math]::Floor($hyphen)
+    $hyphen_after  = '-' * [Math]::Ceiling($hyphen)
+    Write-Host $hyphen_before -ForegroundColor 'DarkBlue'  -NoNewLine
+    Write-Host " $prefix["    -ForegroundColor 'DarkGreen' -NoNewLine
+    Write-Host "$key"         -ForegroundColor 'DarkRed'   -NoNewLine
+    Write-Host "]$suffix "    -ForegroundColor 'DarkGreen' -NoNewLine
+    Write-Host $hyphen_after  -ForegroundColor 'DarkBlue'
 }
 
 $pwsh = 'C:\Program Files\PowerShell'
@@ -33,11 +50,12 @@ function Config([string] $name, [string] $script) {
     Write-Split 'Config of ' $name ' finished.'
 }
 
-Config 'Windows Console'    'Config - Windows Console.ps1'
-Config 'Powershell'         'Config - Powershell.ps1'
-Config 'Visual Studio Code' 'Config - Visual Studio Code.ps1'
-Config 'Bash'               'Config - Bash.sh'
-Config 'Vim'                'Config - Vim.sh'
-Config 'Hyper'              'Config - Hyper.ps1'
+if ($targets.Length -ne 0) { 
+    $complete_configs = $configs.Clone()
+    $complete_configs.GetEnumerator() | ForEach-Object {
+        if (-not $targets.Contains($_.Name)) { $configs.Remove($_.Name) }
+    }
+}
+$configs.GetEnumerator() | ForEach-Object { Config $_.Name "Config - ${_.Name}.$_Value" }
 
 Write-Host "`n--------------- Elderry's Config Files ---------------`n" -ForegroundColor DarkBlue
