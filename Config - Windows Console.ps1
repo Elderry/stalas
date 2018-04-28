@@ -56,8 +56,8 @@ $config.GetEnumerator() | ForEach-Object {
     $name = $_.Name
     $value = $_.Value
     switch ($value) {
-        { $_ -is [int] -or $_ -is [bool] } { $type = 'DWORD' }
-        { $_ -is [string]                } { $type = 'SZ'    }
+        { $_ -is [int] -or $_ -is [bool] } { $type = 'Dword' }
+        { $_ -is [string]                } { $type = 'String'    }
     }
     Set-Registry $consoleRegPath $name $value $type
     # Clean up unnecessary entries.
