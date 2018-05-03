@@ -2,7 +2,7 @@ New-PSDrive -Name 'HKCR' -PSProvider 'Registry' -Root 'HKEY_CLASSES_ROOT' | Out-
 
 function Remove-Registry([String] $registry) {
     if (Test-Path -LiteralPath $registry) {
-        Remove-Item -LiteralPath -Recurse $registry
+        Remove-Item -LiteralPath $registry -Recurse
     }
 }
 
@@ -19,3 +19,5 @@ Remove-Registry 'HKLM:\SOFTWARE\Classes\Directory\Background\shell\git_gui'
 Remove-Registry 'HKLM:\SOFTWARE\Classes\Directory\Background\shell\git_shell'
 Remove-Registry 'HKLM:\SOFTWARE\Classes\Directory\shell\git_gui'
 Remove-Registry 'HKLM:\SOFTWARE\Classes\Directory\shell\git_shell'
+Remove-Registry 'HKCU:\Console\Git Bash'
+Remove-Registry 'HKCU:\Console\Git CMD'
