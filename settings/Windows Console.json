@@ -80,8 +80,8 @@
     "ScreenBufferSize.Columns" : 100,
 
     // Specifies the colors of console windows, possible values are the index of color in the color table above(0-15).
-    "ScreenColors.Background" : 0,
-    "ScreenColors.Foreground" : 15,
+    "ScreenColors.Background" : 15,
+    "ScreenColors.Foreground" : 0,
 
     // Specifies whether QuickEdit mode is enabled. In QuickEdit mode, users can cut and paste text by using the mouse.
     "QuickEdit" : true,
