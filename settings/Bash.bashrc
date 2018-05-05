@@ -1,3 +1,5 @@
+# Default Profile: /etc/skel/.bashrc
+
 # Add some color for ls in wsl
 export LS_COLORS='ow=34' #[Linux]
 ls() { command ls --color -A -I NTUSER.\* -I ntuser.\* "$@"; } #[Linux]

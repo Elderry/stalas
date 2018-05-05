@@ -1,19 +1,9 @@
 #Requires -RunAsAdministrator
 
 param (
-    [ValidateSet("Windows Console", "Powershell", "Visual Studio Code", "Bash", "Vim", "Hyper", "Registry")]
+    [ValidateSet("Windows Console", "PowerShell", "Visual Studio Code", "Bash", "Vim", "Hyper", "Registry")]
     [string[]] $targets
 )
-
-$configs = @{
-    'Windows Console'    = 'ps1';
-    'PowerShell'         = 'ps1';
-    'Visual Studio Code' = 'ps1';
-    'Bash'               = 'sh' ;
-    'Vim'                = 'sh' ;
-    'Hyper'              = 'ps1';
-    'Registry'           = 'ps1';
-}
 
 function Write-Split([string] $prefix, [string] $key, [string] $suffix) {
     $total = 50
@@ -47,10 +37,16 @@ function Config([string] $name, [string] $type) {
     Write-Host
     Write-Split 'Going to config ' $name '.'
     switch ($type) {
-        'ps1' { &  ".\Config - $name.$_" }
-        'sh'  { bash "Config - $name.$_" }
+        'ps1' { &  "Configuration\$name.$_" }
+        'sh'  { bash "Configuration/$name.$_" }
     }
-    Write-Split 'Config of ' $name ' finished.'
+    Write-Split 'Configuration of ' $name ' finished.'
+}
+
+$configs = @{}
+Get-ChildItem 'Configuration' | Select-Object -ExpandProperty 'Name' | ForEach-Object {
+    $name = $_.Split('.')
+    $configs[$name[0]] = $name[1]
 }
 
 if ($targets.Length -ne 0) { 

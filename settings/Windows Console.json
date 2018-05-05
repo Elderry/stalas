@@ -32,7 +32,7 @@
 
     // The code page console uses, avaliable values are listed in following link:
     // https://msdn.microsoft.com/en-us/library/windows/desktop/dd317756(v=vs.85).aspx
-    "CodePage" : 936,
+    "CodePage" : 65001,
 
     // Specifies the percentage of a character cell that the cursor occupies, avaliable values are:
     // 'small'(25%), 'medium'(50%) and 'large'(100%).
@@ -46,7 +46,7 @@
 
     // Specifies the name of an alternate command window font. If there is no font name in the value of this entry,
     // the system uses raster fonts.
-    "FaceName" : "Sarasa Term SC",
+    "FaceName" : "等距更纱黑体 SC",
 
     // 'True' enables all new console features; 'false' disables all new features.
     "ForceV2" : true,

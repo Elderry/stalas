@@ -24,7 +24,7 @@ function git_prune {
     Write-Host 'DELETE' -ForegroundColor 'RED' -NoNewline
     Write-Host ' these branches:'
     Write-Host $branches
-    $choice = Read-Host 'Yes(y) or no(n)?'
+    $choice = Read-Host '[Y]es or [N]o?'
     if ($choice -eq 'y') {
         foreach ($branch in $branches) {
             git branch -D $branch

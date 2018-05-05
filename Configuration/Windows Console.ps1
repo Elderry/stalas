@@ -19,7 +19,7 @@ $colorTable = (
 )
 
 $config = @{}
-((Get-Content '.\Settings - Windows Console.json') -Replace '\/\/.*' | ConvertFrom-Json)[1].PSObject.Properties |
+((Get-Content 'Settings\Windows Console.json') -Replace '\/\/.*' | ConvertFrom-Json)[1].PSObject.Properties |
 ForEach-Object {
     $name = $_.Name
     $value = $_.Value
@@ -61,11 +61,7 @@ $config.GetEnumerator() | ForEach-Object {
     }
     Set-Registry $consoleRegPath $name $value $type
     # Clean up unnecessary entries.
-    # 'CodePage' is a special entry that only works while setting on specific profiles.
-    switch ($name) {
-        'CodePage' { $regPaths | ForEach-Object { Set-Registry $_ $name $value $type } }
-        default    { $regPaths | ForEach-Object { Remove-Registry $_ $name } }
-    }
+    $regPaths | ForEach-Object { Remove-Registry $_ $name }
 }
 
 function Set-Shortcut([string] $Path, [string] $Target, [switch] $RequireAdmin) {
