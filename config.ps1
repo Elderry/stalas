@@ -31,7 +31,7 @@ if (Test-Path $pwsh) {
     exit
 }
 
-Write-Host "`n--------------- Elderry's Config Files ---------------" -ForegroundColor DarkBlue
+Write-Host "`n--------------- Elderry's Config Files ---------------" -ForegroundColor 'DarkBlue'
 
 function Config([string] $name, [string] $type) {
     Write-Host
@@ -57,4 +57,4 @@ if ($targets.Length -ne 0) {
 }
 $configs.GetEnumerator() | ForEach-Object { Config $_.Name $_.Value }
 
-Write-Host "`n--------------- Elderry's Config Files ---------------`n" -ForegroundColor DarkBlue
+Write-Host "`n--------------- Elderry's Config Files ---------------`n" -ForegroundColor 'DarkBlue'

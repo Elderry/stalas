@@ -17,7 +17,6 @@ export HISTFILESIZE=2000
 
 # Aliases
 alias docker='"/mnt/c/Program Files/Docker/Docker/resources/bin/docker.exe"' #[Linux]
-# Currently this doesn't work becase of an encoding issue: https://github.com/docker/compose/issues/2775
 alias docker-compose='"/mnt/c/Program Files/Docker/Docker/resources/bin/docker-compose.exe"' #[Linux]
 alias echo='echo -e'
 alias ls='ls -G' #[macOS]
@@ -31,7 +30,9 @@ export TS=$REAL_HOME/Projects/Tradeshift
 export BWTS=$REAL_HOME/Projects/BWTS/
 
 # Posh-Git
-# Color reference: https://help.ubuntu.com/community/CustomizingBashPrompt
+# Color reference:
+# https://help.ubuntu.com/community/CustomizingBashPrompt
+# https://en.wikipedia.org/wiki/ANSI_escape_code#Colors
 RESET='\[\e[0m\]'
 GREEN_MAGNETA='\[\e[92;105m\]'
 BLUE_WHITE='\[\e[94;107m\]'

@@ -43,12 +43,12 @@ ForEach-Object {
 }
 
 function Set-Registry([string] $path, [string] $name, $value, [string] $type) {
-    New-ItemProperty -Path $path -Name $name -Value $value -PropertyType $type -Force -ErrorAction SilentlyContinue |
+    New-ItemProperty -Path $path -Name $name -Value $value -PropertyType $type -Force -ErrorAction 'SilentlyContinue' |
         Out-Null
 }
 
 function Remove-Registry([string] $path, [string] $name) {
-    $exists = Get-ItemProperty $path -Name $name -ErrorAction SilentlyContinue
+    $exists = Get-ItemProperty $path -Name $name -ErrorAction 'SilentlyContinue'
     if ($exists -ne $null) { Remove-ItemProperty -Path $path -Name $name | Out-Null }
 }
 
@@ -56,8 +56,8 @@ $config.GetEnumerator() | ForEach-Object {
     $name = $_.Name
     $value = $_.Value
     switch ($value) {
-        { $_ -is [int] -or $_ -is [bool] } { $type = 'Dword' }
-        { $_ -is [string]                } { $type = 'String'    }
+        { $_ -is [int] -or $_ -is [bool] } { $type = 'Dword'  }
+        { $_ -is [string]                } { $type = 'String' }
     }
     Set-Registry $consoleRegPath $name $value $type
     # Clean up unnecessary entries.

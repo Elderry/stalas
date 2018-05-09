@@ -1,4 +1,4 @@
-﻿# Custom Variables
+# Custom Variables
 Set-Alias vc "${env:ProgramFiles}\Microsoft VS Code\Code.exe"
 Set-Alias mg '~\OneDrive\Collections\Adults\magick.ps1'
 Set-Alias au '~\Projects\Personal\chocolatey-packages\update_all.ps1'
@@ -21,7 +21,7 @@ function git_prune {
         return
     }
     Write-Host 'Going to ' -NoNewline
-    Write-Host 'DELETE' -ForegroundColor 'RED' -NoNewline
+    Write-Host 'delete' -ForegroundColor 'Red' -NoNewline
     Write-Host ' these branches:'
     Write-Host $branches
     $choice = Read-Host '[Y]es or [N]o?'
@@ -45,6 +45,10 @@ if (!$global:GitPromptSettings) { Import-Module 'posh-git' }
 $global:GitPromptSettings.BeforeText = ' ['
 $global:GitPromptSettings.AfterText  = '] '
 Import-Module 'Jump.Location'
+$ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
+if (Test-Path $ChocolateyProfile) {
+    Import-Module $ChocolateyProfile
+}
 
 # Colors
 $host.PrivateData.ErrorBackgroundColor    = 'White'
@@ -117,7 +121,7 @@ function prompt {
 
     # Path
     $path = " $($PWD.Path -replace ($HOME -replace '\\', '\\'), '~') "
-    Write-Host $path -ForegroundColor White -BackgroundColor $DirectoryBackgroundColor -NoNewline
+    Write-Host $path -ForegroundColor 'White' -BackgroundColor $DirectoryBackgroundColor -NoNewline
     Write-Host '' -ForegroundColor $DirectoryBackgroundColor
 
     # User
