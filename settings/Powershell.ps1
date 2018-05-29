@@ -2,6 +2,7 @@
 Set-Alias vc "${env:ProgramFiles}\Microsoft VS Code\Code.exe"
 Set-Alias mg '~\OneDrive\Collections\Adults\magick.ps1'
 Set-Alias au '~\Projects\Personal\chocolatey-packages\update_all.ps1'
+Set-Alias aphro '~\Projects\Personal\Aphrodite\Aphrodite\bin\Release\netcoreapp2.0\win10-x64\Aphrodite.exe'
 
 # WSL Commands
 function bash_file { $args = $args -replace '\\', '/'; bash -c "$((Get-PSCallStack)[1].Command) '$args'" }
