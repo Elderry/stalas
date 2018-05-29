@@ -6,6 +6,11 @@ function Remove-Registry([String] $registry) {
     }
 }
 
+# New File
+Remove-Registry 'HKCR:\.bmp\ShellNew'
+Remove-Registry 'HKCR:\.contact\ShellNew'
+Remove-Registry 'HKCR:\.rtf\ShellNew'
+
 # Baidu Yun
 Remove-Registry 'HKCR:\*\shellex\ContextMenuHandlers\YunShellExt'
 Remove-Registry 'HKCR:\Directory\shellex\ContextMenuHandlers\YunShellExt'
