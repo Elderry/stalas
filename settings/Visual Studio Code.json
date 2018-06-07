@@ -22,6 +22,7 @@
     "workbench.colorTheme": "Default Light+",
 
     "powershell.integratedConsole.showOnStartup": false, //[Windows]
+    "powershell.powerShellExePath": "",
     "powershell.startAutomatically": false, //[Windows]
 
     "vim.useCtrlKeys": false
