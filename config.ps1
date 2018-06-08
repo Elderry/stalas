@@ -34,12 +34,14 @@ function Write-Split([string] $prefix, [string] $key, [string] $suffix) {
     Write-Host ('-' * [Math]::Ceiling($hyphen)) -ForegroundColor 'DarkBlue'
 }
 
-function Config([string] $name, [string] $type, [string[]] $arguments) {
+function Start-Config([string] $name, [string] $type, [string[]] $arguments) {
     Write-Host
     Write-Split 'Going to config ' $name '.'
     switch ($type) {
-        'ps1' { & "Configuration/$name.$_" @arguments }
-        'sh' { bash "Configuration/$name.$_" @arguments }
+        'ps1' { & "$PSScriptRoot/Configuration/$name.$_" @arguments }
+        # Edit this when `wslpath` is ready.
+        # Reference: https://github.com/MicrosoftDocs/WSL/releases/tag/17046
+        'sh' { bash "$($PSScriptRoot -replace 'C:\\', '/mnt/c/' -replace '\\', '/')/Configuration/$name.$_" @arguments }
     }
     Write-Split 'Configuration of ' $name ' finished.'
 }
@@ -49,15 +51,15 @@ $banner = "$('-' * [Math]::Floor($hyphen)) $Env:UserName's Config Files $('-' * 
 Write-Host "`n$banner" -ForegroundColor 'DarkBlue'
 
 $configs = @{}
-Get-ChildItem 'Configuration' | Select-Object -ExpandProperty 'Name' | ForEach-Object {
+Get-ChildItem "$PSScriptRoot/Configuration" | Select-Object -ExpandProperty 'Name' | ForEach-Object {
     $name = $_.Split('.')
     $configs[$name[0]] = $name[1]
 }
 
 if ($target -ne '') {
-    Config $target $configs[$target] $args
+    Start-Config $target $configs[$target] $args
 } else {
-    $configs.GetEnumerator() | ForEach-Object { Config $_.Name $_.Value }
+    $configs.GetEnumerator() | ForEach-Object { Start-Config $_.Name $_.Value }
 }
 
 Write-Host "`n$banner`n" -ForegroundColor 'DarkBlue'

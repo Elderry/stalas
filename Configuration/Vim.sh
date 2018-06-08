@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-cp 'Settings/Vim.vimrc' ~/.vimrc
+cp "$(dirname ${BASH_SOURCE[0]})/../Settings/Vim.vimrc" ~/.vimrc

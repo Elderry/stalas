@@ -21,7 +21,7 @@ $colorTable = (
 )
 
 $config = @{}
-(Get-Content 'Settings\Windows Console.yml' -Raw | ConvertFrom-Yaml).GetEnumerator() | ForEach-Object {
+(Get-Content "$PSScriptRoot/../Settings/Windows Console.yml" -Raw | ConvertFrom-Yaml).GetEnumerator() | ForEach-Object {
     $name = $_.Name
     $value = $_.Value
     switch ($name) {
