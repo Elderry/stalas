@@ -1,5 +1,13 @@
 param (
-    [ValidateSet("Windows Console", "PowerShell", "Visual Studio Code", "Bash", "Vim", "Hyper", "Registry")]
+    [ValidateSet(
+        "Windows Console",
+        "PowerShell",
+        "Visual Studio Code",
+        "Bash",
+        "Vim",
+        "Hyper",
+        "Registry",
+        'Maven')]
     [string] $target
 )
 
