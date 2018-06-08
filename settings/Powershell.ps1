@@ -46,10 +46,6 @@ if (!$global:GitPromptSettings) { Import-Module 'posh-git' }
 $global:GitPromptSettings.BeforeText = ' ['
 $global:GitPromptSettings.AfterText  = '] '
 Import-Module 'Jump.Location'
-$ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
-if (Test-Path $ChocolateyProfile) {
-    Import-Module $ChocolateyProfile
-}
 
 # Colors
 $host.PrivateData.ErrorBackgroundColor    = 'White'

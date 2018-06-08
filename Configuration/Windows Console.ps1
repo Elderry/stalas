@@ -1,3 +1,5 @@
+Import-Module powershell-yaml
+
 $desktopPath = "$Home\OneDrive\Collections\AppBackup\Desktop"
 $pwshShortcut = 'PS.lnk'
 $pwshAdminShortcut = 'PSA.lnk'
@@ -14,13 +16,12 @@ $regPaths = (
 )
 
 $colorTable = (
-    "Black",    "DarkBlue", "DarkGreen", "DarkCyan", "DarkRed", "DarkMagenta", "DarkYellow", "Gray",
-    "DarkGray",     "Blue",     "Green",     "Cyan",     "Red",     "Magenta",     "Yellow", "White"
+    "Black", "DarkBlue", "DarkGreen", "DarkCyan", "DarkRed", "DarkMagenta", "DarkYellow", "Gray", "DarkGray", "Blue",
+    "Green", "Cyan", "Red", "Magenta", "Yellow", "White"
 )
 
 $config = @{}
-((Get-Content 'Settings\Windows Console.json') -Replace '\/\/.*' | ConvertFrom-Json)[1].PSObject.Properties |
-ForEach-Object {
+(Get-Content 'Settings\Windows Console.yml' -Raw | ConvertFrom-Yaml).GetEnumerator() | ForEach-Object {
     $name = $_.Name
     $value = $_.Value
     switch ($name) {
@@ -29,15 +30,15 @@ ForEach-Object {
         }
         'CursorSize' { $config.Add($name, $(switch ($value) { 'small' { 25 } 'medium' { 50 } 'large' { 100 } })) }
         'FontSize' { $config.FontSize = $value * 65536 }
-        'ScreenBufferSize.Lines'   { $config.ScreenBufferSize += $value * 65536 }
+        'ScreenBufferSize.Lines' { $config.ScreenBufferSize += $value * 65536 }
         'ScreenBufferSize.Columns' { $config.ScreenBufferSize += $value }
         'ScreenColors.Background' { $config.ScreenColors += $value * 16 }
         'ScreenColors.Foreground' { $config.ScreenColors += $value }
         'WindowAlpha' { $config.WindowAlpha = $value * 2.55 -as [int] }
         'WindowPosition.LeftMargin' { $config.WindowPosition += $value }
-        'WindowPosition.TopMargin'  { $config.WindowPosition += $value * 65536 }
+        'WindowPosition.TopMargin' { $config.WindowPosition += $value * 65536 }
         'WindowSize.Height' { $config.WindowSize += $value * 65536 }
-        'WindowSize.Width'  { $config.WindowSize += $value }
+        'WindowSize.Width' { $config.WindowSize += $value }
         default { $config.Add($name, $value) }
     }
 }
@@ -56,8 +57,8 @@ $config.GetEnumerator() | ForEach-Object {
     $name = $_.Name
     $value = $_.Value
     switch ($value) {
-        { $_ -is [int] -or $_ -is [bool] } { $type = 'Dword'  }
-        { $_ -is [string]                } { $type = 'String' }
+        { $_ -is [int] -or $_ -is [bool] } { $type = 'Dword' }
+        { $_ -is [string] } { $type = 'String' }
     }
     Set-Registry $consoleRegPath $name $value $type
     # Clean up unnecessary entries.
