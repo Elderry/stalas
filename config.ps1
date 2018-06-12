@@ -7,7 +7,8 @@ param (
         "Vim",
         "Hyper",
         "Registry",
-        'Maven')]
+        'Maven',
+        'Java Runtime Environment')]
     [string] $target
 )
 
