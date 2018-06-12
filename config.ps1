@@ -47,7 +47,13 @@ function Start-Config([string] $name, [string] $type, [string[]] $arguments) {
     Write-Host
     Write-Split 'Going to config ' $name '.'
     switch ($type) {
-        'ps1' { & "$PSScriptRoot/Configuration/$name.$_" @arguments }
+        'ps1' {
+            if ($arguments.Length -eq 0) {
+                & "$PSScriptRoot/Configuration/$name.$_"
+            } else {
+                & "$PSScriptRoot/Configuration/$name.$_" @arguments
+            }
+        }
         # Edit this when `wslpath` is ready.
         # Reference: https://github.com/MicrosoftDocs/WSL/releases/tag/17046
         'sh' { bash "$($PSScriptRoot -replace 'C:\\', '/mnt/c/' -replace '\\', '/')/Configuration/$name.$_" @arguments }
