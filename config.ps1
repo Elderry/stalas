@@ -1,6 +1,6 @@
 param (
     [ValidateSet(
-        "Windows Console",
+        "Console",
         "PowerShell",
         "Visual Studio Code",
         "Bash",
@@ -9,6 +9,7 @@ param (
         "Registry",
         'Maven',
         'Java Runtime Environment')]
+    [Parameter(Position = 0, mandatory = $true)]
     [string] $target
 )
 
@@ -26,7 +27,7 @@ if ($IsWindows) {
 }
 
 if (-not $pwshInstalled) {
-    Write-Host -ForegroundColor 'Red' 'Failed to configure, please install PowerShell Core first.'
+    Write-Error 'Failed to configure, please install PowerShell Core first.'
     Write-Host 'Link: https://github.com/PowerShell/PowerShell/releases'
     exit
 }
@@ -59,13 +60,27 @@ $hyphen = ($width - $Env:UserName.Length - 17) / 2
 $banner = "$('-' * [Math]::Floor($hyphen)) $Env:UserName's Config Files $('-' * [Math]::Floor($hyphen))"
 Write-Host "`n$banner" -ForegroundColor 'DarkBlue'
 
-if ($target -ne '') {
-    Start-Config $target $args
-} else {
-    $configs = Get-ChildItem "$PSScriptRoot/Configuration" |
-        Select-Object -ExpandProperty 'Name' |
-        ForEach-Object { $_ -replace '\.ps1' } |
-        ForEach-Object { Start-Config $_ }
+$script = Get-ChildItem "$PSScriptRoot/Configuration" |
+    Select-Object -ExpandProperty 'Name' |
+    ForEach-Object { $_ -replace '\.ps1' } |
+    Where-Object { $_ -match "$target( - Windows| - macOS)?" } |
+    Select-Object -First 1
+
+switch -wildcard ($script) {
+    "* - Windows" {
+        if (-not $IsWindows) {
+            Write-Error "$target's config is Windows only."
+            exit
+        }
+    }
+    "* - macOS" {
+        if (-not $IsMacOS) {
+            Write-Error "$target's config is macOS only."
+            exit
+        }
+    }
 }
+
+Start-Config $script $args
 
 Write-Host "`n$banner`n" -ForegroundColor 'DarkBlue'
