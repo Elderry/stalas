@@ -1,14 +1,15 @@
 param (
     [ValidateSet(
-        "Console",
-        "PowerShell",
-        "Visual Studio Code",
-        "Bash",
-        "Vim",
-        "Hyper",
-        "Registry",
+        'Console',
+        'PowerShell',
+        'Visual Studio Code',
+        'Bash',
+        'Vim',
+        'Hyper',
+        'Registry',
         'Maven',
-        'Java Runtime Environment')]
+        'Java Runtime Environment',
+        'Docker')]
     [Parameter(Position = 0, mandatory = $true)]
     [string] $target
 )
