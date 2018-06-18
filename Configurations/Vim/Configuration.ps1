@@ -3,7 +3,7 @@
 $wslpath = $PSScriptRoot -replace 'C:\\', '/mnt/c/' -replace '\\', '/'
 
 if ($IsWindows) {
-    bash -c "cp $wslpath/../Settings/Vim.vimrc ~/.vimrc"
+    bash -c "cp $wslpath/.vimrc ~"
 } elseif ($IsMacOS) {
-    Copy-Item "$PSScriptRoot/../Settings/Vim.vimrc" '~/.vimrc'
+    Copy-Item "$PSScriptRoot/.vimrc" '~'
 }

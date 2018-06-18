@@ -8,7 +8,7 @@ param (
         'Hyper',
         'Registry',
         'Maven',
-        'Java Runtime Environment',
+        'Java',
         'Docker')]
     [Parameter(Position = 0, mandatory = $true)]
     [string] $target
@@ -48,12 +48,13 @@ function Write-Split([string] $prefix, [string] $key, [string] $suffix) {
 function Start-Config([string] $name, [string[]] $arguments) {
 
     Write-Host
+    $script = "$PSScriptRoot/Configurations/$name/Configuration.ps1"
     Write-Split 'Going to config ' $name '.'
-        if ($arguments.Length -eq 0) {
-            & "$PSScriptRoot/Configuration/$name.ps1"
-        } else {
-            & "$PSScriptRoot/Configuration/$name.ps1" @arguments
-        }
+    if ($arguments.Length -eq 0) {
+        & $script
+    } else {
+        & $script @arguments
+    }
     Write-Split 'Configuration of ' $name ' finished.'
 }
 
@@ -61,7 +62,7 @@ $hyphen = ($width - $Env:UserName.Length - 17) / 2
 $banner = "$('-' * [Math]::Floor($hyphen)) $Env:UserName's Config Files $('-' * [Math]::Floor($hyphen))"
 Write-Host "`n$banner" -ForegroundColor 'DarkBlue'
 
-$script = Get-ChildItem "$PSScriptRoot/Configuration" |
+$script = Get-ChildItem "$PSScriptRoot/Configurations" |
     Select-Object -ExpandProperty 'Name' |
     ForEach-Object { $_ -replace '\.ps1' } |
     Where-Object { $_ -match "$target( - Windows| - macOS)?" } |

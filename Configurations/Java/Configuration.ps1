@@ -37,7 +37,7 @@ if (-not $modernJava) {
 
 function addCert($file, $alias, $fingerprint) {
 
-    $file = [IO.Path]::GetFullPath("$PSScriptRoot/../Resources/Certificates/$file")
+    $file = [IO.Path]::GetFullPath("$PSScriptRoot/../../Resources/Certificates/$file")
     if ($modernJava) {
         $certs = keytool -list -cacerts -storepass $storePass
         if ($certs.Where({ $_.Contains($fingerprint) }).Count -eq 0) {

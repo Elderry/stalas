@@ -5,7 +5,7 @@ param(
 
 Import-Module powershell-yaml
 
-$private = [IO.Path]::GetFullPath("$PSScriptRoot/../Resources/Private")
+$private = [IO.Path]::GetFullPath("$PSScriptRoot/../../Resources/Private")
 $credentials = Get-Content "$private/Credentials.yml" -Raw | ConvertFrom-Yaml
 switch ($environment) {
     'TSCN' {
@@ -19,7 +19,7 @@ switch ($environment) {
 }
 [Environment]::SetEnvironmentVariable('MAVEN_OPTS', $opts, 'User')
 
-(Get-Content "$PSScriptRoot/../Settings/Maven - $environment.xml") `
+(Get-Content "$PSScriptRoot/Maven - $environment.xml") `
     -replace '{user}', $credentials["LDAP-$environment-user"] `
     -replace '{password}', $credentials["LDAP-$environment-password"] |
     Set-Content '~/.m2/settings.xml'
