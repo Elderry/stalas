@@ -1,0 +1,98 @@
+# Windows Console Settings
+# Author   : Elderry
+# References: https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-2000-server/cc978570(v=technet.10),
+#             https://docs.microsoft.com/en-us/previous-versions/orphan-topics/ws.11/mt427362(v=ws.11),
+#             https://msdn.microsoft.com/en-us/library/dd891381.aspx
+
+# Defines the colors in the color well on the Colors tab of the console Properties or Defaults dialog box.
+# Each of the 16 ColorTable x entries corresponds to one of the registry entries ColorTable00-ColorTable15.
+# References: https://blogs.msdn.microsoft.com/commandline/2017/08/02/updating-the-windows-console-colors/,
+#             https://github.com/Microsoft/vscode/blob/master/src/vs/workbench/parts/terminal/common/terminalColorRegistry.ts
+#             Committed on Apr 17, 2018
+#            'BBGGRR' (original value commented)
+Black      : '0C0C0C' # 000000 Black
+DarkBlue   : 'DA3700' # 800000 Blue
+DarkGreen  : '0EA113' # 008000 Green
+DarkCyan   : 'DD963A' # 808000 Cyan
+DarkRed    : '1F0FC5' # 000080 Red
+DarkMagenta: '981788' # 800080 Magenta
+DarkYellow : '009CC1' # 008080 Yellow
+Gray       : 'CCCCCC' # C0C0C0 White
+DarkGray   : '767676' # 808080 BrightDark
+Blue       : 'FF783B' # FF0000 BrightBlue
+Green      : '0CC616' # 00FF00 BrightGreen
+Cyan       : 'D6D661' # FFFF00 BrightCyan
+Red        : '5648E7' # 0000FF BrightRed
+Magenta    : '9E00B4' # FF00FF BrightMagenta
+Yellow     : '00BAB5' # 00FFFF BrightYellow
+White      : 'F2F2F2' # FFFFFF BrightWhite
+
+# 'false' enables new key shortcuts; 'true' disables them.
+CtrlKeyShortcutsDisabled: false
+
+# The code page console uses, avaliable values are listed in following link:
+# https://msdn.microsoft.com/en-us/library/windows/desktop/dd317756(v=vs.85).aspx
+CodePage: 65001
+
+# Specifies the percentage of a character cell that the cursor occupies, avaliable values are:
+# 'small'(25%), 'medium'(50%) and 'large'(100%).
+CursorSize: large
+
+# 'True' enables the full set of keyboard selection keys; 'false' disables them.
+ExtendedEditKey: true
+
+# 'True' enables new paste behavior.
+FilterOnPaste: true
+
+# Specifies the name of an alternate command window font. If there is no font name in the value of this entry,
+# the system uses raster fonts.
+FaceName: 等距更纱黑体 SC
+
+# 'True' enables all new console features; 'false' disables all new features.
+ForceV2: true
+
+# Specifies the size of the font used in the command window.
+FontSize: 24
+
+# Specifies the number of commands that can be stored in each command history buffer.
+HistoryBufferSize: 999
+
+# Specifies whether to remove duplicates in the history buffer.
+HistoryNoDup: true
+
+# Specifies how the system responds when the user types over existing characters.
+InsertMode: true
+
+# 'True' enables line selection; 'false' to use block mode only.
+LineSelection: true
+
+# 'True' wraps text when you resize console windows.
+LineWrap: true
+
+# Specifies the number of history buffers allocated to store commands.
+NumberOfHistoryBuffers: 999
+
+# Determines the size of the screen buffer (the screen that is retained in memory).
+# If the size of the screen displayed on the monitor is smaller than the screen buffer, you can scroll to see the
+# entire screen. You cannot display a console screen that is larger than the screen buffer.
+ScreenBufferSize.Lines: 9999
+# This option is disabled if 'LineWrap' is set to true.
+ScreenBufferSize.Columns: 100
+
+# Specifies the colors of console windows, possible values are the index of color in the color table above(0-15).
+ScreenColors.Background: 15
+ScreenColors.Foreground: 0
+
+# Specifies whether QuickEdit mode is enabled. In QuickEdit mode, users can cut and paste text by using the mouse.
+QuickEdit: true
+
+# Sets opacity value between 30% and 100%.
+WindowAlpha: 90
+
+# Specifies the position of the command window on the user's screen.
+WindowPosition.LeftMargin: 240
+WindowPosition.TopMargin: 60
+
+# Specifies the size of the command window.
+WindowSize.Height: 25
+WindowSize.Width: 100

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings>
+    <mirrors>
+        <mirror>
+            <id>tradeshift-public</id>
+            <name>Tradeshift - Releases</name>
+            <url>https://maven.tradeshift.net/content/repositories/tradeshift-public</url>
+            <mirrorOf>central,public,!snapshots</mirrorOf>
+        </mirror>
+        <mirror>
+            <id>tradeshift-snapshots</id>
+            <name>Tradeshift - Snapshots</name>
+            <url>https://maven.tradeshift.net/content/repositories/tradeshift-public-snapshots</url>
+            <mirrorOf>snapshots</mirrorOf>
+        </mirror>
+    </mirrors>
+    <servers>
+        <server>
+            <username>{user}</username>
+            <password>{password}</password>
+            <filePermissions>664</filePermissions>
+            <directoryPermissions>775</directoryPermissions>
+            <id>tradeshift-public</id>
+        </server>
+        <server>
+            <username>{user}</username>
+            <password>{password}</password>
+            <filePermissions>664</filePermissions>
+            <directoryPermissions>775</directoryPermissions>
+            <id>tradeshift-snapshots</id>
+        </server>
+        <server>
+            <username>{user}</username>
+            <password>{password}</password>
+            <filePermissions>664</filePermissions>
+            <directoryPermissions>775</directoryPermissions>
+            <id>tradeshift-plugins</id>
+        </server>
+    </servers>
+    <activeProfiles>
+        <activeProfile>tradeshift</activeProfile>
+    </activeProfiles>
+    <profiles>
+        <profile>
+            <id>tradeshift</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <repositories>
+                <repository>
+                    <releases>
+                        <enabled>true</enabled>
+                        <updatePolicy>always</updatePolicy>
+                        <checksumPolicy>warn</checksumPolicy>
+                    </releases>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                    <id>tradeshift-public</id>
+                    <name>Tradeshift - Releases</name>
+                    <url>https://maven.tradeshift.net/content/repositories/tradeshift-public</url>
+                    <layout>default</layout>
+                </repository>
+                <repository>
+                    <releases>
+                        <enabled>false</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                        <updatePolicy>always</updatePolicy>
+                    </snapshots>
+                    <id>tradeshift-snapshots</id>
+                    <name>Tradeshift - Snapshots</name>
+                    <url>https://maven.tradeshift.net/content/repositories/tradeshift-public-snapshots</url>
+                    <layout>default</layout>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>tradeshift-plugins</id>
+                    <name>Tradeshift - Plugins</name>
+                    <url>https://maven.tradeshift.net/content/repositories/tradeshift-public-plugins</url>
+                    <layout>default</layout>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+    </profiles>
+    <pluginGroups>
+        <pluginGroup>com.tradeshift</pluginGroup>
+        <pluginGroup>org.apache.maven.plugins</pluginGroup>
+        <pluginGroup>org.codehaus.mojo</pluginGroup>
+    </pluginGroups>
+    <localRepository>/Users/ruiyang/.m2/repository</localRepository>
+</settings>

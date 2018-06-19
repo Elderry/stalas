@@ -2,6 +2,7 @@
 // which will not automatically be merged into this file.
 // See https://hyper.is#cfg for all currently supported options.
 // Reference: https://github.com/zeit/hyper/blob/master/app/config/config-default.js
+//            Committed on Apr 16, 2018
 
 module.exports = {
   config: {

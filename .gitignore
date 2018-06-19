@@ -1,0 +1,5 @@
+# Visual Studio Code Debug Files
+.vscode/
+
+# Private Files
+Private/
