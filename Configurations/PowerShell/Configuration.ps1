@@ -7,6 +7,6 @@ if ($IsWindows) {
     Set-Content ($core, $native) $content
 } elseif ($IsMacOS) {
     $content = (Get-Content $profile) -replace '\s+#\[macOS\]' -notmatch '\s+#\[Windows\]'
-    $core = '/usr/local/microsoft/Microsoft.PowerShell_profile.ps1'
+    $core = '~/.config/powershell/Microsoft.PowerShell_profile.ps1'
     Set-Content $core $content
 }
