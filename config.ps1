@@ -14,27 +14,14 @@ param (
     [string] $target
 )
 
-$pwshInstalled = $false
-if ($IsWindows) {
-    $pwsh = 'C:\Program Files\PowerShell'
-    if (Test-Path $pwsh) {
-        Get-ChildItem $pwsh | ForEach-Object {
-            if ($_.Name -match '\d+(\.\d+)*') {
-                $pwshInstalled = $true
-                [Environment]::SetEnvironmentVariable('PWSH_HOME', (Join-Path $pwsh $_.Name), 'User')
-            }
-        }
-    }
-}
-
-if (-not $pwshInstalled) {
+if ($PSVersionTable.PSEdition -ne 'Core') {
     Write-Error 'Failed to configure, please install PowerShell Core first.'
     Write-Host 'Link: https://github.com/PowerShell/PowerShell/releases'
     exit
 }
+[Environment]::SetEnvironmentVariable('PWSH', (Get-Command 'pwsh').Source, 'User')
 
 $width = 80
-
 function Write-Split([string] $prefix, [string] $key, [string] $suffix) {
     $length = $prefix.Length + $key.Length + $suffix.Length + 4
     $hyphen = ($width - $length) / 2

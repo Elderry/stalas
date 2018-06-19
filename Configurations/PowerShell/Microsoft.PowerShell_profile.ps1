@@ -1,14 +1,18 @@
 # Custom Variables
-Set-Alias vc "${env:ProgramFiles}\Microsoft VS Code\Code.exe"
-Set-Alias mg '~\OneDrive\Collections\Adults\magick.ps1'
-Set-Alias au '~\Projects\Personal\chocolatey-packages\update_all.ps1'
-Set-Alias aphro '~\Projects\Personal\Aphrodite\Aphrodite\bin\Release\netcoreapp2.1\win10-x64\Aphrodite.exe'
-Set-Alias config 'C:\Users\Ruiyang\Projects\Personal\config\config.ps1'
+Set-Alias vc "$Env:ProgramFiles/Microsoft VS Code/Code.exe" #[Windows]
+Set-Alias vc "$Env:ProgramFiles/Microsoft VS Code/Code.exe" #[macOS]
+Set-Alias mg '~/OneDrive/Collections/Adults/magick.ps1'
+Set-Alias au '~/Projects/Personal/chocolatey-packages/update_all.ps1'
+Set-Alias aphro '~/Projects/Personal/Aphrodite/Aphrodite/bin/Release/netcoreapp2.1/win10-x64/Aphrodite.exe' #[Windows]
+Set-Alias config '~/Projects/Personal/config/config.ps1'
 
-# WSL Commands
-function bash_file { $args = $args -replace '\\', '/'; bash -c "$((Get-PSCallStack)[1].Command) '$args'" }
+# Bash Commands
+Set-Alias ls 'ls -G' #[macOS]
+Remove-Item Alias:ls #[Windows]
+function ls { bash -c "source ~/.bashrc; ls $args" } #[Windows]
+function sh { $args = $args -replace '\\', '/'; bash $args } #[Windows]
 
-function cat { bash_file $args }
+# Custom Commands
 function git_drop {
     git reset --hard
     git clean -fd
@@ -33,14 +37,6 @@ function git_prune {
         }
     }
 }
-function ifconfig { bash -c "ifconfig $args" }
-Remove-Item Alias:ls
-function ls { bash -c "source ~/.bashrc; ls $args" }
-function lsb_release { bash -c "lsb_release $args" }
-function sh { $args = $args -replace '\\', '/'; bash $args }
-function touch { bash -c "touch $args" }
-function vi { bash_file $args }
-function vim { bash_file $args }
 
 # Modules
 if (!$global:GitPromptSettings) { Import-Module 'posh-git' }
