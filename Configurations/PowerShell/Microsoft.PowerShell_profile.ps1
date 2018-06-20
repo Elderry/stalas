@@ -38,7 +38,7 @@ function git_prune {
 if (!$global:GitPromptSettings) { Import-Module 'posh-git' }
 $global:GitPromptSettings.BeforeText = ' ['
 $global:GitPromptSettings.AfterText  = '] '
-Import-Module 'Jump.Location'
+Import-Module 'Jump.Location' #[Windows]
 
 # Colors
 $host.PrivateData.ErrorBackgroundColor    = 'White'
