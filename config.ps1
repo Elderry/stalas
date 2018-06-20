@@ -4,7 +4,6 @@ param (
         'PowerShell',
         'Visual Studio Code',
         'Bash',
-        'Vim',
         'Hyper',
         'Registry',
         'Maven',
@@ -20,7 +19,6 @@ if ($PSVersionTable.PSEdition -ne 'Core') {
     Write-Host 'Link: https://github.com/PowerShell/PowerShell/releases'
     exit
 }
-[Environment]::SetEnvironmentVariable('PWSH', (Get-Command 'pwsh').Source, 'User')
 
 $width = 80
 function Write-Split([string] $prefix, [string] $key, [string] $suffix) {

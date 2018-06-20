@@ -1,8 +1,10 @@
-$shell = "shell: '" + ((Join-Path $Env:PWSH_HOME 'pwsh.exe') -replace '\\', '\\') + "'"
-$settings = Join-Path $Env:UserProfile '.hyper.js'
-$content = (Get-Content "$PSScriptRoot/.hyper.js") -replace "shell:\s*'.*'", $shell
+$settings = '~/.hyper.js'
+$pwsh = if ($IsWindows) { "$PSHOME/pwsh.exe" -replace '\\', '/' } `
+    elseif ($IsMacOS) { "$PSHOME/pwsh" }
+$content = (Get-Content "$PSScriptRoot/.hyper.js") -replace "(shell:)\s*'.*'", "`$1 '$pwsh'"
 
-if ((Test-Path $settings) -And ([String]::Concat((Get-Content $settings)) -eq [String]::Concat($content))) {
+$done = (Test-Path $settings) -and ([String]::Concat((Get-Content $settings)) -eq [String]::Concat($content))
+if ($done) {
     exit
 }
 
