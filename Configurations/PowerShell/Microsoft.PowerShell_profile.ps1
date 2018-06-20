@@ -89,6 +89,8 @@ function IsAdmin {
     return $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
 }
 
+function IsRoot { return $(id -un) -eq 'root' }
+
 function prompt {
 
     # Git
@@ -103,14 +105,16 @@ function prompt {
     Write-Host '' -ForegroundColor $DirectoryBackgroundColor
 
     # User
-    $user = " $Env:USERNAME@$((Get-Culture).TextInfo.ToTitleCase($env:USERDOMAIN.ToLower())) "
-    Write-Host $user -ForegroundColor White -BackgroundColor $UserBackgroundColor -NoNewline
-    Write-Host '' -ForegroundColor $UserBackgroundColor -BackgroundColor $HostBackgroundColor -NoNewline
+    $user = " $Env:USERNAME@$((Get-Culture).TextInfo.ToTitleCase($env:USERDOMAIN.ToLower())) " #[Windows]
+    $user = " $Env:USER@$(hostname) " #[macOS]
+    Write-Host $user -ForegroundColor 'White' -BackgroundColor $UserBackgroundColor -NoNewline
+    # Write-Host '' -ForegroundColor $UserBackgroundColor -BackgroundColor $HostBackgroundColor -NoNewline
 
     # Host symbol
-    $symbol = if (IsAdmin) { '#' } else { '$' }
-    Write-Host " $symbol " -ForegroundColor White -BackgroundColor $HostBackgroundColor -NoNewline
-    Write-Host '' -ForegroundColor $HostBackgroundColor -NoNewline
+    $symbol = if (IsAdmin) { '#' } else { '$' } #[Windows]
+    $symbol = if (IsRoot) { '#' } else { '$' } #[macOS]
+    Write-Host " $symbol " -ForegroundColor 'White' -BackgroundColor $HostBackgroundColor -NoNewline
+    # Write-Host '' -ForegroundColor $HostBackgroundColor -NoNewline
 
     return ' '
 }
