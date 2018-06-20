@@ -15,15 +15,16 @@
     "files.insertFinalNewline": true,
 
     "terminal.integrated.cursorStyle": "line",
-    "terminal.integrated.shell.windows": "",
+    "terminal.integrated.shell.windows": "", //[Windows]
+    "terminal.integrated.shell.osx": "", //[macOS]
 
     "window.openFilesInNewWindow": "on",
 
     "workbench.colorTheme": "Default Light+",
 
-    "powershell.integratedConsole.showOnStartup": false, //[Windows]
+    "powershell.integratedConsole.showOnStartup": false,
     "powershell.powerShellExePath": "",
-    "powershell.startAutomatically": false, //[Windows]
+    "powershell.startAutomatically": false,
 
     "vim.useCtrlKeys": false
 }
