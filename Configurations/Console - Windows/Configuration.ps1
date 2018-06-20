@@ -81,11 +81,11 @@ function Set-Shortcut([string] $Path, [string] $Target, [switch] $RequireAdmin) 
 function Update-Shortcut([string] $Path) {
     $shortcut = $(New-Object -ComObject WScript.Shell).CreateShortcut($Path)
     if (Test-Path $shortcut.TargetPath) { return }
-    $shortcut.TargetPath = Join-Path $Env:PWSH_HOME 'pwsh.exe'
+    $shortcut.TargetPath = Join-Path $PSHOME 'pwsh.exe'
     $shortcut.Save()
 }
 
-$pwshPath = Join-Path $Env:PWSH_HOME 'pwsh.exe'
+$pwshPath = Join-Path $PSHOME 'pwsh.exe'
 $cmdPath  = Join-Path $Env:SystemRoot 'System32/cmd.exe'
 
 Set-Shortcut (Join-Path $desktopPath $pwshShortcut) $pwshPath
