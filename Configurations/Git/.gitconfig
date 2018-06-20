@@ -1,0 +1,13 @@
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+[user]
+	name = Ruiyang Li
+	email = Elderry@outlook.com
+	signingkey = B63C38A86C753D23
+[commit]
+	gpgsign = true
+[gpg] #[Windows]
+	program = C:/Program Files (x86)/GNU/GnuPG/pub/gpg.exe #[Windows]

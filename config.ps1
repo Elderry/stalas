@@ -9,7 +9,8 @@ param (
         'Registry',
         'Maven',
         'Java',
-        'Docker')]
+        'Docker',
+        'Git')]
     [Parameter(Position = 0, mandatory = $true)]
     [string] $target
 )
