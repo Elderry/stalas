@@ -1,14 +1,14 @@
 # Custom Variables
-Set-Alias vc "${env:ProgramFiles}\Microsoft VS Code\Code.exe"
-Set-Alias mg '~\OneDrive\Collections\Adults\magick.ps1'
-Set-Alias au '~\Projects\Personal\chocolatey-packages\update_all.ps1'
-Set-Alias aphro '~\Projects\Personal\Aphrodite\Aphrodite\bin\Release\netcoreapp2.1\win10-x64\Aphrodite.exe'
-Set-Alias config 'C:\Users\Ruiyang\Projects\Personal\config\config.ps1'
+Set-Alias vc "$Env:ProgramFiles/Microsoft VS Code/Code.exe" #[Windows]
+Set-Alias vc "$Env:ProgramFiles/Microsoft VS Code/Code.exe" #[macOS]
+Set-Alias mg '~/OneDrive/Collections/Adults/magick.ps1'
+Set-Alias au '~/Projects/Personal/chocolatey-packages/update_all.ps1'
+Set-Alias aphro '~/Projects/Personal/Aphrodite/Aphrodite/bin/Release/netcoreapp2.1/win10-x64/Aphrodite.exe' #[Windows]
+Set-Alias config '~/Projects/Personal/config/config.ps1'
 
-# WSL Commands
-function bash_file { $args = $args -replace '\\', '/'; bash -c "$((Get-PSCallStack)[1].Command) '$args'" }
-
-function cat { bash_file $args }
+# Custom Commands
+Remove-Alias 'ls' #[Windows]
+function ls { Get-ChildItem | Format-Wide -AutoSize -Property 'Name' }
 function git_drop {
     git reset --hard
     git clean -fd
@@ -17,7 +17,7 @@ function git_prune {
     $branches = git branch -l |
         ForEach-Object { $_.Trim() } |
         Where-Object { -Not $_.StartsWith('*') } |
-        Where-Object { -Not ($_ -eq 'master') }
+        Where-Object { $_ -ne 'master' }
     if ($branches.Length -eq 0) {
         Write-Host 'No branch is going to be deleted.'
         return
@@ -33,14 +33,6 @@ function git_prune {
         }
     }
 }
-function ifconfig { bash -c "ifconfig $args" }
-Remove-Item Alias:ls
-function ls { bash -c "source ~/.bashrc; ls $args" }
-function lsb_release { bash -c "lsb_release $args" }
-function sh { $args = $args -replace '\\', '/'; bash $args }
-function touch { bash -c "touch $args" }
-function vi { bash_file $args }
-function vim { bash_file $args }
 
 # Modules
 if (!$global:GitPromptSettings) { Import-Module 'posh-git' }
@@ -97,23 +89,11 @@ function IsAdmin {
     return $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
 }
 
-function IsGitDirectory {
-    if (Test-Path '.git') { return $true }
-    $path = Get-Item $PWD
-    while ($path.Parent) {
-        if (Test-Path (Join-Path $path.Parent.FullName '.git')) {
-            return $true
-        }
-        $path = $path.Parent
-    }
-    return $false
-}
-
 function prompt {
 
     # Git
     Write-VcsStatus
-    if (IsGitDirectory) {
+    if (Get-GitDirectory) {
         Write-Host '' -ForegroundColor $GitBackgroundColor -BackgroundColor $DirectoryBackgroundColor -NoNewline
     }
 
