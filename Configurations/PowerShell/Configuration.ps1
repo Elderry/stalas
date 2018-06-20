@@ -8,5 +8,6 @@ if ($IsWindows) {
 } elseif ($IsMacOS) {
     $content = (Get-Content $profile) -replace '\s+#\[macOS\]' -notmatch '\s+#\[Windows\]'
     $core = '~/.config/powershell/Microsoft.PowerShell_profile.ps1'
+    New-Item -ItemType 'directory' '~/.config/powershell/' | Out-Null
     Set-Content $core $content
 }

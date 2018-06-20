@@ -6,13 +6,9 @@ Set-Alias au '~/Projects/Personal/chocolatey-packages/update_all.ps1'
 Set-Alias aphro '~/Projects/Personal/Aphrodite/Aphrodite/bin/Release/netcoreapp2.1/win10-x64/Aphrodite.exe' #[Windows]
 Set-Alias config '~/Projects/Personal/config/config.ps1'
 
-# Bash Commands
-Set-Alias ls 'ls -G' #[macOS]
-Remove-Item Alias:ls #[Windows]
-function ls { bash -c "source ~/.bashrc; ls $args" } #[Windows]
-function sh { $args = $args -replace '\\', '/'; bash $args } #[Windows]
-
 # Custom Commands
+Remove-Alias 'ls' #[Windows]
+function ls { Get-ChildItem | Format-Wide -AutoSize -Property 'Name' }
 function git_drop {
     git reset --hard
     git clean -fd
@@ -21,7 +17,7 @@ function git_prune {
     $branches = git branch -l |
         ForEach-Object { $_.Trim() } |
         Where-Object { -Not $_.StartsWith('*') } |
-        Where-Object { -Not ($_ -eq 'master') }
+        Where-Object { $_ -ne 'master' }
     if ($branches.Length -eq 0) {
         Write-Host 'No branch is going to be deleted.'
         return
@@ -93,23 +89,11 @@ function IsAdmin {
     return $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
 }
 
-function IsGitDirectory {
-    if (Test-Path '.git') { return $true }
-    $path = Get-Item $PWD
-    while ($path.Parent) {
-        if (Test-Path (Join-Path $path.Parent.FullName '.git')) {
-            return $true
-        }
-        $path = $path.Parent
-    }
-    return $false
-}
-
 function prompt {
 
     # Git
     Write-VcsStatus
-    if (IsGitDirectory) {
+    if (Get-GitDirectory) {
         Write-Host '' -ForegroundColor $GitBackgroundColor -BackgroundColor $DirectoryBackgroundColor -NoNewline
     }
 
