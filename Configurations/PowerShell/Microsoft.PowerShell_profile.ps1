@@ -1,10 +1,9 @@
 # Custom Variables
-Set-Alias vc "$Env:ProgramFiles/Microsoft VS Code/Code.exe" #[Windows]
-Set-Alias vc "$Env:ProgramFiles/Microsoft VS Code/Code.exe" #[macOS]
 Set-Alias mg '~/OneDrive/Collections/Adults/magick.ps1'
-Set-Alias au '~/Projects/Personal/chocolatey-packages/update_all.ps1'
+Set-Alias au '~/Projects/Personal/chocolatey-packages/update_all.ps1' #[Windows]
 Set-Alias aphro '~/Projects/Personal/Aphrodite/Aphrodite/bin/Release/netcoreapp2.1/win10-x64/Aphrodite.exe' #[Windows]
-Set-Alias config '~/Projects/Personal/config/config.ps1'
+Set-Alias config '~/Projects/Personal/config/config.ps1' #[Windows]
+$config = '~/Projects/Personal/config/config.sh' #[macOS]
 
 # Custom Commands
 Remove-Alias 'ls' #[Windows]
@@ -83,6 +82,7 @@ Set-PSReadLineOption -Colors @{
     "Member" = [ConsoleColor]::Magenta
 }
 
+$Env:PATH = "$($Env:PATH):/Applications/Visual Studio Code.app/Contents/Resources/app/bin" #[macOS]
 if (-not $Env:PATH.Contains('/usr/local/bin')) { #[macOS]
     $Env:PATH = "/usr/local/bin:$Env:PATH" #[macOS]
 } #[macOS]

@@ -1,13 +1,32 @@
-# Elderry's Personal Configurations
-I maintain this project to keep my personal configurations easily being tracked. Including PowerShell, WSL Bash etc. I mainly use this on my Windows 10 machine. Support for macOS is being considered.
+# Configuration Manager
+This project is maintained to keep configurations easily being tracked across Windows and macOS. Including PowerShell, Hyper and Visual Studio Code etc. All scripts are tested on Windows 10 and macOS High Sierra.
+## Prerequisites
+This project requires PowerShell Core installed.
 ## Use
-In PowerShell, require administrator privilege.
+In PowerShell Core, excute commands below:
+```powershell
+./config.ps1 <target> # In project's directory.
 ```
-config.ps1 [target]
+To avoid jumping to project's directory all the time, it is recommanded to set alias like:
+- Windows
+```powershell
+Set-Alias config '<Project Root>/config.ps1'
 ```
-If no target is provided, all scripts, including `ps1` and `sh`, will be executed.
+- macOS
+```powershell
+$config = '<Project Root>/config.sh'
+```
+Then the belowing command can be called anywhere:
+- Windows
+```powershell
+config <target> # After alias is set.
+```
+- macOS
+```powershell
+& $config <target>
+sudo $config <target> # Using root privilege.
+```
 ## Customize
-This project is easy to customize, you can add PowerShell or Bash script in `Configuration` directory, and that's
-it.
+This project is easy to customize, you can create your configuraitons in `Configuration` directory, make sure there is a `Configuration.ps1` file in it.
 ## Contact
 Any problem, feel free to contact `Elderry@outlook.com`.

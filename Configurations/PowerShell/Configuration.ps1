@@ -10,4 +10,5 @@ if ($IsWindows) {
     $core = '~/.config/powershell/Microsoft.PowerShell_profile.ps1'
     New-Item -ItemType 'directory' '~/.config/powershell/' -Force | Out-Null
     Set-Content $core $content
+    scutil --set HostName 'Monoceros'
 }

@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-pwsh config.ps1 $@
+pwsh ~/Projects/Personal/config/config.ps1 $@

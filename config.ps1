@@ -44,8 +44,9 @@ function Start-Config([string] $name, [string[]] $arguments) {
     Write-Split 'Configuration of ' $name ' finished.'
 }
 
-$hyphen = ($width - $Env:UserName.Length - 17) / 2
-$banner = "$('-' * [Math]::Floor($hyphen)) $Env:UserName's Config Files $('-' * [Math]::Floor($hyphen))"
+$user = if ($IsWindows) { $Env:USERNAME } elseif ($IsMacOS) { $Env:USER }
+$hyphen = ($width - $user.Length - 17) / 2
+$banner = "$('-' * [Math]::Floor($hyphen)) $user's Config Files $('-' * [Math]::Ceiling($hyphen))"
 Write-Host "`n$banner" -ForegroundColor 'DarkBlue'
 
 $script = Get-ChildItem "$PSScriptRoot/Configurations" |
