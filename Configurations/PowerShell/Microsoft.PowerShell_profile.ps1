@@ -78,8 +78,11 @@ $global:GitPromptSettings.IndexForegroundColor = [ConsoleColor]::Green
 $global:GitPromptSettings.WorkingForegroundColor = [ConsoleColor]::Red
 
 Set-PSReadLineOption -Colors @{
-    "Number" = [ConsoleColor]::Green
-    "Member" = [ConsoleColor]::Magenta
+    'Default' = [ConsoleColor]::Black
+    'Number' = [ConsoleColor]::Green
+    'Member' = [ConsoleColor]::Magenta
+    'Type' = [ConsoleColor]::DarkYellow
+    'ContinuationPrompt' = [ConsoleColor]::DarkMagenta
 }
 
 $Env:PATH = "$($Env:PATH):/Applications/Visual Studio Code.app/Contents/Resources/app/bin" #[macOS]
