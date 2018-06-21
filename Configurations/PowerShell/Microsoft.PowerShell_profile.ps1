@@ -78,7 +78,7 @@ $global:GitPromptSettings.IndexForegroundColor = [ConsoleColor]::Green
 $global:GitPromptSettings.WorkingForegroundColor = [ConsoleColor]::Red
 
 Set-PSReadLineOption -Colors @{
-    'Default' = [ConsoleColor]::Black
+    'Default' = [ConsoleColor]::Black #[macOS]
     'Number' = [ConsoleColor]::Green
     'Member' = [ConsoleColor]::Magenta
     'Type' = [ConsoleColor]::DarkYellow
@@ -118,13 +118,15 @@ function prompt {
     $user = " $Env:USERNAME@$((Get-Culture).TextInfo.ToTitleCase($env:USERDOMAIN.ToLower())) " #[Windows]
     $user = " $Env:USER@$(hostname) " #[macOS]
     Write-Host $user -ForegroundColor 'White' -BackgroundColor $UserBackgroundColor -NoNewline
-    Write-Host '' -ForegroundColor $UserBackgroundColor -BackgroundColor $HostBackgroundColor -NoNewline
+    # https://github.com/zeit/hyper/issues/2587 #[macOS]
+    Write-Host '' -ForegroundColor $UserBackgroundColor -BackgroundColor $HostBackgroundColor -NoNewline #[macOS]
 
     # Host symbol
     $symbol = if (IsAdmin) { '#' } else { '$' } #[Windows]
     $symbol = if (IsRoot) { '#' } else { '$' } #[macOS]
     Write-Host " $symbol " -ForegroundColor 'White' -BackgroundColor $HostBackgroundColor -NoNewline
-    Write-Host '' -ForegroundColor $HostBackgroundColor -NoNewline
+    # https://github.com/zeit/hyper/issues/2587 #[macOS]
+    Write-Host '' -ForegroundColor $HostBackgroundColor -NoNewline #[macOS]
 
     return ' '
 }
