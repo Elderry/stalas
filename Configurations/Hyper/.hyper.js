@@ -50,6 +50,7 @@ module.exports = {
     // custom CSS to embed in the main window
     css: `
         .header_windowHeader { background: darkMagenta; }
+        .tabs_title { color: darkMagenta; background: lightGray; }
     `,
 
     // custom CSS to embed in the terminal window
