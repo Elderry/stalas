@@ -1,8 +1,19 @@
-$shell = if ($IsWindows) { "$PSHOME/pwsh.exe" -replace '\\', '/' } `
-    elseif ($IsMacOS) { "$PSHOME/pwsh" }
-(Get-Content "$PSScriptRoot/settings.json") `
-    -replace '("terminal\.integrated\.shell\.windows")\s*:\s*".*"', "`$1: `"$shell`"" `
+if ($IsWindows) {
+    $shell = "$PSHOME/pwsh.exe" -replace '\\', '/'
+    $settings = "$Env:AppData/Code/User/settings.json"
+    $os = 'windows'
+    $keep = '\s+//\[Windows\]'
+    $discard = '\s+//\[macOS\]'
+} elseif ($IsMacOS) {
+    $shell = "$PSHOME/pwsh"
+    $settings = '~/Library/Application Support/Code/User/settings.json'
+    $os = 'osx'
+    $keep = '\s+//\[macOS\]'
+    $discard = '\s+//\[Windows\]'
+}
+
+$content = (Get-Content "$PSScriptRoot/settings.json") `
     -replace '("powershell\.powerShellExePath")\s*:\s*".*"', "`$1: `"$shell`"" `
-    -replace '\s+//\[Windows\]' `
-    -notmatch '\[macOS\]' |
-    Set-Content "$Env:AppData/Code/User/settings.json"
+    -replace "(`"terminal\.integrated\.shell\.$os`")\s*:\s*`".*`"", "`$1: `"$shell`"" `
+    -replace $keep -notmatch $discard |
+    Set-Content $settings

@@ -83,6 +83,13 @@ Set-PSReadLineOption -Colors @{
     "Member" = [ConsoleColor]::Magenta
 }
 
+if (-not $Env:PATH.Contains('/usr/local/bin')) { #[macOS]
+    $Env:PATH = "/usr/local/bin:$Env:PATH" #[macOS]
+} #[macOS]
+# For GnuPG and Pinentry's password prompt. #[macOS]
+# Reference: https://www.gnupg.org/documentation/manuals/gnupg/Invoking-GPG_002dAGENT.html #[macOS]
+$Env:GPG_TTY = $(tty) #[macOS]
+
 function IsAdmin {
     $identity = [Security.Principal.WindowsIdentity]::GetCurrent()
     $principal = [Security.Principal.WindowsPrincipal] $identity
