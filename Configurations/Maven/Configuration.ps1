@@ -9,15 +9,19 @@ $private = [IO.Path]::GetFullPath("$PSScriptRoot/../../Resources/Private")
 $credentials = Get-Content "$private/Credentials.yml" -Raw | ConvertFrom-Yaml
 switch ($environment) {
     'TSCN' {
-        $opts = "-Djavax.net.ssl.keyStore=$private\lry@cn.tradeshift.com.pfx " `
+        $opts = "-Djavax.net.ssl.keyStore=$private/lry@cn.tradeshift.com.pfx " `
             + "-Djavax.net.ssl.keyStoreType=pkcs12 -Djavax.net.ssl.keyStorePassword=$($credentials["$_-key-pair"])"
     }
     'TS' {
-        $opts = "-Djavax.net.ssl.keyStore=$private\lry@tradeshift.com.pfx " `
+        $opts = "-Djavax.net.ssl.keyStore=$private/lry@tradeshift.com.pfx " `
             + "-Djavax.net.ssl.keyStoreType=pkcs12 -Djavax.net.ssl.keyStorePassword=$($credentials["$_-key-pair"])"
     }
 }
-[Environment]::SetEnvironmentVariable('MAVEN_OPTS', $opts, 'User')
+if ($IsWindows) {
+    [Environment]::SetEnvironmentVariable('MAVEN_OPTS', $opts, 'User')
+} elseif ($IsMacOS) {
+    [Environment]::SetEnvironmentVariable('MAVEN_OPTS', $opts)
+}
 
 (Get-Content "$PSScriptRoot/Maven - $environment.xml") `
     -replace '{user}', $credentials["LDAP-$environment-user"] `
