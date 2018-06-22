@@ -2,7 +2,7 @@
 Set-Alias mg '~/OneDrive/Collections/Adults/magick.ps1'
 Set-Alias au '~/Projects/Personal/chocolatey-packages/update_all.ps1' #[Windows]
 Set-Alias aphro '~/Projects/Personal/Aphrodite/Aphrodite/bin/Release/netcoreapp2.1/win10-x64/Aphrodite.exe' #[Windows]
-Set-Alias config '~/Projects/Personal/config/config.ps1' #[Windows]
+Set-Alias config '~/Projects/Personal/config/config.ps1'
 $config = '~/Projects/Personal/config/config.sh' #[macOS]
 
 # Custom Commands
@@ -85,6 +85,7 @@ Set-PSReadLineOption -Colors @{
     'ContinuationPrompt' = [ConsoleColor]::DarkMagenta
 }
 
+# [macOS]
 $Env:PATH = "$($Env:PATH):/Applications/Visual Studio Code.app/Contents/Resources/app/bin" #[macOS]
 if (-not $Env:PATH.Contains('/usr/local/bin')) { #[macOS]
     $Env:PATH = "/usr/local/bin:$Env:PATH" #[macOS]
@@ -92,6 +93,8 @@ if (-not $Env:PATH.Contains('/usr/local/bin')) { #[macOS]
 # For GnuPG and Pinentry's password prompt. #[macOS]
 # Reference: https://www.gnupg.org/documentation/manuals/gnupg/Invoking-GPG_002dAGENT.html #[macOS]
 $Env:GPG_TTY = $(tty) #[macOS]
+
+$Env:JAVA_HOME = /usr/libexec/java_home -v 1.8 #[macOS]
 
 function IsAdmin {
     $identity = [Security.Principal.WindowsIdentity]::GetCurrent()

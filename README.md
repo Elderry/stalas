@@ -14,6 +14,7 @@ Set-Alias config '<Project Root>/config.ps1'
 ```
 - macOS
 ```powershell
+Set-Alias config '<Project Root>/config.ps1'
 $config = '<Project Root>/config.sh'
 ```
 Then the belowing command can be called anywhere:
@@ -23,7 +24,7 @@ config <target> # After alias is set.
 ```
 - macOS
 ```powershell
-& $config <target>
+config <target>
 sudo $config <target> # Using root privilege.
 ```
 ## Customize

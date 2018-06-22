@@ -1,5 +1,11 @@
-$profile = "$PSScriptRoot/Microsoft.PowerShell_profile.ps1"
+if ($IsMacOS) {
+    if ($(id -un) -ne 'root' ) {
+        Write-Error 'This configuration requires root privilege.'
+        exit
+    }
+}
 
+$profile = "$PSScriptRoot/Microsoft.PowerShell_profile.ps1"
 if ($IsWindows) {
     $content = (Get-Content $profile) -replace '\s+#\[Windows\]' -notmatch '\s+#\[macOS\]'
     $core = '~/Documents/PowerShell/Microsoft.PowerShell_profile.ps1'
