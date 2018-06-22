@@ -10,13 +10,17 @@ param (
         'Java',
         'Docker',
         'Git')]
-    [Parameter(Position = 0, mandatory = $true)]
     [string] $target
 )
 
 if ($PSVersionTable.PSEdition -ne 'Core') {
     Write-Error 'Failed to configure, please install PowerShell Core first.'
     Write-Host 'Link: https://github.com/PowerShell/PowerShell/releases'
+    exit
+}
+
+if (-not $target) {
+    Write-Host 'Usage: config <target> [arguments]'
     exit
 }
 
