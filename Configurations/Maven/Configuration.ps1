@@ -5,7 +5,7 @@ param(
 
 Import-Module powershell-yaml
 
-$private = [IO.Path]::GetFullPath("$PSScriptRoot/../../Resources/Private")
+$private = [IO.Path]::GetFullPath("$PSScriptRoot/../../Resources/Private") -replace '\\', '/'
 $credentials = Get-Content "$private/Credentials.yml" -Raw | ConvertFrom-Yaml
 switch ($environment) {
     'TSCN' {
