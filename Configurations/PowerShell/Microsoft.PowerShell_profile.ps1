@@ -6,7 +6,7 @@ Set-Alias config '~/Projects/Personal/config/config.ps1'
 $config = '~/Projects/Personal/config/config.sh' #[macOS]
 
 # Custom Commands
-Remove-Alias 'ls' #[Windows]
+Remove-Item Alias:ls #[Windows]
 function ls { Get-ChildItem | Format-Wide -AutoSize -Property 'Name' }
 function git_drop {
     git reset --hard
@@ -40,11 +40,13 @@ $global:GitPromptSettings.AfterText  = '] '
 Import-Module 'Jump.Location' #[Windows]
 
 # Colors
-$host.PrivateData.ErrorBackgroundColor    = 'White'
-$host.PrivateData.WarningBackgroundColor  = 'White'
-$host.PrivateData.DebugBackgroundColor    = 'White'
-$host.PrivateData.VerboseBackgroundColor  = 'White'
-$host.PrivateData.ProgressBackgroundColor = 'White'
+# Restore this when following issue is fixed.
+# https://github.com/zeit/hyper/issues/1706
+# $host.PrivateData.ErrorBackgroundColor    = 'White'
+# $host.PrivateData.WarningBackgroundColor  = 'White'
+# $host.PrivateData.DebugBackgroundColor    = 'White'
+# $host.PrivateData.VerboseBackgroundColor  = 'White'
+# $host.PrivateData.ProgressBackgroundColor = 'White'
 
 $DirectoryBackgroundColor = [ConsoleColor]::Blue
 $UserBackgroundColor      = [ConsoleColor]::Green
