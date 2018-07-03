@@ -7,7 +7,7 @@ $config = '~/Projects/Personal/config/config.sh' #[macOS]
 
 # Custom Commands
 Remove-Item Alias:ls #[Windows]
-function ls { Get-ChildItem | Format-Wide -AutoSize -Property 'Name' }
+function ls { Get-ChildItem | Format-Wide -AutoSize -Property 'Name' } #[Windows]
 function git_drop {
     git reset --hard
     git clean -fd

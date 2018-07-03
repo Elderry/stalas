@@ -1,8 +1,10 @@
 Import-Module powershell-yaml
 
-$desktopPath = "$Home\OneDrive\Collections\AppBackup\Desktop"
+$desktop = "$Home/OneDrive/Collections/AppBackup/Desktop"
 $pwshShortcut = 'PS.lnk'
 $pwshAdminShortcut = 'PSA.lnk'
+$pwshNativeShortcut = 'PN.lnk'
+$pwshNativeAdminShortcut = 'PNA.lnk'
 $cmdShortcut = 'CD.lnk'
 $cmdAdminShortcut = 'CDA.lnk'
 
@@ -85,13 +87,16 @@ function Update-Shortcut([string] $Path) {
     $shortcut.Save()
 }
 
-$pwshPath = Join-Path $PSHOME 'pwsh.exe'
-$cmdPath  = Join-Path $Env:SystemRoot 'System32/cmd.exe'
+$pwshPath = "$PSHOME/pwsh.exe"
+$pwshNativePath = "$Env:SystemRoot/System32/WindowsPowerShell/v1.0/powershell.exe"
+$cmdPath = "$Env:SystemRoot/System32/cmd.exe"
 
-Set-Shortcut (Join-Path $desktopPath $pwshShortcut) $pwshPath
-Set-Shortcut (Join-Path $desktopPath $pwshAdminShortcut) $pwshPath -RequireAdmin
-Set-Shortcut (Join-Path $desktopPath $cmdShortcut) $cmdPath
-Set-Shortcut (Join-Path $desktopPath $cmdAdminShortcut) $cmdPath -RequireAdmin
+Set-Shortcut "$desktop/$pwshShortcut" $pwshPath
+Set-Shortcut "$desktop/$pwshAdminShortcut" $pwshPath -RequireAdmin
+Set-Shortcut "$desktop/$pwshNativeShortcut" $pwshNativePath
+Set-Shortcut "$desktop/$pwshNativeAdminShortcut" $pwshNativePath -RequireAdmin
+Set-Shortcut "$desktop/$cmdShortcut" $cmdPath
+Set-Shortcut "$desktop/$cmdAdminShortcut" $cmdPath -RequireAdmin
 
 Get-ChildItem $desktopPath |
     Where-Object { $_.Name -Match '`\w+\.lnk' } |
