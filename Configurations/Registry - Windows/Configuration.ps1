@@ -9,6 +9,7 @@ function Remove-Registry([String] $registry) {
 }
 
 # New File
+Remove-Registry 'HKCR:\.ahk\ShellNew'
 Remove-Registry 'HKCR:\.bmp\ShellNew'
 Remove-Registry 'HKCR:\.contact\ShellNew'
 Remove-Registry 'HKCR:\.rtf\ShellNew'

@@ -11,7 +11,6 @@ $cmdAdminShortcut = 'CDA.lnk'
 $consoleRegPath = 'HKCU:\Console'
 $regPaths = (
     (Join-Path $consoleRegPath '%SystemRoot%_System32_cmd.exe'),
-    (Join-Path $consoleRegPath ((Join-Path $Env:PWSH_HOME 'pwsh.exe') -Replace '\\', '_')),
     (Join-Path $consoleRegPath '%SystemRoot%_System32_WindowsPowerShell_v1.0_powershell.exe'),
     (Join-Path $consoleRegPath '%SystemRoot%_SysWOW64_WindowsPowerShell_v1.0_powershell.exe'),
     (Join-Path $consoleRegPath '%SystemRoot%_sysnative_WindowsPowerShell_v1.0_powershell.exe')
@@ -52,7 +51,7 @@ function Set-Registry([string] $path, [string] $name, $value, [string] $type) {
 
 function Remove-Registry([string] $path, [string] $name) {
     $exists = Get-ItemProperty $path -Name $name -ErrorAction 'SilentlyContinue'
-    if ($exists -ne $null) { Remove-ItemProperty -Path $path -Name $name | Out-Null }
+    if ($exists) { Remove-ItemProperty -Path $path -Name $name | Out-Null }
 }
 
 $config.GetEnumerator() | ForEach-Object {
@@ -81,9 +80,9 @@ function Set-Shortcut([string] $Path, [string] $Target, [switch] $RequireAdmin) 
 }
 
 function Update-Shortcut([string] $Path) {
-    $shortcut = $(New-Object -ComObject WScript.Shell).CreateShortcut($Path)
+    $shortcut = $(New-Object -ComObject 'WScript.Shell').CreateShortcut($Path)
     if (Test-Path $shortcut.TargetPath) { return }
-    $shortcut.TargetPath = Join-Path $PSHOME 'pwsh.exe'
+    $shortcut.TargetPath = "${PSHOME}/pwsh.exe"
     $shortcut.Save()
 }
 
@@ -98,6 +97,6 @@ Set-Shortcut "$desktop/$pwshNativeAdminShortcut" $pwshNativePath -RequireAdmin
 Set-Shortcut "$desktop/$cmdShortcut" $cmdPath
 Set-Shortcut "$desktop/$cmdAdminShortcut" $cmdPath -RequireAdmin
 
-Get-ChildItem $desktopPath |
+Get-ChildItem $desktop |
     Where-Object { $_.Name -Match '`\w+\.lnk' } |
     ForEach-Object { Update-Shortcut $_.FullName }
