@@ -29,3 +29,7 @@ Remove-Registry 'HKLM:\SOFTWARE\Classes\Directory\shell\git_gui'
 Remove-Registry 'HKLM:\SOFTWARE\Classes\Directory\shell\git_shell'
 Remove-Registry 'HKCU:\Console\Git Bash'
 Remove-Registry 'HKCU:\Console\Git CMD'
+
+# Visual Studio
+Remove-Registry 'HKCR:\Directory\Background\shell\AnyCode'
+Remove-Registry 'HKCR:\Directory\shell\AnyCode'
