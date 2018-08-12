@@ -19,6 +19,8 @@ switch ($environment) {
 }
 if ($IsWindows) {
     [Environment]::SetEnvironmentVariable('MAVEN_OPTS', $opts, 'User')
+    [Environment]::SetEnvironmentVariable('SBT_OPTS', $opts, 'User')
+    [Environment]::SetEnvironmentVariable('GRAILS_OPTS', $opts, 'User')
 } elseif ($IsMacOS) {
     [Environment]::SetEnvironmentVariable('MAVEN_OPTS', $opts)
 }
