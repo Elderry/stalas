@@ -23,6 +23,13 @@ if ($IsWindows) {
     [Environment]::SetEnvironmentVariable('GRAILS_OPTS', $opts, 'User')
 } elseif ($IsMacOS) {
     [Environment]::SetEnvironmentVariable('MAVEN_OPTS', $opts)
+    [Environment]::SetEnvironmentVariable('SBT_OPTS', $opts, 'User')
+    [Environment]::SetEnvironmentVariable('GRAILS_OPTS', $opts, 'User')
+
+    config 'Bash'
+    (Get-Content '~/.bash_profile') `
+        -replace "(-Djavax\.net\.ssl\.keyStorePassword=).+", "`$1$($credentials["$_-key-pair"])" |
+        Set-Content '~/.bash_profile'
 }
 
 (Get-Content "$PSScriptRoot/Maven - $environment.xml") `
