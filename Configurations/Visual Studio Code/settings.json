@@ -19,6 +19,7 @@
     "terminal.integrated.shell.osx": "", //[macOS]
 
     "window.openFilesInNewWindow": "on",
+    "window.titleBarStyle": "custom",
 
     "workbench.colorTheme": "Default Light+",
 

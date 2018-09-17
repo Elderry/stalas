@@ -37,7 +37,7 @@ function git_prune {
 if (!$global:GitPromptSettings) { Import-Module 'posh-git' }
 $global:GitPromptSettings.BeforeText = ' ['
 $global:GitPromptSettings.AfterText  = '] '
-Import-Module 'Jump.Location' #[Windows]
+Import-Module -Name 'zLocation' #[Windows]
 
 # Colors
 # Restore this when following issue is fixed.
