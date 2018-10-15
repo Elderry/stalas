@@ -1,5 +1,5 @@
 # Custom Variables
-Set-Alias mg '~/OneDrive/Collections/Adults/magick.ps1'
+Set-Alias mg '~/Projects/Personal/Aphrodite/Aphrodite/magick.ps1'
 Set-Alias au '~/Projects/Personal/chocolatey-packages/update_all.ps1' #[Windows]
 Set-Alias aphro '~/Projects/Personal/Aphrodite/Aphrodite/bin/Release/netcoreapp2.1/win10-x64/Aphrodite.exe' #[Windows]
 Set-Alias config '~/Projects/Personal/config/config.ps1'
@@ -115,7 +115,7 @@ function prompt {
     }
 
     # Path
-    $path = " $($PWD.Path -replace ($HOME -replace '\\', '\\'), '~') "
+    $path = " $($PWD.Path -replace ($HOME -replace '\\', '\\'), '~' -replace '\\', '/') "
     Write-Host $path -ForegroundColor 'White' -BackgroundColor $DirectoryBackgroundColor -NoNewline
     Write-Host '' -ForegroundColor $DirectoryBackgroundColor
 

@@ -81,8 +81,11 @@ function Set-Shortcut([string] $Path, [string] $Target, [switch] $RequireAdmin) 
 
 function Update-Shortcut([string] $Path) {
     $shortcut = $(New-Object -ComObject 'WScript.Shell').CreateShortcut($Path)
-    if (Test-Path $shortcut.TargetPath) { return }
-    $shortcut.TargetPath = "${PSHOME}/pwsh.exe"
+    # Restore this when the occassionally fail issue is fixed.
+    # $target = "${PSHOME}/pwsh.exe"
+    $target = "C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe"
+    if ($shortcut.TargetPath -eq $target) { return }
+    $shortcut.TargetPath = $target
     $shortcut.Save()
 }
 
