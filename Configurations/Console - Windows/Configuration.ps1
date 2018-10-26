@@ -67,11 +67,16 @@ $config.GetEnumerator() | ForEach-Object {
 }
 
 function Set-Shortcut([string] $Path, [string] $Target, [switch] $RequireAdmin) {
-    if (Test-Path $Path) { Remove-Item $Path }
-    $shortcut = $(New-Object -ComObject WScript.Shell).CreateShortcut($Path)
+
+    $shortcut = $(New-Object -ComObject 'WScript.Shell').CreateShortcut($Path)
     $shortcut.TargetPath = $Target
-    $shortcut.WorkingDirectory = "$Home"
+    if ($shortcut.TargetPath -eq $Target) { return }
+
+    $shortcut.WorkingDirectory = $Home
+    # Icon location has to be specifically determined because otherwise PowerShell Core will fail to display it.
+    $shortcut.IconLocation = "$Target, 0"
     $shortcut.Save()
+
     if ($RequireAdmin) {
         $bytes = [System.IO.File]::ReadAllBytes($Path)
         $bytes[0x15] = $bytes[0x15] -bor 0x20
