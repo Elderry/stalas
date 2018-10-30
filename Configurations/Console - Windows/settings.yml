@@ -1,37 +1,38 @@
 # Windows Console Settings
 # Author   : Elderry
 # References: https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-2000-server/cc978570(v=technet.10),
-#             https://docs.microsoft.com/en-us/previous-versions/orphan-topics/ws.11/mt427362(v=ws.11),
+#             https://docs.microsoft.com/en-us/windows-server/get-started/whats-new-in-console
 #             https://msdn.microsoft.com/en-us/library/dd891381.aspx
+#             https://blogs.msdn.microsoft.com/commandline/2017/06/20/understanding-windows-console-host-settings/
 
 # Defines the colors in the color well on the Colors tab of the console Properties or Defaults dialog box.
 # Each of the 16 ColorTable x entries corresponds to one of the registry entries ColorTable00-ColorTable15.
-# References: https://blogs.msdn.microsoft.com/commandline/2017/08/02/updating-the-windows-console-colors/,
-#             https://github.com/Microsoft/vscode/blob/master/src/vs/workbench/parts/terminal/common/terminalColorRegistry.ts
-#             Committed on Apr 17, 2018
+# References: https://blogs.msdn.microsoft.com/commandline/2017/08/02/updating-the-windows-console-colors/ (default),
+#             https://github.com/Microsoft/vscode/blob/master/src/vs/workbench/parts/terminal/common/terminalColorRegistry.ts (vscode)
+#             Committed on Sep 14, 2018
 #            'BBGGRR' (original value commented)
-Black      : '0C0C0C' # 000000 Black
-DarkBlue   : 'DA3700' # 800000 Blue
-DarkGreen  : '0EA113' # 008000 Green
-DarkCyan   : 'DD963A' # 808000 Cyan
-DarkRed    : '1F0FC5' # 000080 Red
-DarkMagenta: '981788' # 800080 Magenta
-DarkYellow : '009CC1' # 008080 Yellow
-Gray       : 'CCCCCC' # C0C0C0 White
-DarkGray   : '767676' # 808080 BrightDark
-Blue       : 'FF783B' # FF0000 BrightBlue
-Green      : '0CC616' # 00FF00 BrightGreen
-Cyan       : 'D6D661' # FFFF00 BrightCyan
-Red        : '5648E7' # 0000FF BrightRed
-Magenta    : '9E00B4' # FF00FF BrightMagenta
-Yellow     : '00BAB5' # 00FFFF BrightYellow
-White      : 'F2F2F2' # FFFFFF BrightWhite
+Black      : '0C0C0C' # Black
+DarkBlue   : 'DA3700' # Blue
+DarkGreen  : '0EA113' # Green
+DarkCyan   : 'DD963A' # Cyan
+DarkRed    : '1F0FC5' # Red
+DarkMagenta: '981788' # Magenta
+DarkYellow : '009CC1' # Yellow
+Gray       : 'CCCCCC' # 767676 DarkWhite
+DarkGray   : '767676' # CCCCCC BrightBlack
+Blue       : 'FF783B' # BrightBlue
+Green      : '0CC616' # BrightGreen
+Cyan       : 'D6D661' # BrightCyan
+Red        : '5648E7' # BrightRed
+Magenta    : '9E00B4' # BrightMagenta
+Yellow     : '00BAB5' # A5F1F9 BrightYellow
+White      : 'F2F2F2' # White
 
 # 'false' enables new key shortcuts; 'true' disables them.
 CtrlKeyShortcutsDisabled: false
 
 # The code page console uses, avaliable values are listed in following link:
-# https://msdn.microsoft.com/en-us/library/windows/desktop/dd317756(v=vs.85).aspx
+# https://docs.microsoft.com/en-us/windows/desktop/Intl/code-page-identifiers
 CodePage: 65001
 
 # Specifies the percentage of a character cell that the cursor occupies, avaliable values are:
@@ -50,6 +51,12 @@ FaceName: 等距更纱黑体 SC
 
 # 'True' enables all new console features; 'false' disables all new features.
 ForceV2: true
+
+# Specifies the font family of the font used in the command window.
+# The values for the font family are shown in:
+# https://msdn.microsoft.com/en-us/library/dd891381.aspx
+# 54 = 0x36 = 0x30(fixed width) + 0x04(true type) + 0x02(vector font)
+FontFamily: 54
 
 # Specifies the size of the font used in the command window.
 FontSize: 24

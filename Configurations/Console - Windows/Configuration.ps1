@@ -8,14 +8,6 @@ $pwshNativeAdminShortcut = 'PNA.lnk'
 $cmdShortcut = 'CD.lnk'
 $cmdAdminShortcut = 'CDA.lnk'
 
-$consoleRegPath = 'HKCU:\Console'
-$regPaths = (
-    (Join-Path $consoleRegPath '%SystemRoot%_System32_cmd.exe'),
-    (Join-Path $consoleRegPath '%SystemRoot%_System32_WindowsPowerShell_v1.0_powershell.exe'),
-    (Join-Path $consoleRegPath '%SystemRoot%_SysWOW64_WindowsPowerShell_v1.0_powershell.exe'),
-    (Join-Path $consoleRegPath '%SystemRoot%_sysnative_WindowsPowerShell_v1.0_powershell.exe')
-)
-
 $colorTable = (
     "Black", "DarkBlue", "DarkGreen", "DarkCyan", "DarkRed", "DarkMagenta", "DarkYellow", "Gray", "DarkGray", "Blue",
     "Green", "Cyan", "Red", "Magenta", "Yellow", "White"
@@ -54,24 +46,32 @@ function Remove-Registry([string] $path, [string] $name) {
     if ($exists) { Remove-ItemProperty -Path $path -Name $name | Out-Null }
 }
 
+function Remove-Registry([String] $path) {
+    if (Test-Path -LiteralPath $path) { Remove-Item -LiteralPath $path -Recurse }
+}
+
+$consolePath = 'HKCU:/Console'
+Remove-Registry "$consolePath/%SystemRoot%_System32_cmd.exe"
+Remove-Registry "$consolePath/%SystemRoot%_System32_WindowsPowerShell_v1.0_powershell.exe"
+Remove-Registry "$consolePath/%SystemRoot%_SysWOW64_WindowsPowerShell_v1.0_powershell.exe"
+Remove-Registry "$consolePath/%SystemRoot%_sysnative_WindowsPowerShell_v1.0_powershell.exe"
+Remove-Registry "$consolePath/C:_Program Files_PowerShell_6_pwsh.exe"
+
 $config.GetEnumerator() | ForEach-Object {
+
     $name = $_.Name
     $value = $_.Value
     switch ($value) {
         { $_ -is [int] -or $_ -is [bool] } { $type = 'Dword' }
         { $_ -is [string] } { $type = 'String' }
     }
-    Set-Registry $consoleRegPath $name $value $type
-    # Clean up unnecessary entries.
-    $regPaths | ForEach-Object { Remove-Registry $_ $name }
+    Set-Registry $consolePath $name $value $type
 }
 
 function Set-Shortcut([string] $Path, [string] $Target, [switch] $RequireAdmin) {
 
     $shortcut = $(New-Object -ComObject 'WScript.Shell').CreateShortcut($Path)
     $shortcut.TargetPath = $Target
-    if ($shortcut.TargetPath -eq $Target) { return }
-
     $shortcut.WorkingDirectory = $Home
     # Icon location has to be specifically determined because otherwise PowerShell Core will fail to display it.
     $shortcut.IconLocation = "$Target, 0"
