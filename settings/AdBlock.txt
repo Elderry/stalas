@@ -1,11 +1,9 @@
 [Adblock Plus 2.0]
 ! Title: Elderry's List
 ! Expires: 1 days
-! Homepage: https://github.com/Elderry/config/blob/master/Config%20-%20AdBlock.txt
+! Homepage: https://github.com/Elderry/config/blob/master/settings/AdBlock.txt
 !
 
-@@||appveyor.com/$document
-@@||askubuntu.com/$document
 @@||atlassian.*/$document
 @@||chsi.com.cn/$document
 @@||chocolatey.org/$document
@@ -23,7 +21,6 @@
 @@||ustc.edu.cn/$document
 @@||visualstudio.com/$document
 @@||wikipedia.org/$document
-@@||zhihu.com/$document
 
 alitrip.com##A#J_ems_trip_bar_fixed
 alitrip.com##DIV#chn-header-act-main
@@ -107,10 +104,6 @@ taobao.com##DIV.banner
 taobao.com##DIV.tshop-psm-shop-ww-hover
 taobao.com##DIV.J_guess-you-like
 taobao.com##DIV.page-footer-hidden
-buy.tmall.com##DIV#J_Banners
-buy.tmall.com##DIV#J_GlobalRobotEntry
-buy.tmall.com##DIV#J_P4pAdvert
-buy.tmall.com##DIV#J_SalePromotion
 buyertrade.taobao.com##DIV#alimm-pillar
 cart.taobao.com##DIV#interested
 i.taobao.com##DIV#J_TB_rightp4p
@@ -129,6 +122,10 @@ tmall.com##DIV.mui-mbar-outer
 tmall.com##DIV.tm-layout
 tmall.com##DIV.tshop-psm-shop-ww-hover
 tmall.com##DIV.tstart-tdog-enable
+buy.tmall.com##DIV#J_Banners
+buy.tmall.com##DIV#J_GlobalRobotEntry
+buy.tmall.com##DIV#J_P4pAdvert
+buy.tmall.com##DIV#J_SalePromotion
 
 ithome.com##DIV#hd_float
 ithome.com##DIV#side_func
@@ -149,8 +146,4 @@ tieba.baidu.com##DIV.right_section
 tieba.baidu.com##DIV.video_frs_head
 tieba.baidu.com##UL.tbui_aside_float_bar
 
-10010.com##DIV#234952
-uac.10010.com##SPAN.sl-delect
-
-movie.douban.com##DIV#dale_movie_home_top_right
-movie.douban.com##DIV#movie_home_left_bottom
+okta.com##SPAN.input-tooltip
