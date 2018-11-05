@@ -110,14 +110,16 @@ i.taobao.com##DIV#J_TB_rightp4p
 i.taobao.com##DIV.m-guess-you-like
 i.taobao.com##DIV.m-someone-like-you
 i.taobao.com##DIV.mt-fix-in-bottom
+item.taobao.com##DIV#detail-recommend-linjiahaohuo
+item.taobao.com##DIV#J_Pine
+item.taobao.com##DIV.col-extra
+item.taobao.com##DIV.col-sub
 login.taobao.com##SPAN.nickx
 s.taobao.com##DIV#mainsrp-p4pBottom
 s.taobao.com##DIV#mainsrp-p4pRight
 s.taobao.com##DIV.grid-right
 
 tmall.com##DIV.ald
-tmall.com##DIV.col-extra
-tmall.com##DIV.col-sub
 tmall.com##DIV.mui-mbar-outer
 tmall.com##DIV.tm-layout
 tmall.com##DIV.tshop-psm-shop-ww-hover
@@ -126,6 +128,9 @@ buy.tmall.com##DIV#J_Banners
 buy.tmall.com##DIV#J_GlobalRobotEntry
 buy.tmall.com##DIV#J_P4pAdvert
 buy.tmall.com##DIV#J_SalePromotion
+detail.tmall.com##DIV#J_TabRecommends
+detail.tmall.com##DIV.col-extra
+detail.tmall.com##DIV.col-sub
 
 ithome.com##DIV#hd_float
 ithome.com##DIV#side_func
