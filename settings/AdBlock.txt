@@ -102,6 +102,7 @@ taobao.com##DIV#p4p_ad
 taobao.com##DIV#tstart
 taobao.com##DIV.banner
 taobao.com##DIV.tshop-psm-shop-ww-hover
+taobao.com##DIV.tb-doctor
 taobao.com##DIV.J_guess-you-like
 taobao.com##DIV.page-footer-hidden
 buyertrade.taobao.com##DIV#alimm-pillar
