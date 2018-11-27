@@ -51,6 +51,9 @@ module.exports = {
     css: `
         .header_windowHeader { background: darkMagenta; }
         .tabs_title { color: darkMagenta; }
+        .tab_text { color: darkGray; }
+        .tab_textActive { color: darkMagenta; }
+        .tab_icon { color: red; }
     `,
 
     // custom CSS to embed in the terminal window

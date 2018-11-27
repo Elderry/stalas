@@ -23,9 +23,8 @@ if ($IsWindows) {
     [Environment]::SetEnvironmentVariable('SBT_OPTS', $opts)
     [Environment]::SetEnvironmentVariable('GRAILS_OPTS', $opts)
 
-    config 'Bash'
     (Get-Content '~/.bash_profile') `
-        -replace '\w+@.+\.pfx', $mail `
+        -replace '\w+@.+\.pfx', "$mail.pfx" `
         -replace '(-Djavax\.net\.ssl\.keyStorePassword=).+"', "`${1}$($credentials["$environment-key-pair"])`"" |
         Set-Content '~/.bash_profile'
 }
