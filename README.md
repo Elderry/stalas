@@ -1,5 +1,5 @@
-# Configuration Manager
-This project is maintained to keep configurations easily being tracked across Windows and macOS. Including PowerShell, Hyper and Visual Studio Code etc. All scripts are tested on Windows 10 and macOS High Sierra.
+# Stalas
+Stalas is maintained to keep configurations easily being tracked across Windows and macOS. Including PowerShell, Hyper and Visual Studio Code etc. All scripts are tested on Windows 10 and macOS High Sierra.
 ## Prerequisites
 This project requires PowerShell Core installed.
 ## Use
@@ -28,6 +28,6 @@ config <target>
 sudo $config <target> # Using root privilege.
 ```
 ## Customize
-This project is easy to customize, you can create your configuraitons in `Configuration` directory, make sure there is a `Configuration.ps1` file in it.
+This project is easy to customize, you can create your configuraitons in `configs` directory, make sure there is a `Configuration.ps1` file in it.
 ## Contact
 Any problem, feel free to contact `Elderry@outlook.com`.

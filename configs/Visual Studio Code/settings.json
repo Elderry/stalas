@@ -4,6 +4,7 @@
     "editor.fontSize": 18,
     "editor.rulers": [120],
     "editor.renderWhitespace": "boundary",
+    "editor.wordWrap": "on",
 
     "explorer.openEditors.visible": 0,
 
@@ -19,7 +20,6 @@
     "terminal.integrated.shell.osx": "", //[macOS]
 
     "window.openFilesInNewWindow": "on",
-    "window.titleBarStyle": "custom",
 
     "workbench.colorTheme": "Default Light+",
 

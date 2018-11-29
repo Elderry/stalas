@@ -1,7 +1,7 @@
 [Adblock Plus 2.0]
 ! Title: Elderry's List
 ! Expires: 1 days
-! Homepage: https://github.com/Elderry/config/blob/master/settings/AdBlock.txt
+! Homepage: https://github.com/Elderry/stalas/blob/master/configs/AdBlock%20Plus/settings.txt
 !
 
 @@||atlassian.*/$document

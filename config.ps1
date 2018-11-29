@@ -38,7 +38,7 @@ function Write-Split([string] $prefix, [string] $key, [string] $suffix) {
 function Start-Config([string] $name, [string[]] $arguments) {
 
     Write-Host
-    $script = "$PSScriptRoot/Configurations/$name/Configuration.ps1"
+    $script = "$PSScriptRoot/configs/$name/config.ps1"
     Write-Split 'Going to config ' $name '.'
     if ($arguments.Length -eq 0) {
         & $script
@@ -53,7 +53,7 @@ $hyphen = ($width - $user.Length - 17) / 2
 $banner = "$('-' * [Math]::Floor($hyphen)) $user's Config Files $('-' * [Math]::Ceiling($hyphen))"
 Write-Host "`n$banner" -ForegroundColor 'DarkBlue'
 
-$script = Get-ChildItem "$PSScriptRoot/Configurations" |
+$script = Get-ChildItem "$PSScriptRoot/configs" |
     Select-Object -ExpandProperty 'Name' |
     ForEach-Object { $_ -replace '\.ps1' } |
     Where-Object { $_ -match "$target( - Windows| - macOS)?" } |
