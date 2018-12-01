@@ -32,6 +32,13 @@ function git_prune {
         }
     }
 }
+function Flatten-Files {
+    Get-ChildItem -Recurse | ForEach-Object {
+        if (($_.GetType().Name -ne 'FileInfo') -or ($_.Parent.FullName -eq $PWD.Path)) { return }
+        $_.MoveTo("$PWD/$($_.Name)")
+    }
+    Get-ChildItem | Where-Object { $_.GetType().Name -eq 'DirectoryInfo' } | ForEach-Object { $_.Delete() }
+}
 
 # Modules
 if (!$global:GitPromptSettings) { Import-Module 'posh-git' }
@@ -123,15 +130,13 @@ function prompt {
     $user = " $Env:USERNAME@$((Get-Culture).TextInfo.ToTitleCase($env:USERDOMAIN.ToLower())) " #[Windows]
     $user = " $Env:USER@$(hostname) " #[macOS]
     Write-Host $user -ForegroundColor 'White' -BackgroundColor $UserBackgroundColor -NoNewline
-    # https://github.com/zeit/hyper/issues/2587 #[macOS]
-    Write-Host '' -ForegroundColor $UserBackgroundColor -BackgroundColor $HostBackgroundColor -NoNewline #[macOS]
+    Write-Host '' -ForegroundColor $UserBackgroundColor -BackgroundColor $HostBackgroundColor -NoNewline
 
     # Host symbol
     $symbol = if (IsAdmin) { '#' } else { '$' } #[Windows]
     $symbol = if (IsRoot) { '#' } else { '$' } #[macOS]
     Write-Host " $symbol " -ForegroundColor 'White' -BackgroundColor $HostBackgroundColor -NoNewline
-    # https://github.com/zeit/hyper/issues/2587 #[macOS]
-    Write-Host '' -ForegroundColor $HostBackgroundColor -NoNewline #[macOS]
+    Write-Host '' -ForegroundColor $HostBackgroundColor -NoNewline
 
     return ' '
 }
