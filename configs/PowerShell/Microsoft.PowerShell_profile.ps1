@@ -1,7 +1,7 @@
 # Custom Variables
 Set-Alias mg '~/Projects/Personal/Aphrodite/Aphrodite/magick.ps1'
 Set-Alias au '~/Projects/Personal/chocolatey-packages/update_all.ps1' #[Windows]
-Set-Alias aphro '~/Projects/Personal/Aphrodite/Aphrodite/bin/Release/netcoreapp2.1/win10-x64/Aphrodite.exe' #[Windows]
+Set-Alias aphro '~/Projects/Personal/Aphrodite/Aphrodite/bin/Release/netcoreapp2.2/win10-x64/Aphrodite.exe' #[Windows]
 Set-Alias config '~/Projects/Personal/stalas/config.ps1'
 $config = '~/Projects/Personal/stalas/config.sh' #[macOS]
 

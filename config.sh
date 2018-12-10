@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-pwsh ~/Projects/Personal/config/config.ps1 "$@"
+pwsh ~/Projects/Personal/stalas/config.ps1 "$@"
