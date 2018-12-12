@@ -9,7 +9,8 @@ export MAVEN_OPTS="-Djavax.net.ssl.keyStore=/Users/ruiyang/Projects/Personal/con
 # Terminal
 export CLICOLOR=1
 
-# Color reference: https://help.ubuntu.com/community/CustomizingBashPrompt
+# Colors
+# Reference: https://help.ubuntu.com/community/CustomizingBashPrompt
 RESET='\[\e[0m\]'
 GREEN_MAGNETA='\[\e[92;105m\]'
 BLUE_WHITE='\[\e[94;107m\]'
@@ -25,3 +26,12 @@ export PS1="${path}\n${user}${host}${RESET} "
 # For GnuPG and Pinentry's password prompt.
 # Reference: https://www.gnupg.org/documentation/manuals/gnupg/Invoking-GPG_002dAGENT.html
 export GPG_TTY=$(tty)
+
+# AutoJump
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+
+# Git
+[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+
+# Visual Studio Code
+export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
