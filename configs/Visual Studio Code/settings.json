@@ -18,6 +18,7 @@
     "terminal.integrated.cursorStyle": "line",
     "terminal.integrated.shell.windows": "", //[Windows]
     "terminal.integrated.shell.osx": "", //[macOS]
+    "terminal.integrated.shellArgs.osx": [], //[macOS]
 
     "window.openFilesInNewWindow": "on",
 
