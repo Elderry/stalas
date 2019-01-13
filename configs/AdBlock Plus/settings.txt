@@ -5,7 +5,6 @@
 !
 
 @@||atlassian.*/$document
-@@||chsi.com.cn/$document
 @@||chocolatey.org/$document
 @@||github.com/$document
 @@||google.*/$document
@@ -13,12 +12,10 @@
 @@||lucidchart.com/$document
 @@||microsoft.com/$document
 @@||office.com/$document
-@@||safaribooksonline.com/$document
 @@||sipspf.org.cn/$document
 @@||stackexchange.com/$document
 @@||stackoverflow.com/$document
 @@||superuser.com/$document
-@@||ustc.edu.cn/$document
 @@||visualstudio.com/$document
 @@||wikipedia.org/$document
 
@@ -120,7 +117,9 @@ s.taobao.com##DIV#mainsrp-p4pBottom
 s.taobao.com##DIV#mainsrp-p4pRight
 s.taobao.com##DIV.grid-right
 
+tmall.com##DIV#p4p_ad
 tmall.com##DIV.ald
+tmall.com##DIV.banner
 tmall.com##DIV.mui-mbar-outer
 tmall.com##DIV.tm-layout
 tmall.com##DIV.tshop-psm-shop-ww-hover
@@ -132,6 +131,9 @@ buy.tmall.com##DIV#J_SalePromotion
 detail.tmall.com##DIV#J_TabRecommends
 detail.tmall.com##DIV.col-extra
 detail.tmall.com##DIV.col-sub
+detail.tmall.com##DIV.J_TModule
+trade.tmall.com##DIV.ald-row1
+trade.tmall.com##DIV.banner-ext
 
 ithome.com##DIV#hd_float
 ithome.com##DIV#side_func
@@ -146,10 +148,5 @@ gamersky.com##DIV.bdshare-slide-button-box
 gamersky.com##DIV.Mid2_R
 
 pan.baidu.com##DL.module-hot-rec
-tieba.baidu.com##DIV.aside
-tieba.baidu.com##DIV.focum_recommend
-tieba.baidu.com##DIV.right_section
-tieba.baidu.com##DIV.video_frs_head
-tieba.baidu.com##UL.tbui_aside_float_bar
 
 okta.com##SPAN.input-tooltip
