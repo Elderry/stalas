@@ -1,5 +1,4 @@
 # Custom Variables
-Set-Alias mg '~/Projects/Personal/Aphrodite/Aphrodite/magick.ps1'
 Set-Alias au '~/Projects/Personal/chocolatey-packages/update_all.ps1' #[Windows]
 Set-Alias aphro '~/Projects/Personal/Aphrodite/Aphrodite/bin/Release/netcoreapp2.2/win10-x64/Aphrodite.exe' #[Windows]
 Set-Alias config '~/Projects/Personal/stalas/config.ps1'
@@ -7,7 +6,7 @@ $config = '~/Projects/Personal/stalas/config.sh' #[macOS]
 
 # Custom Commands
 Remove-Item Alias:ls #[Windows]
-function ls { Get-ChildItem | Format-Wide -AutoSize -Property 'Name' } #[Windows]
+function ls { & "$($env:ProgramFiles)/Git/usr/bin/ls.exe" --color=auto } #[Windows]
 function git_drop {
     git reset --hard
     git clean -fd
@@ -38,6 +37,13 @@ function Flatten-Files {
         $_.MoveTo("$PWD/$($_.Name)")
     }
     Get-ChildItem | Where-Object { $_.GetType().Name -eq 'DirectoryInfo' } | ForEach-Object { $_.Delete() }
+}
+function Compress-Images {
+    magick mogrify -strip -quality 85% *.jpg
+}
+function Convert-Images {
+    magick mogrify -format jpg *.png
+    Remove-Item *.png
 }
 
 # Modules
