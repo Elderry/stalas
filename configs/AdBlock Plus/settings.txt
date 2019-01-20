@@ -150,3 +150,5 @@ gamersky.com##DIV.Mid2_R
 pan.baidu.com##DL.module-hot-rec
 
 okta.com##SPAN.input-tooltip
+
+zhihu.com##DIV.Pc-word
