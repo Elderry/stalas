@@ -50,7 +50,6 @@ function Convert-Images {
 if (!$global:GitPromptSettings) { Import-Module 'posh-git' }
 $global:GitPromptSettings.BeforeText = ' ['
 $global:GitPromptSettings.AfterText  = '] '
-Import-Module -Name 'zLocation' #[Windows]
 
 # Colors
 # Restore this when following issue is fixed.
@@ -146,3 +145,5 @@ function prompt {
 
     return ' '
 }
+# This has to be after prompt function because zLocation alters prompt to work. #[Windows]
+Import-Module -Name 'zLocation' #[Windows]
