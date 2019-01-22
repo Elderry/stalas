@@ -84,17 +84,19 @@ function Set-Shortcut([string] $Path, [string] $Target, [switch] $RequireAdmin) 
     }
 }
 
+$pwshPath = "$PSHOME/pwsh.exe"
+$pwshNativePath = "$Env:SystemRoot/System32/WindowsPowerShell/v1.0/powershell.exe"
+$cmdPath = "$Env:SystemRoot/System32/cmd.exe"
+
 function Update-Shortcut([string] $Path) {
     $shortcut = $(New-Object -ComObject 'WScript.Shell').CreateShortcut($Path)
-    $target = "${PSHOME}/pwsh.exe"
+    # Restore this when PowerShell Core is stable enough.
+    # $target = $pwshPath
+    $target = $pwshNativePath
     if ($shortcut.TargetPath -eq $target) { return }
     $shortcut.TargetPath = $target
     $shortcut.Save()
 }
-
-$pwshPath = "$PSHOME/pwsh.exe"
-$pwshNativePath = "$Env:SystemRoot/System32/WindowsPowerShell/v1.0/powershell.exe"
-$cmdPath = "$Env:SystemRoot/System32/cmd.exe"
 
 Set-Shortcut "$desktop/$pwshShortcut" $pwshPath
 Set-Shortcut "$desktop/$pwshAdminShortcut" $pwshPath -RequireAdmin

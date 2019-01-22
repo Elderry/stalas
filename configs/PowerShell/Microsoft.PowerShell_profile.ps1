@@ -6,7 +6,7 @@ $config = '~/Projects/Personal/stalas/config.sh' #[macOS]
 
 # Custom Commands
 Remove-Item Alias:ls #[Windows]
-function ls { & "$($env:ProgramFiles)/Git/usr/bin/ls.exe" --color=auto } #[Windows]
+function ls { Get-ChildItem | Format-Wide -AutoSize -Property 'Name' } #[Windows]
 function git_drop {
     git reset --hard
     git clean -fd
