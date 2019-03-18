@@ -90,9 +90,7 @@ $cmdPath = "$Env:SystemRoot/System32/cmd.exe"
 
 function Update-Shortcut([string] $Path) {
     $shortcut = $(New-Object -ComObject 'WScript.Shell').CreateShortcut($Path)
-    # Restore this when PowerShell Core is stable enough.
-    # $target = $pwshPath
-    $target = $pwshNativePath
+    $target = $pwshPath
     if ($shortcut.TargetPath -eq $target) { return }
     $shortcut.TargetPath = $target
     $shortcut.Save()
