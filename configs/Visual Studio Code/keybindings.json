@@ -9,26 +9,6 @@
         "command": "-actions.find"
     },
     {
-        "key": "ctrl+c",
-        "command": "editor.action.clipboardCopyAction",
-        "when": "textInputFocus"
-    },
-    {
-        "key": "cmd+c",
-        "command": "-editor.action.clipboardCopyAction",
-        "when": "textInputFocus"
-    },
-    {
-        "key": "ctrl+v",
-        "command": "editor.action.clipboardPasteAction",
-        "when": "textInputFocus && !editorReadonly"
-    },
-    {
-        "key": "cmd+v",
-        "command": "-editor.action.clipboardPasteAction",
-        "when": "textInputFocus && !editorReadonly"
-    },
-    {
         "key": "ctrl+x",
         "command": "editor.action.clipboardCutAction",
         "when": "textInputFocus && !editorReadonly"
