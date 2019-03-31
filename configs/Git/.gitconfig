@@ -12,4 +12,4 @@
 [commit]
 	gpgsign = true
 [gpg] #[Windows]
-	program = C:/Program Files (x86)/GNU/GnuPG/pub/gpg.exe #[Windows]
+	program = C:/Program Files (x86)/gnupg/bin/gpg.exe #[Windows]
