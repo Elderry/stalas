@@ -6,6 +6,7 @@ param (
         'Bash',
         'Hyper',
         'Registry',
+        'SSH',
         'Maven',
         'Java',
         'Docker',

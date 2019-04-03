@@ -51,15 +51,6 @@ if (!$global:GitPromptSettings) { Import-Module 'posh-git' }
 $global:GitPromptSettings.BeforeText = ' ['
 $global:GitPromptSettings.AfterText  = '] '
 
-# Colors
-# Restore this when following issue is fixed.
-# https://github.com/zeit/hyper/issues/1706
-# $host.PrivateData.ErrorBackgroundColor    = 'White'
-# $host.PrivateData.WarningBackgroundColor  = 'White'
-# $host.PrivateData.DebugBackgroundColor    = 'White'
-# $host.PrivateData.VerboseBackgroundColor  = 'White'
-# $host.PrivateData.ProgressBackgroundColor = 'White'
-
 $DirectoryBackgroundColor = [ConsoleColor]::Blue
 $UserBackgroundColor      = [ConsoleColor]::Green
 $HostBackgroundColor      = [ConsoleColor]::Magenta
@@ -99,7 +90,6 @@ Set-PSReadLineOption -Colors @{
     'ContinuationPrompt' = [ConsoleColor]::DarkMagenta
 }
 
-# [macOS]
 $Env:PATH = "$($Env:PATH):/Applications/Visual Studio Code.app/Contents/Resources/app/bin" #[macOS]
 if (-not $Env:PATH.Contains('/usr/local/bin')) { #[macOS]
     $Env:PATH = "/usr/local/bin:$Env:PATH" #[macOS]
@@ -109,6 +99,10 @@ if (-not $Env:PATH.Contains('/usr/local/bin')) { #[macOS]
 $Env:GPG_TTY = $(tty) #[macOS]
 
 $Env:JAVA_HOME = /usr/libexec/java_home -v 1.8 #[macOS]
+
+if ((Get-Service ssh-agent).Status -ne 'Running') { #[Windows]
+    ssh-agent #[Windows]
+} #[Windows]
 
 function IsAdmin {
     $identity = [Security.Principal.WindowsIdentity]::GetCurrent()
