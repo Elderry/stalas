@@ -73,6 +73,11 @@ switch -wildcard ($script) {
             exit
         }
     }
+    "* - Linux" {
+        if (-not $IsLinux) {
+            Write-Error "$target's config is Linux only."
+            exit
+        }
 }
 
 Start-Config $script $args

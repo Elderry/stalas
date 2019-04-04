@@ -2,12 +2,12 @@
 export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 
 # Maven
-export MAVEN_OPTS="-Djavax.net.ssl.keyStore=/Users/ruiyang/Projects/Personal/stalas/Resources/Private/lry@cn.tradeshift.com.pfx \
-                   -Djavax.net.ssl.keyStoreType=pkcs12 \
-                   -Djavax.net.ssl.keyStorePassword=<key store password>"
+export MAVEN_OPTS="-Djavax.net.ssl.keyStore=/Users/ruiyang/Onedrive/Collections/AppBackup/Tradeshift/lry@cn.tradeshift.com.pfx \
+    -Djavax.net.ssl.keyStoreType=pkcs12 \
+    -Djavax.net.ssl.keyStorePassword=<key store password>"
 
-# Terminal
-export CLICOLOR=1
+# Terminal # [macOS]
+export CLICOLOR=1 # [macOS]
 
 # Colors
 # Reference: https://help.ubuntu.com/community/CustomizingBashPrompt
@@ -33,5 +33,8 @@ export GPG_TTY=$(tty)
 # Git
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 
-# Visual Studio Code
-export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+# Visual Studio Code [macOS]
+export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin" # [macOS]
+
+# SSH [Linux]
+eval `ssh-agent` # [Linux]
