@@ -78,6 +78,7 @@ switch -wildcard ($script) {
             Write-Error "$target's config is Linux only."
             exit
         }
+    }
 }
 
 Start-Config $script $args

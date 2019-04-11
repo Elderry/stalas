@@ -5,15 +5,16 @@ param(
 
 Import-Module powershell-yaml
 
-$private = [IO.Path]::GetFullPath("$PSScriptRoot/../../Resources/Private") -replace '\\', '/'
-$credentials = Get-Content "$private/Credentials.yml" -Raw | ConvertFrom-Yaml
+$resource = (Resolve-Path '~/OneDrive/Collections/AppBackup/Tradeshift').Path -replace '\\', '/'
+$LDAP = Get-Content "$resource/LDAP.yml" -Raw | ConvertFrom-Yaml
 switch ($environment) {
     'TSCN' { $mail = 'lry@cn.tradeshift.com' }
     'TS' { $mail = 'lry@tradeshift.com' }
 }
-$opts = "-Djavax.net.ssl.keyStore=$private/$mail.pfx " +
+$keyStorePassword = Get-Content "$resource/$mail.pfx.pass.txt"
+$opts = "-Djavax.net.ssl.keyStore=$resource/$mail.pfx " +
     "-Djavax.net.ssl.keyStoreType=pkcs12 " +
-    "-Djavax.net.ssl.keyStorePassword=$($credentials["$environment-key-pair"])"
+    "-Djavax.net.ssl.keyStorePassword=$keyStorePassword"
 if ($IsWindows) {
     [Environment]::SetEnvironmentVariable('MAVEN_OPTS', $opts, 'User')
     [Environment]::SetEnvironmentVariable('SBT_OPTS', $opts, 'User')
@@ -25,11 +26,11 @@ if ($IsWindows) {
 
     (Get-Content '~/.bash_profile') `
         -replace '\w+@.+\.pfx', "$mail.pfx" `
-        -replace '(-Djavax\.net\.ssl\.keyStorePassword=).+"', "`${1}$($credentials["$environment-key-pair"])`"" |
+        -replace '(-Djavax\.net\.ssl\.keyStorePassword=).+"', "`${1}$($keyStorePassword)`"" |
         Set-Content '~/.bash_profile'
 }
 
-(Get-Content "$PSScriptRoot/Maven - $environment.xml") `
-    -replace '{user}', $credentials["LDAP-$environment-user"] `
-    -replace '{password}', $credentials["LDAP-$environment-password"] |
+(Get-Content "$resource/Maven/settings - $environment.xml") `
+    -replace '{user}', $LDAP.$environment.user `
+    -replace '{password}', $LDAP.$environment.password |
     Set-Content '~/.m2/settings.xml'
