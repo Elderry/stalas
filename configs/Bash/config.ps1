@@ -4,7 +4,7 @@ if ($IsMacOS) {
     $target = '.bashrc'
 }
 
-$mavenKeyStorePassword = Get-Content '~/OneDrive/Collections/AppBackup/Tradeshift/lry@cn.tradeshift.com.pfx.txt'
+$mavenKeyStorePassword = Get-Content '~/OneDrive/Collections/AppBackup/Tradeshift/lry@cn.tradeshift.com.pfx.pass.txt'
 
 (Get-Content "$PSScriptRoot/.bash") `
     -replace '<key store password>', $mavenKeyStorePassword |
