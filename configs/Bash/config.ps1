@@ -8,4 +8,4 @@ $mavenKeyStorePassword = Get-Content '~/OneDrive/Collections/AppBackup/Tradeshif
 
 (Get-Content "$PSScriptRoot/.bash") `
     -replace '<key store password>', $mavenKeyStorePassword |
-    Set-Content "~/.$target"
+    Set-Content "~/$target"
