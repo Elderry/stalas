@@ -1,0 +1,18 @@
+IdentityFile = ~/OneDrive/Collections/AppBackup/SSH/lry_rsa
+
+Host = zuben
+  User = ruiyang
+  HostName = 10.133.10.246
+
+Host = base
+  User = lry
+  HostName = ssh.cn-north-1.base.bwtsi.cn
+Host = testing
+  User = lry
+  HostName = ssh.cn-northwest-1.test.bwtsi.cn
+Host = sandbox
+  User = lry
+  HostName = ssh.cn-north-1.sand.bwtsi.cn
+Host = production
+  User = lry
+  HostName = ssh.cn-north-1.prod.bwtsi.cn

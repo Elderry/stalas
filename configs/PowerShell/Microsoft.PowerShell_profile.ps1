@@ -100,10 +100,6 @@ $Env:GPG_TTY = $(tty) #[macOS]
 
 $Env:JAVA_HOME = /usr/libexec/java_home -v 1.8 #[macOS]
 
-if ((Get-Service ssh-agent).Status -ne 'Running') { #[Windows]
-    ssh-agent #[Windows]
-} #[Windows]
-
 function IsAdmin {
     $identity = [Security.Principal.WindowsIdentity]::GetCurrent()
     $principal = [Security.Principal.WindowsPrincipal] $identity

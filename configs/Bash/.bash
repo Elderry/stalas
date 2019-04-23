@@ -31,8 +31,8 @@ export GPG_TTY=$(tty)
 if [[ -f /usr/local/etc/profile.d/autojump.sh ]]; then
     . /usr/local/etc/profile.d/autojump.sh
 fi
-if [[ -f /usr/local/etc/profile.d/autojump.sh ]]; then
-    . /usr/local/etc/profile.d/autojump.sh
+if [[ -f /usr/share/autojump/autojump.sh ]]; then
+    . /usr/share/autojump/autojump.sh
 fi
 
 # Git
@@ -42,6 +42,3 @@ fi
 
 # Visual Studio Code [macOS]
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin" # [macOS]
-
-# SSH [Linux]
-eval `ssh-agent` # [Linux]
