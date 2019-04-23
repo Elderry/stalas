@@ -39,10 +39,10 @@ function Flatten-Files {
     Get-ChildItem | Where-Object { $_.GetType().Name -eq 'DirectoryInfo' } | ForEach-Object { $_.Delete() }
 }
 function Compress-Images {
-    magick mogrify -strip -quality 85% *.jpg
+    magick mogrify -monitor -strip -quality 85% *.jpg
 }
 function Convert-Images {
-    magick mogrify -format jpg *.png
+    magick mogrify -monitor -format jpg *.png
     Remove-Item *.png
 }
 

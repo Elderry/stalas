@@ -28,10 +28,17 @@ export PS1="${path}\n${user}${host}${RESET} "
 export GPG_TTY=$(tty)
 
 # AutoJump
-[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+if [[ -f /usr/local/etc/profile.d/autojump.sh ]]; then
+    . /usr/local/etc/profile.d/autojump.sh
+fi
+if [[ -f /usr/local/etc/profile.d/autojump.sh ]]; then
+    . /usr/local/etc/profile.d/autojump.sh
+fi
 
 # Git
-[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+if [[ -f /usr/local/etc/bash_completion ]]; then
+    . /usr/local/etc/bash_completion
+fi
 
 # Visual Studio Code [macOS]
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin" # [macOS]
