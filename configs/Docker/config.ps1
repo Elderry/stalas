@@ -1,7 +1,13 @@
 . "$PSScriptRoot/../common.ps1"
 
 $resources = '~/OneDrive/Collections/AppBackup/Tradeshift'
-$targetPath = '~/.docker/certs.d'
+if ($IsWindows) {
+    $targetPath = "$Env:ProgramData/Docker/certs.d"
+} elseif ($IsMacOS) {
+    $targetPath = '~/.docker/certs.d'
+} elseif ($IsLinux) {
+    $targetPath = '/etc/docker/certs.d'
+}
 $TSDomain = "$targetPath/docker.tradeshift.net"
 $TSCNDomain = "$targetPath/registry.bwtsi.cn"
 

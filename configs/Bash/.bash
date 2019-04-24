@@ -42,3 +42,7 @@ fi
 
 # Visual Studio Code [macOS]
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin" # [macOS]
+
+# enable more support of ls
+alias ls='ls --color=auto'
+alias la='ls -A'
