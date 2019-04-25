@@ -35,9 +35,9 @@ if (-not $modernJava) {
     $certsPath = "$Env:JAVA_HOME/jre/lib/security/cacerts/"
 }
 
-function addCert($file, $alias, $fingerprint) {
+function Add-Cert($file, $alias, $fingerprint) {
 
-    $file = [IO.Path]::GetFullPath("$PSScriptRoot/../../Resources/Certificates/$file")
+    $file = (Resolve-Path "~/OneDrive/Collections/AppBackup/Tradeshift/$file").Path
     if ($modernJava) {
         $certs = keytool -list -cacerts -storepass $storePass
         if ($certs.Where({ $_.Contains($fingerprint) }).Count -eq 0) {
@@ -56,10 +56,10 @@ function addCert($file, $alias, $fingerprint) {
 }
 
 if (($environment -eq 'TS') -or ($environment -eq 'ALL')) {
-    addCert 'Root - TS.crt' 'root_ca_ts' $TS_ROOT_CA_FINGERPRINT
-    addCert 'Employee - TS.crt' 'employee_ca_ts' $TS_EMPLOYEE_CA_FINGERPRINT
+    Add-Cert 'root-ca.crt' 'root_ca_ts' $TS_ROOT_CA_FINGERPRINT
+    Add-Cert 'employee-ca.crt' 'employee_ca_ts' $TS_EMPLOYEE_CA_FINGERPRINT
 }
 if (($environment -eq 'TSCN') -or ($environment -eq 'ALL')) {
-    addCert 'Root - TSCN.crt' 'root_ca_tscn' $TSCN_ROOT_CA_FINGERPRINT
-    addCert 'Employee - TSCN.crt' 'employee_ca_tscn' $TSCN_EMPLOYEE_CA_FINGERPRINT
+    Add-Cert 'root-ca-cn.crt' 'root_ca_tscn' $TSCN_ROOT_CA_FINGERPRINT
+    Add-Cert 'employee-ca-cn.crt' 'employee_ca_tscn' $TSCN_EMPLOYEE_CA_FINGERPRINT
 }
