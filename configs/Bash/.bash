@@ -48,4 +48,6 @@ alias ls='ls --color=auto'
 alias la='ls -A'
 
 # SSH [Linux]
-eval `ssh-agent` # [Linux]
+if [[ -z ${SSH_AGENT_PID} ]]; then # [Linux]
+    eval `ssh-agent` # [Linux]
+fi # [Linux]

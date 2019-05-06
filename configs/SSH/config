@@ -21,3 +21,7 @@ Host = production
 
 Host = 172.27.*.*
   ProxyJump = testing
+Host = 172.34.*.*
+  ProxyJump = sandbox
+Host = 172.23.*.*
+  ProxyJump = production
