@@ -1,4 +1,6 @@
 IdentityFile = ~/OneDrive/Collections/AppBackup/SSH/lry_rsa
+AddKeysToAgent = yes
+ForwardAgent = yes
 
 Host = zuben
   User = ruiyang
@@ -16,3 +18,6 @@ Host = sandbox
 Host = production
   User = lry
   HostName = ssh.cn-north-1.prod.bwtsi.cn
+
+Host = 172.27.*.*
+  ProxyJump = testing
