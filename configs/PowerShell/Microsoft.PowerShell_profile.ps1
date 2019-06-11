@@ -31,6 +31,14 @@ function git_prune {
         }
     }
 }
+function git_push {
+    $first_try = & git push 2>&1
+    Write-Host $first_try
+    if ($first_try[3] -Match '^\s*(git push --set-upstream origin \S+)$') {
+        Write-Host "The push is recoverable, going to retry..."
+        Invoke-Expression $Matches[1]
+    }
+}
 function Flatten-Files {
     Get-ChildItem -Recurse | ForEach-Object {
         if (($_.GetType().Name -ne 'FileInfo') -or ($_.Parent.FullName -eq $PWD.Path)) { return }
