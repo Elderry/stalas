@@ -1,6 +1,8 @@
 #Requires -RunAsAdministrator
 
 param(
+    [ValidateSet(8, 10, 11, 12)]
+    [int] $version = 11,
     [ValidateSet('TS', 'TSCN', 'ALL')]
     [string] $environment = 'TSCN',
     [string] $storePass = 'changeit'

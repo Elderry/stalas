@@ -40,11 +40,16 @@ function git_push {
     }
 }
 function Flatten-Files {
-    Get-ChildItem -Recurse | ForEach-Object {
-        if (($_.GetType().Name -ne 'FileInfo') -or ($_.Parent.FullName -eq $PWD.Path)) { return }
-        $_.MoveTo("$PWD/$($_.Name)")
+    Get-ChildItem -Recurse -File | ForEach-Object {
+        if ((Test-Path -LiteralPath $_.Name) -and ($_.Directory.FullName -ne $PWD)) {
+            Move-Item -LiteralPath $_.FullName -Destination "$PWD/$($_.Directory.Name) - $($_.Name)"
+        } else {
+            Move-Item -LiteralPath $_.FullName -Destination "$PWD/$($_.Name)"
+        }
     }
-    Get-ChildItem | Where-Object { $_.GetType().Name -eq 'DirectoryInfo' } | ForEach-Object { $_.Delete() }
+    Get-ChildItem -Directory | ForEach-Object {
+        Remove-Item $_.Name -Recurse
+    }
 }
 function Compress-Images {
     magick mogrify -monitor -strip -quality 85% *.jpg
