@@ -51,8 +51,17 @@ function Flatten-Files {
         Remove-Item $_.Name -Recurse
     }
 }
-function Compress-Images {
+function Compress-Images([switch] $Recurse) {
+    if ($Recurse) {
+        Get-ChildItem -Directory | ForEach-Object {
+            Set-Location -LiteralPath $_.Name
+            Compress-Images -Recurse
+            Convert-Images
+            Set-Location ..
+        }
+    }
     magick mogrify -monitor -strip -quality 85% *.jpg
+    Convert-Images
 }
 function Convert-Images {
     magick mogrify -monitor -format jpg *.png
