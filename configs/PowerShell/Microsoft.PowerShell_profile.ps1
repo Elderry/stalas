@@ -31,9 +31,16 @@ function git_prune {
         }
     }
 }
+function git_open {
+    (git remote get-url origin) -match ':(.+)\.' | Out-Null
+    $path = $Matches[1]
+    (git status -sb) -match '/(.+)$' | Out-Null
+    $branch = $Matches[1]
+    Start-Process "https://github.com/$path/tree/$branch"
+}
 function git_push {
     $first_try = & git push 2>&1
-    Write-Host $first_try
+    Write-Host $first_try -Separator "`n"
     if ($first_try[3] -Match '^\s*(git push --set-upstream origin \S+)$') {
         Write-Host "The push is recoverable, going to retry..."
         Invoke-Expression $Matches[1]
