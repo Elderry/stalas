@@ -34,7 +34,7 @@ function git_prune {
 function git_open {
     (git remote get-url origin) -match ':(.+)\.' | Out-Null
     $path = $Matches[1]
-    (git status -sb) -match '/(.+)$' | Out-Null
+    (git branch | Where-Object { $_.StartsWith('*') }) -match '\* ([\w-]+)' | Out-Null
     $branch = $Matches[1]
     Start-Process "https://github.com/$path/tree/$branch"
 }
