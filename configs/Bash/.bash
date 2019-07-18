@@ -1,5 +1,8 @@
-# Java
-export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+# If not running interactively, don't do anything.
+case $- in # [Linux]
+    *i*) ;; # [Linux]
+      *) return;; # [Linux]
+esac # [Linux]
 
 # Maven
 export MAVEN_OPTS="-Djavax.net.ssl.keyStore=/Users/ruiyang/Onedrive/Collections/AppBackup/Tradeshift/lry@cn.tradeshift.com.pfx \
