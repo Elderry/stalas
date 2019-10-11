@@ -13,8 +13,8 @@ if (-not ((Test-Path $Env:JAVA_HOME))) {
     exit
 }
 
-$java = [Convert]::ToInt32($Matches[1])
-$modernJava = $java -gt 8
+(java -version 2>&1)[0] -Match '(java|openjdk) version "(\d+)(\.(\d+))?(\.[_\d]+)?"' | Out-Null
+$modernJava = $Matches[2] -ne 1
 
 # Modern Java uses sha-256 finger print instead of sha-1.
 if ($modernJava) {
