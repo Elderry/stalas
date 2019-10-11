@@ -25,9 +25,19 @@ if ($IsWindows) {
     [Environment]::SetEnvironmentVariable('GRAILS_OPTS', $opts)
 
     (Get-Content '~/.bash_profile') `
+        -replace '~', (Resolve-Path '~').Path `
         -replace '\w+@.+\.pfx', "$mail.pfx" `
         -replace '(-Djavax\.net\.ssl\.keyStorePassword=).+"', "`${1}$($keyStorePassword)`"" |
         Set-Content '~/.bash_profile'
+} elseif ($IsLinux) {
+    [Environment]::SetEnvironmentVariable('MAVEN_OPTS', $opts)
+    [Environment]::SetEnvironmentVariable('SBT_OPTS', $opts)
+    [Environment]::SetEnvironmentVariable('GRAILS_OPTS', $opts)
+    (Get-Content '~/.bashrc') `
+        -replace '~', (Resolve-Path '~').Path `
+        -replace '\w+@.+\.pfx', "$mail.pfx" `
+        -replace '(-Djavax\.net\.ssl\.keyStorePassword=).+"', "`${1}$($keyStorePassword)`"" |
+        Set-Content '~/.bashrc'
 }
 
 (Get-Content "$resource/Maven/settings - $environment.xml") `
