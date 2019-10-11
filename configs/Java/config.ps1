@@ -8,7 +8,7 @@ param(
     [string] $storePass = 'changeit'
 )
 
-if (-not ((Test-Path $Env:JAVA_HOME) -and ($Env:JAVA_HOME -match 'jdk-{0,1}(\d+)'))) {
+if (-not ((Test-Path $Env:JAVA_HOME))) {
     Write-Error "JAVA_HOME [$JAVA_HOME] needs to be a valid java directory."
     exit
 }
