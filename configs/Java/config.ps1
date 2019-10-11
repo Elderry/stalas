@@ -1,42 +1,12 @@
 #Requires -RunAsAdministrator
 
 param(
-    [ValidateSet(8, 12)]
-    [int] $version,
+    [ValidateSet(8, 10, 11, 12)]
+    [int] $version = 11,
     [ValidateSet('TS', 'TSCN', 'ALL')]
     [string] $environment = 'TSCN',
     [string] $storePass = 'changeit'
 )
-
-function Set-Env([string] $key, [string] $value) {
-    [Environment]::SetEnvironmentVariable($key, $value, 'User');
-    Invoke-Expression "`$Env:$key = `$value"
-}
-
-if ($version) {
-    Write-Host "Detecting installed Java $version..."
-    if ($version -le 8) {
-        $path = 'C:\Program Files\Java'
-        $regex = 'jdk1\.8\.0_(\d+)'
-    }
-    else {
-        $path = 'C:\Program Files\OpenJDK'
-        $regex = "jdk-$version\.\d+(\.\d+)?"
-    }
-    $install = Get-ChildItem -Path $path |
-        Select-Object -ExpandProperty 'Name' |
-        Where-Object { $_ -match $regex } |
-        Select-Object -First 1
-    if (-not $target) { 
-        Write-Host "No Java $version installed, going to skip version config..."
-        break
-    }
-    Write-Host "Found Java $version install(s): [$install], configing JAVA_HOME and PATH..."
-    $install = "$path\$install"
-    Set-Env 'JAVA_HOME' $install
-    $path = $Env:Path -replace 'C:\\Program Files\\(OpenJDK|Java)\\[\w\.-]+\\bin', "$install\bin"
-    Set-Env 'PATH' $path
-}
 
 if (-not ((Test-Path $Env:JAVA_HOME) -and ($Env:JAVA_HOME -match 'jdk-{0,1}(\d+)'))) {
     Write-Error "JAVA_HOME [$JAVA_HOME] needs to be a valid java directory."
