@@ -19,7 +19,3 @@ $content = (Get-Content "$PSScriptRoot/settings.json") `
     -replace "(`"terminal\.integrated\.shell\.$os`")\s*:\s*`".*`"", "`$1: `"$shell`"" `
     -replace $keep -notmatch $discard |
     Set-Content $settings
-
-if ($IsMacOS) {
-    Copy-Item "$PSScriptRoot/keybindings.json" $keybindings
-}
