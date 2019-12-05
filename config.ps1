@@ -49,7 +49,7 @@ function Start-Config([string] $name, [string[]] $arguments) {
     Write-Split 'Configuration of ' $name ' finished.'
 }
 
-$user = if ($IsWindows) { $Env:USERNAME } elseif ($IsMacOS) { $Env:USER }
+$user = if ($IsWindows) { $Env:USERNAME } else { $Env:USER }
 $hyphen = ($width - $user.Length - 17) / 2
 $banner = "$('-' * [Math]::Floor($hyphen)) $user's Config Files $('-' * [Math]::Ceiling($hyphen))"
 Write-Host "`n$banner" -ForegroundColor 'DarkBlue'

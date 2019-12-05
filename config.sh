@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-pwsh "$PWD/config.ps1" $*
+pwsh "$PWD/config.ps1" "$*"
