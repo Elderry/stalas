@@ -47,7 +47,7 @@ FilterOnPaste: true
 
 # Specifies the name of an alternate command window font. If there is no font name in the value of this entry,
 # the system uses raster fonts.
-FaceName: 等距更纱黑体 SC
+FaceName: Sarasa Mono SC
 
 # 'True' enables all new console features; 'false' disables all new features.
 ForceV2: true
@@ -59,7 +59,7 @@ ForceV2: true
 FontFamily: 54
 
 # Specifies the size of the font used in the command window.
-FontSize: 24
+FontSize: 22
 
 # Specifies the number of commands that can be stored in each command history buffer.
 HistoryBufferSize: 999
@@ -101,5 +101,5 @@ WindowPosition.LeftMargin: 240
 WindowPosition.TopMargin: 60
 
 # Specifies the size of the command window.
-WindowSize.Height: 25
-WindowSize.Width: 100
+WindowSize.Height: 30
+WindowSize.Width: 120
