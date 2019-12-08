@@ -7,7 +7,7 @@ function Validate-OneDrive-Path() {
     if (Test-Path '~/OneDrive') {
         $script:oneDrive = '~/OneDrive'
     } elseif (Test-Path '/mnt/c/Windows') {
-        $user = $(cmd.exe /c 'echo %USERNAME%')
+        $user = $(cmd.exe /c 'echo %USERNAME%' 2> $null)
         $script:oneDrive = "/mnt/c/Users/$user/OneDrive"
     } else {
         Write-Error 'Failed to detect a valid OneDrive path, exiting...'

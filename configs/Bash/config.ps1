@@ -11,6 +11,8 @@ if ($IsLinux) {
 
 $mavenKeyStorePassword = Get-Content `
     (Join-Path $oneDrive 'Collections/AppBackup/Tradeshift/lry@cn.tradeshift.com.pfx.pass.txt')
+$stalasPath = "$PSScriptRoot/../.."
 
-$content -replace '<key store password>', $mavenKeyStorePassword |
+$($content -replace '<key store password>', $mavenKeyStorePassword) `
+    -replace '<stalas path>', $stalasPath |
     Set-Content "~/$target"

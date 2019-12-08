@@ -1,6 +1,9 @@
 
 # Below is custom configuration
 
+# Aliases
+alias config='<stalas path>/config.sh'
+
 # Maven
 export MAVEN_OPTS="-Djavax.net.ssl.keyStore=~/OneDrive/Collections/AppBackup/Tradeshift/lry@cn.tradeshift.com.pfx \
     -Djavax.net.ssl.keyStoreType=pkcs12 \
@@ -20,6 +23,8 @@ user="${WHITE_GREEN} \u@\h ${GREEN_MAGNETA}"
 host="${WHITE_MAGNETA} $ ${MAGNETA_WHITE}"
 export PS1="${path}\n${user}${host}${RESET} "
 
+# AutoJump
+# https://github.com/wting/autojump/issues/568
 if [[ -f /usr/share/autojump/autojump.bash ]]; then
     . /usr/share/autojump/autojump.bash
 fi
