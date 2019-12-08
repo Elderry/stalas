@@ -1,7 +1,11 @@
 
 # Below is custom configuration
 
+# Disable colored background for ls in WSL
+export LS_COLORS='ow=34'
+
 # Aliases
+ls() { command ls --color=auto -I NTUSER.\* -I ntuser.\* "$@"; }
 alias config='<stalas path>/config.sh'
 
 # Maven
