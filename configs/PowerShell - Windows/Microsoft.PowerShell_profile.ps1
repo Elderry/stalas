@@ -1,12 +1,11 @@
 # Custom Variables
-Set-Alias au '~/Projects/Personal/chocolatey-packages/update_all.ps1' #[Windows]
-Set-Alias aphro '~/Projects/Personal/Aphrodite/Aphrodite/bin/Release/netcoreapp2.2/win10-x64/Aphrodite.exe' #[Windows]
+Set-Alias au '~/Projects/Personal/chocolatey-packages/update_all.ps1'
+Set-Alias aphro '~/Projects/Personal/Aphrodite/Aphrodite/bin/Release/netcoreapp3.1/win10-x64/Aphrodite.exe'
 Set-Alias config '~/Projects/Personal/stalas/config.ps1'
-$config = '~/Projects/Personal/stalas/config.sh' #[macOS]
 
 # Custom Commands
-Remove-Item Alias:ls #[Windows]
-function ls { Get-ChildItem | Format-Wide -AutoSize -Property 'Name' } #[Windows]
+Remove-Item Alias:ls
+function ls { Get-ChildItem | Format-Wide -AutoSize -Property 'Name' }
 function git_drop {
     git reset --hard
     git clean -fd
@@ -119,27 +118,15 @@ Set-PSReadLineOption -Colors @{
     'ContinuationPrompt' = [ConsoleColor]::DarkMagenta
 }
 
-$Env:PATH = "$($Env:PATH):/Applications/Visual Studio Code.app/Contents/Resources/app/bin" #[macOS]
-if (-not $Env:PATH.Contains('/usr/local/bin')) { #[macOS]
-    $Env:PATH = "/usr/local/bin:$Env:PATH" #[macOS]
-} #[macOS]
-# For GnuPG and Pinentry's password prompt. #[macOS]
-# Reference: https://www.gnupg.org/documentation/manuals/gnupg/Invoking-GPG_002dAGENT.html #[macOS]
-$Env:GPG_TTY = $(tty) #[macOS]
-
-$Env:JAVA_HOME = /usr/libexec/java_home -v 1.8 #[macOS]
-
-if ((Get-Service ssh-agent).Status -ne 'Running') { #[Windows]
-    ssh-agent #[Windows]
-} #[Windows]
+if ((Get-Service ssh-agent).Status -ne 'Running') {
+    ssh-agent
+}
 
 function IsAdmin {
     $identity = [Security.Principal.WindowsIdentity]::GetCurrent()
     $principal = [Security.Principal.WindowsPrincipal] $identity
     return $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
 }
-
-function IsRoot { return $(id -un) -eq 'root' }
 
 function prompt {
 
@@ -155,18 +142,16 @@ function prompt {
     Write-Host '' -ForegroundColor $DirectoryBackgroundColor
 
     # User
-    $user = " $Env:USERNAME@$((Get-Culture).TextInfo.ToTitleCase($env:USERDOMAIN.ToLower())) " #[Windows]
-    $user = " $Env:USER@$(hostname) " #[macOS]
+    $user = " $Env:USERNAME@$((Get-Culture).TextInfo.ToTitleCase($env:USERDOMAIN.ToLower())) "
     Write-Host $user -ForegroundColor 'White' -BackgroundColor $UserBackgroundColor -NoNewline
     Write-Host '' -ForegroundColor $UserBackgroundColor -BackgroundColor $HostBackgroundColor -NoNewline
 
     # Host symbol
-    $symbol = if (IsAdmin) { '#' } else { '$' } #[Windows]
-    $symbol = if (IsRoot) { '#' } else { '$' } #[macOS]
+    $symbol = if (IsAdmin) { '#' } else { '$' }
     Write-Host " $symbol " -ForegroundColor 'White' -BackgroundColor $HostBackgroundColor -NoNewline
     Write-Host '' -ForegroundColor $HostBackgroundColor -NoNewline
 
     return ' '
 }
-# This has to be after prompt function because zLocation alters prompt to work. #[Windows]
-Import-Module -Name 'zLocation' #[Windows]
+# This has to be after prompt function because zLocation alters prompt to work.
+Import-Module -Name 'zLocation'
