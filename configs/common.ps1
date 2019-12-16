@@ -5,7 +5,7 @@ function New-Directory([string] $name) {
 
 function Validate-OneDrive-Path() {
     if (Test-Path '~/OneDrive') {
-        $script:oneDrive = '~/OneDrive'
+        $script:oneDrive = "$Env:HOME/OneDrive"
     } elseif (Test-Path '/mnt/c/Windows') {
         $user = $(cmd.exe /c 'echo %USERNAME%' 2> $null)
         $script:oneDrive = "/mnt/c/Users/$user/OneDrive"
