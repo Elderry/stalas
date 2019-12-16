@@ -111,7 +111,6 @@ $global:GitPromptSettings.IndexForegroundColor = [ConsoleColor]::Green
 $global:GitPromptSettings.WorkingForegroundColor = [ConsoleColor]::Red
 
 Set-PSReadLineOption -Colors @{
-    'Default' = [ConsoleColor]::Black #[macOS]
     'Number' = [ConsoleColor]::Green
     'Member' = [ConsoleColor]::Magenta
     'Type' = [ConsoleColor]::DarkYellow

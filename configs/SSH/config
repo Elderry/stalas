@@ -1,4 +1,4 @@
-IdentityFile = ~/OneDrive/Collections/AppBackup/SSH/lry_rsa
+IdentityFile = <onedrive path>/Collections/AppBackup/SSH/lry_rsa
 AddKeysToAgent = yes
 ForwardAgent = yes
 
