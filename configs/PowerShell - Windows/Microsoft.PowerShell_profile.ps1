@@ -66,10 +66,12 @@ function Compress-Images([switch] $Recurse) {
             Set-Location ..
         }
     }
+    if (-not (Get-ChildItem -Filter *.jpg)) { return }
     magick mogrify -monitor -strip -quality 85% *.jpg
     Convert-Images
 }
 function Convert-Images {
+    if (-not (Get-ChildItem -Filter *.png)) { return }
     magick mogrify -monitor -format jpg *.png
     Remove-Item *.png
 }
