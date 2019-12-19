@@ -1,11 +1,7 @@
 
-# Below is custom configuration
+### Common configuration ###
 
-# Disable colored background for ls in WSL
-export LS_COLORS='ow=34'
-
-# Aliases
-ls() { command ls --color=auto -I NTUSER.\* -I ntuser.\* "$@"; }
+# Alias
 alias config='<stalas path>/config.sh'
 
 # Maven
@@ -26,9 +22,3 @@ path="${WHITE_BLUE} \w ${BLUE_WHITE}"
 user="${WHITE_GREEN} \u@\h ${GREEN_MAGNETA}"
 host="${WHITE_MAGNETA} $ ${MAGNETA_WHITE}"
 export PS1="${path}\n${user}${host}${RESET} "
-
-# AutoJump
-# https://github.com/wting/autojump/issues/568
-if [[ -f /usr/share/autojump/autojump.bash ]]; then
-    . /usr/share/autojump/autojump.bash
-fi
