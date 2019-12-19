@@ -15,18 +15,9 @@
     "files.hotExit": "off",
     "files.insertFinalNewline": true,
 
-    "terminal.integrated.cursorStyle": "line",
-    "terminal.integrated.shell.windows": "", //[Windows]
-    "terminal.integrated.shell.osx": "", //[macOS]
-    "terminal.integrated.shellArgs.osx": [], //[macOS]
-
     "window.openFilesInNewWindow": "on",
 
     "workbench.colorTheme": "Default Light+",
-
-    "powershell.integratedConsole.showOnStartup": false, //[Windows]
-    "powershell.powerShellExePath": "", //[Windows]
-    "powershell.startAutomatically": false, //[Windows]
 
     "vim.useCtrlKeys": false
 }
