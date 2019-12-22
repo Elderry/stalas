@@ -146,6 +146,7 @@ ithome.com##IFRAME.dajia
 gamersky.com##DIV.bdshare-slide-button-box
 gamersky.com##DIV.Mid2_R
 
+pan.baidu.com##.phone-banner
 pan.baidu.com##DL.module-hot-rec
 
 okta.com##SPAN.input-tooltip
