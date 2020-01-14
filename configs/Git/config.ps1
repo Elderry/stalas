@@ -6,4 +6,4 @@ if ($IsWindows) {
 }
 Set-Content '~/.gitconfig' $content
 
-[Environment]::SetEnvironmentVariable('GIT_SSH', 'C:/Windows/System32/OpenSSH/ssh.exe', 'User')
+[Environment]::SetEnvironmentVariable('GIT_SSH', 'C:/Program Files/OpenSSH-Win64/ssh.exe', 'User')

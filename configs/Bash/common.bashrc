@@ -1,7 +1,7 @@
 
 ### Common configuration ###
 
-# Alias
+# Aliases
 alias config='<stalas path>/config.sh'
 
 # Maven
