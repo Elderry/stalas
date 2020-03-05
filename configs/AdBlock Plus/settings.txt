@@ -119,6 +119,8 @@ s.taobao.com##DIV.grid-right
 tmall.com##DIV#p4p_ad
 tmall.com##DIV.ald
 tmall.com##DIV.banner
+tmall.com##DIV.comboHd
+tmall.com##DIV.comboHd~DIV
 tmall.com##DIV.mui-mbar-outer
 tmall.com##DIV.tm-layout
 tmall.com##DIV.tshop-psm-shop-ww-hover
@@ -152,3 +154,5 @@ pan.baidu.com##DL.module-hot-rec
 okta.com##SPAN.input-tooltip
 
 zhihu.com##DIV.Pc-word
+
+taotujie.biz##DIV#it_an

@@ -19,10 +19,12 @@ if ($IsWindows) {
     [Environment]::SetEnvironmentVariable('MAVEN_OPTS', $opts, 'User')
     [Environment]::SetEnvironmentVariable('SBT_OPTS', $opts, 'User')
     [Environment]::SetEnvironmentVariable('GRAILS_OPTS', $opts, 'User')
+    [Environment]::SetEnvironmentVariable('GRADLE_OPTS', $opts, 'User')
 } elseif ($IsMacOS) {
     [Environment]::SetEnvironmentVariable('MAVEN_OPTS', $opts)
     [Environment]::SetEnvironmentVariable('SBT_OPTS', $opts)
     [Environment]::SetEnvironmentVariable('GRAILS_OPTS', $opts)
+    [Environment]::SetEnvironmentVariable('GRADLE_OPTS', $opts)
 
     (Get-Content '~/.bash_profile') `
         -replace '~', (Resolve-Path '~').Path `
@@ -33,6 +35,7 @@ if ($IsWindows) {
     [Environment]::SetEnvironmentVariable('MAVEN_OPTS', $opts)
     [Environment]::SetEnvironmentVariable('SBT_OPTS', $opts)
     [Environment]::SetEnvironmentVariable('GRAILS_OPTS', $opts)
+    [Environment]::SetEnvironmentVariable('GRADLE_OPTS', $opts)
     (Get-Content '~/.bashrc') `
         -replace '~', (Resolve-Path '~').Path `
         -replace '\w+@.+\.pfx', "$mail.pfx" `
