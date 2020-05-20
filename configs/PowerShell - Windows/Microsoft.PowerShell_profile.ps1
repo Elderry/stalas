@@ -119,10 +119,6 @@ Set-PSReadLineOption -Colors @{
     'ContinuationPrompt' = [ConsoleColor]::DarkMagenta
 }
 
-if ((Get-Service ssh-agent).Status -ne 'Running') {
-    ssh-agent
-}
-
 function IsAdmin {
     $identity = [Security.Principal.WindowsIdentity]::GetCurrent()
     $principal = [Security.Principal.WindowsPrincipal] $identity
@@ -143,7 +139,7 @@ function prompt {
     Write-Host '' -ForegroundColor $DirectoryBackgroundColor
 
     # User
-    $user = " $Env:USERNAME@$((Get-Culture).TextInfo.ToTitleCase($env:USERDOMAIN.ToLower())) "
+    $user = " $Env:USERNAME@$((Get-Culture).TextInfo.ToTitleCase($env:COMPUTERNAME.ToLower())) "
     Write-Host $user -ForegroundColor 'White' -BackgroundColor $UserBackgroundColor -NoNewline
     Write-Host '' -ForegroundColor $UserBackgroundColor -BackgroundColor $HostBackgroundColor -NoNewline
 

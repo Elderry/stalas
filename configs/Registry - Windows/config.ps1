@@ -17,6 +17,7 @@ Remove-Registry 'HKCR:\.rtf\ShellNew'
 Remove-Registry 'HKCR:\.zip\ShellNew'
 Remove-Registry 'HKCR:\.accdb\Access.Application.16\ShellNew'
 Remove-Registry 'HKCR:\.mdb\ShellNew'
+Remove-Registry 'HKCR:\.pub\Publisher.Document.16\ShellNew'
 
 # Baidu Yun
 Remove-Registry 'HKCR:\*\shellex\ContextMenuHandlers\YunShellExt'
