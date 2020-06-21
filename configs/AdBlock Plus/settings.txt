@@ -155,4 +155,4 @@ okta.com##SPAN.input-tooltip
 
 zhihu.com##DIV.Pc-word
 
-taotujie.biz##DIV#it_an
+taotujie.*##DIV#it_an

@@ -2,14 +2,9 @@ param (
     [ValidateSet(
         'Console',
         'PowerShell',
-        'Visual Studio Code',
         'Bash',
-        'Hyper',
         'Registry',
         'SSH',
-        'Maven',
-        'Java',
-        'Docker',
         'Git')]
     [string] $target
 )

@@ -1,13 +1,12 @@
-. "$PSScriptRoot/../common.ps1"
-
-Validate-OneDrive-Path
-if(!$IsWindows) {
-    chmod 600 "$oneDrive/Collections/AppBackup/SSH/lry_rsa"
+if (!$Env:OneDrive) {
+    Write-Error 'Please set valid environment variable: [OneDrive].'
+    exit
 }
 
-(Get-Content "$PSScriptRoot/config") -replace '<onedrive path>', $oneDrive |
+if (!(Test-Path "$Env:HOME/.ssh")) {
+    Write-Warning 'Directory [~/.ssh] doesn''t exist, creating...'
+    New-Item -Type 'Directory' "$Env:Home/.ssh"
+}
+
+(Get-Content "$PSScriptRoot/config") -replace '<onedrive path>', $Env:OneDrive |
     Set-Content "$Env:HOME/.ssh/config"
-
-if(!$IsWindows) {
-    chmod 600 "$Env:HOME/.ssh/config"
-}
