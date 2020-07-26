@@ -136,15 +136,6 @@ detail.tmall.com##DIV.J_TModule
 trade.tmall.com##DIV.ald-row1
 trade.tmall.com##DIV.banner-ext
 
-ithome.com##DIV#hd_float
-ithome.com##DIV#side_func
-ithome.com##DIV#tt50
-ithome.com##DIV.shareto
-ithome.com##DIV.sidebar
-ithome.com##DIV.rela-post
-ithome.com##DIV.related_post
-ithome.com##IFRAME.dajia
-
 gamersky.com##DIV.bdshare-slide-button-box
 gamersky.com##DIV.Mid2_R
 

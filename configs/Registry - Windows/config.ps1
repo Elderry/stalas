@@ -20,6 +20,7 @@ Remove-Registry 'HKCR:\.mdb\ShellNew'
 Remove-Registry 'HKCR:\.pub\Publisher.Document.16\ShellNew'
 
 # Baidu Yun
+# 百度网盘
 Remove-Registry 'HKCR:\*\shellex\ContextMenuHandlers\YunShellExt'
 Remove-Registry 'HKCR:\Directory\shellex\ContextMenuHandlers\YunShellExt'
 
@@ -38,3 +39,8 @@ Remove-Registry 'HKCU:\Console\Git CMD'
 # Visual Studio
 Remove-Registry 'HKCR:\Directory\Background\shell\AnyCode'
 Remove-Registry 'HKCR:\Directory\shell\AnyCode'
+
+# QQ Music
+# QQ 音乐
+Remove-Registry 'HKCR:\Directory\shell\QQMusic.1.Play'
+Remove-Registry 'HKCR:\Directory\shell\QQMusic.2.Add'
