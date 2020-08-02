@@ -146,4 +146,9 @@ okta.com##SPAN.input-tooltip
 
 zhihu.com##DIV.Pc-word
 
-taotujie.*##DIV#it_an
+ithome.com##DIV#cp
+ithome.com##DIV#p-b
+ithome.com##DIV#tt
+ithome.com##DIV.bl.bb
+
+taotutaotu.com##DIV#it_an
