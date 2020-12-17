@@ -1,15 +1,15 @@
 # Windows Console Settings
-# Author   : Elderry
+# Author    : Elderry
 # References: https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-2000-server/cc978570(v=technet.10),
 #             https://docs.microsoft.com/en-us/windows-server/get-started/whats-new-in-console
-#             https://msdn.microsoft.com/en-us/library/dd891381.aspx
-#             https://blogs.msdn.microsoft.com/commandline/2017/06/20/understanding-windows-console-host-settings/
+#             https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-shllink/e6b432b4-5a49-4826-9c25-e28695e8dd0c
+#             https://devblogs.microsoft.com/commandline/understanding-windows-console-host-settings/
 
 # Defines the colors in the color well on the Colors tab of the console Properties or Defaults dialog box.
 # Each of the 16 ColorTable x entries corresponds to one of the registry entries ColorTable00-ColorTable15.
 # References: https://blogs.msdn.microsoft.com/commandline/2017/08/02/updating-the-windows-console-colors/ (default),
-#             https://github.com/Microsoft/vscode/blob/master/src/vs/workbench/parts/terminal/common/terminalColorRegistry.ts (vscode)
-#             Committed on Sep 14, 2018
+#             https://github.com/microsoft/vscode/blob/master/src/vs/workbench/contrib/terminal/common/terminalColorRegistry.ts (vscode)
+#             Committed on Mar 27, 2020
 #            'BBGGRR' (original value commented)
 Black      : '0C0C0C' # Black
 DarkBlue   : 'DA3700' # Blue
@@ -52,11 +52,22 @@ FaceName: Sarasa Mono SC
 # 'True' enables all new console features; 'false' disables all new features.
 ForceV2: true
 
-# Specifies the font family of the font used in the command window.
-# The values for the font family are shown in:
-# https://msdn.microsoft.com/en-us/library/dd891381.aspx
-# 54 = 0x36 = 0x30(fixed width) + 0x04(true type) + 0x02(vector font)
-FontFamily: 54
+# Specifies the family of the font used in the console window. The values for the font family are:
+# 'dontCare'  : The font family is unknown.
+# 'roman'     : The font is variable-width with serifs; for example, "Times New Roman".
+# 'swiss'     : The font is variable-width without serifs; for example, "Arial".
+# 'modern'    : The font is fixed-width, with or without serifs; for example, "Courier New".
+# 'script'    : The font is designed to look like handwriting; for example, "Cursive".
+# 'decorative': The font is a novelty font; for example, "Old English".
+FontFamily.Family: modern
+# Specifies the font is a fixed-pitch font or does not apply any.
+FontFamily.Pitch: false
+# Specifies the font is a vector font.
+FontFamily.Vector: true
+# Specifies the font is a true-type font.
+FontFamily.TrueType: true
+# Specifies the font is specific to the device.
+FontFamily.Device: false
 
 # Specifies the size of the font used in the command window.
 FontSize: 22

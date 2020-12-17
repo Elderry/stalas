@@ -22,6 +22,13 @@ $config = @{}
             $config.Add('ColorTable' + ('{0:D2}' -f $colorTable.IndexOf($name)), '0X' + $value -as [int])
         }
         'CursorSize' { $config.Add($name, $(switch ($value) { 'small' { 25 } 'medium' { 50 } 'large' { 100 } })) }
+        'FontFamily.Family' { $config.FontFamily += $(switch ($value) {
+            'dontCare' { 0 } 'roman' { 0x10 } 'swiss' { 0x20 } 'modern' { 0x30 } 'script' { 0x40 } 'decorative' { 0x50 }
+        })}
+        'FontFamily.Pitch' { if ($value) { $config.FontFamily += 1 }}
+        'FontFamily.Vector' { if ($value) { $config.FontFamily += 2 }}
+        'FontFamily.TrueType' { if ($value) { $config.FontFamily += 4 }}
+        'FontFamily.Device' { if ($value) { $config.FontFamily += 8 }}
         'FontSize' { $config.FontSize = $value * 65536 }
         'ScreenBufferSize.Lines' { $config.ScreenBufferSize += $value * 65536 }
         'ScreenBufferSize.Columns' { $config.ScreenBufferSize += $value }
@@ -50,12 +57,12 @@ function Remove-Registry([String] $path) {
     if (Test-Path -LiteralPath $path) { Remove-Item -LiteralPath $path -Recurse }
 }
 
+# Clean specific configuration for each console exe.
 $consolePath = 'HKCU:/Console'
-Remove-Registry "$consolePath/%SystemRoot%_System32_cmd.exe"
-Remove-Registry "$consolePath/%SystemRoot%_System32_WindowsPowerShell_v1.0_powershell.exe"
-Remove-Registry "$consolePath/%SystemRoot%_SysWOW64_WindowsPowerShell_v1.0_powershell.exe"
-Remove-Registry "$consolePath/%SystemRoot%_sysnative_WindowsPowerShell_v1.0_powershell.exe"
-Remove-Registry "$consolePath/C:_Program Files_PowerShell_6_pwsh.exe"
+Get-ChildItem $consolePath | ForEach-Object {
+    $path = $_.Name -replace 'HKEY_CURRENT_USER', 'HKCU:'
+    Remove-Item -LiteralPath $path -Recurse
+}
 
 $config.GetEnumerator() | ForEach-Object {
 
@@ -102,7 +109,3 @@ Set-Shortcut "$desktop/$pwshNativeShortcut" $pwshNativePath
 Set-Shortcut "$desktop/$pwshNativeAdminShortcut" $pwshNativePath -RequireAdmin
 Set-Shortcut "$desktop/$cmdShortcut" $cmdPath
 Set-Shortcut "$desktop/$cmdAdminShortcut" $cmdPath -RequireAdmin
-
-Get-ChildItem $desktop |
-    Where-Object { $_.Name -Match '`\w+\.lnk' } |
-    ForEach-Object { Update-Shortcut $_.FullName }

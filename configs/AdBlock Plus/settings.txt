@@ -147,7 +147,7 @@ okta.com##SPAN.input-tooltip
 zhihu.com##DIV.Pc-word
 
 ithome.com##DIV#cp
-ithome.com##DIV#p-b
+ithome.com##DIV#side_func
 ithome.com##DIV#tt
 ithome.com##DIV.bl.bb
 
