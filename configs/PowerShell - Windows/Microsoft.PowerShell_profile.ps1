@@ -1,5 +1,9 @@
+<#
+.SYNOPSIS
+Personal PowerShell profile for Elderry.
+#>
+
 # Custom Variables
-Set-Alias au '~/Projects/Personal/chocolatey-packages/update_all.ps1'
 Set-Alias aphro '~/Projects/Personal/Aphrodite/Aphrodite/bin/Release/netcoreapp3.1/win10-x64/Aphrodite.exe'
 Set-Alias config '~/Projects/Personal/stalas/config.ps1'
 
@@ -57,33 +61,11 @@ function Flatten-Files {
         Remove-Item $_.Name -Recurse
     }
 }
-function Compress-Images([switch] $Recurse) {
-    if ($Recurse) {
-        Get-ChildItem -Directory | ForEach-Object {
-            Set-Location -LiteralPath $_.Name
-            Compress-Images -Recurse
-            Convert-Images
-            Set-Location ..
-        }
-    }
-    if (-not (Get-ChildItem -Filter *.jpg)) { return }
-    magick mogrify -monitor -strip -quality 85% *.jpg
-    Convert-Images
-}
-function Convert-Images {
-    if (-not (Get-ChildItem -Filter *.png)) { return }
-    magick mogrify -monitor -format jpg *.png
-    Remove-Item *.png
-}
 
 # Modules
 if (!$global:GitPromptSettings) { Import-Module 'posh-git' }
 $global:GitPromptSettings.BeforeText = ' ['
 $global:GitPromptSettings.AfterText  = '] '
-
-$DirectoryBackgroundColor = [ConsoleColor]::Blue
-$UserBackgroundColor      = [ConsoleColor]::Green
-$HostBackgroundColor      = [ConsoleColor]::Magenta
 
 $GitBackgroundColor = [ConsoleColor]::DarkBlue
 $global:GitPromptSettings.BeforeBackgroundColor = $GitBackgroundColor
@@ -125,6 +107,9 @@ function IsAdmin {
     return $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
 }
 
+$DirectoryBackgroundColor = [ConsoleColor]::Blue
+$UserBackgroundColor      = [ConsoleColor]::Green
+$HostBackgroundColor      = [ConsoleColor]::Magenta
 function prompt {
 
     # Git

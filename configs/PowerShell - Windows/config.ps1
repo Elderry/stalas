@@ -1,9 +1,13 @@
-$profile = "$PSScriptRoot/Microsoft.PowerShell_profile.ps1"
-$content = (Get-Content $profile) -replace '\s+#\[Windows\]' -notmatch '\s+#\[macOS\]'
+<#
+.SYNOPSIS
+Configure operation for Windows PowerShell.
+#>
+
 $coreDir = '~/Documents/PowerShell'
 $nativeDir = '~/Documents/WindowsPowerShell'
+New-Item -ItemType 'directory' ($coreDir, $nativeDir) -Force | Out-Null
+
+$content = Get-Content "$PSScriptRoot/Microsoft.PowerShell_profile.ps1"
 $core = "$coreDir/Microsoft.PowerShell_profile.ps1"
 $native = "$nativeDir/Microsoft.PowerShell_profile.ps1" 
-New-Item -ItemType 'directory' $coreDir -Force | Out-Null
-New-Item -ItemType 'directory' $nativeDir -Force | Out-Null
 Set-Content ($core, $native) $content
