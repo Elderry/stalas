@@ -4,10 +4,10 @@ Configure operation for Windows PowerShell.
 #>
 
 $coreDir = '~/Documents/PowerShell'
+if (!(Test-Path $coreDir)) { New-Item -ItemType 'Directory' $coreDir }
 $nativeDir = '~/Documents/WindowsPowerShell'
-New-Item -ItemType 'directory' ($coreDir, $nativeDir) -Force | Out-Null
+if (!(Test-Path $nativeDir)) { New-Item -ItemType 'Directory' $nativeDir }
 
-$content = Get-Content "$PSScriptRoot/Microsoft.PowerShell_profile.ps1"
-$core = "$coreDir/Microsoft.PowerShell_profile.ps1"
-$native = "$nativeDir/Microsoft.PowerShell_profile.ps1" 
-Set-Content ($core, $native) $content
+$profileName = 'Microsoft.PowerShell_profile.ps1'
+$content = Get-Content "$PSScriptRoot/$profileName"
+Set-Content ("$coreDir/$profileName", "$nativeDir/$profileName") $content
