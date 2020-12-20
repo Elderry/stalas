@@ -57,13 +57,7 @@ function Remove-Registry([String] $path) {
     if (Test-Path -LiteralPath $path) { Remove-Item -LiteralPath $path -Recurse }
 }
 
-# Clean specific configuration for each console exe.
-$consolePath = 'HKCU:/Console'
-Get-ChildItem $consolePath | ForEach-Object {
-    $path = $_.Name -replace 'HKEY_CURRENT_USER', 'HKCU:'
-    Remove-Item -LiteralPath $path -Recurse
-}
-
+Remove-Item -Path 'HKCU:/Console/*' -Recurse
 $config.GetEnumerator() | ForEach-Object {
 
     $name = $_.Name
@@ -72,7 +66,7 @@ $config.GetEnumerator() | ForEach-Object {
         { $_ -is [int] -or $_ -is [bool] } { $type = 'Dword' }
         { $_ -is [string] } { $type = 'String' }
     }
-    Set-Registry $consolePath $name $value $type
+    Set-Registry 'HKCU:/Console' $name $value $type
 }
 
 function Set-Shortcut([string] $Path, [string] $Target, [switch] $RequireAdmin) {
