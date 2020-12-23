@@ -4,7 +4,6 @@ Personal PowerShell profile for Elderry.
 #>
 
 # Custom Variables
-Set-Alias aphro '~/Projects/Personal/Aphrodite/Aphrodite/bin/Release/netcoreapp3.1/win10-x64/Aphrodite.exe'
 Set-Alias config '~/Projects/Personal/stalas/config.ps1'
 
 # Custom Commands
@@ -47,18 +46,6 @@ function git_push {
     if ($first_try[3] -Match '^\s*(git push --set-upstream origin \S+)$') {
         Write-Host "The push is recoverable, going to retry..."
         Invoke-Expression $Matches[1]
-    }
-}
-function Flatten-Files {
-    Get-ChildItem -Recurse -File | ForEach-Object {
-        if ((Test-Path -LiteralPath $_.Name) -and ($_.Directory.FullName -ne $PWD)) {
-            Move-Item -LiteralPath $_.FullName -Destination "$PWD/$($_.Directory.Name) - $($_.Name)"
-        } else {
-            Move-Item -LiteralPath $_.FullName -Destination "$PWD/$($_.Name)"
-        }
-    }
-    Get-ChildItem -Directory | ForEach-Object {
-        Remove-Item $_.Name -Recurse
     }
 }
 
