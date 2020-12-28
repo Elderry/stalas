@@ -6,48 +6,9 @@ Personal PowerShell profile for Elderry.
 # Custom Variables
 Set-Alias config '~/Projects/Personal/stalas/config.ps1'
 
-# Custom Commands
+# *nux like ls
 Remove-Item Alias:ls
 function ls { Get-ChildItem | Format-Wide -AutoSize -Property 'Name' }
-function git_drop {
-    git reset --hard
-    git clean -fd
-}
-function git_prune {
-    $branches = git branch -l |
-        ForEach-Object { $_.Trim() } |
-        Where-Object { -Not $_.StartsWith('*') } |
-        Where-Object { $_ -ne 'master' }
-    if ($branches.Length -eq 0) {
-        Write-Host 'No branch is going to be deleted.'
-        return
-    }
-    Write-Host 'Going to ' -NoNewline
-    Write-Host 'delete' -ForegroundColor 'Red' -NoNewline
-    Write-Host ' these branches:'
-    Write-Host $branches
-    $choice = Read-Host '[Y]es or [N]o?'
-    if ($choice -eq 'y') {
-        foreach ($branch in $branches) {
-            git branch -D $branch
-        }
-    }
-}
-function git_open {
-    (git remote get-url origin) -match ':(.+)\.' | Out-Null
-    $path = $Matches[1]
-    (git branch | Where-Object { $_.StartsWith('*') }) -match '\* ([\w-]+)' | Out-Null
-    $branch = $Matches[1]
-    Start-Process "https://github.com/$path/tree/$branch"
-}
-function git_push {
-    $first_try = & git push 2>&1
-    Write-Host $first_try -Separator "`n"
-    if ($first_try[3] -Match '^\s*(git push --set-upstream origin \S+)$') {
-        Write-Host "The push is recoverable, going to retry..."
-        Invoke-Expression $Matches[1]
-    }
-}
 
 # Modules
 if (!$global:GitPromptSettings) { Import-Module 'posh-git' }
@@ -94,31 +55,29 @@ function IsAdmin {
     return $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
 }
 
-$DirectoryBackgroundColor = [ConsoleColor]::Blue
-$UserBackgroundColor      = [ConsoleColor]::Green
-$HostBackgroundColor      = [ConsoleColor]::Magenta
+# Reference: https://en.wikipedia.org/wiki/ANSI_escape_code#Colors
+$DarkBlueOnBlue = "`e[34;104m"
+$WhiteOnBlue    = "`e[97;104m"
+$BlueOnWhite    = "`e[94;107m"
+$WhiteOnGreen   = "`e[97;102m"
+$GreenOnMagenta = "`e[92;105m"
+$WhiteOnMagenta = "`e[97;105m"
+$MagentaOnWhite = "`e[95;107m"
+$Reset          = "`e[0m"
 function prompt {
 
     # Git
     Write-VcsStatus
-    if (Get-GitDirectory) {
-        Write-Host '' -ForegroundColor $GitBackgroundColor -BackgroundColor $DirectoryBackgroundColor -NoNewline
-    }
+    if (Get-GitDirectory) { Write-Host "$DarkBlueOnBlue" -NoNewline }
 
     # Path
-    $path = " $($PWD.Path -replace ($HOME -replace '\\', '\\'), '~' -replace '\\', '/') "
-    Write-Host $path -ForegroundColor 'White' -BackgroundColor $DirectoryBackgroundColor -NoNewline
-    Write-Host '' -ForegroundColor $DirectoryBackgroundColor
+    $path = "$($PWD.Path -replace ($HOME -replace '\\', '\\'), '~' -replace '\\', '/')"
+    Write-Host "$WhiteOnBlue $path $BlueOnWhite"
 
-    # User
-    $user = " $Env:USERNAME@$((Get-Culture).TextInfo.ToTitleCase($env:COMPUTERNAME.ToLower())) "
-    Write-Host $user -ForegroundColor 'White' -BackgroundColor $UserBackgroundColor -NoNewline
-    Write-Host '' -ForegroundColor $UserBackgroundColor -BackgroundColor $HostBackgroundColor -NoNewline
-
-    # Host symbol
+    # User and symbol
+    $user = "$Env:USERNAME@$((Get-Culture).TextInfo.ToTitleCase($env:COMPUTERNAME.ToLower()))"
     $symbol = if (IsAdmin) { '#' } else { '$' }
-    Write-Host " $symbol " -ForegroundColor 'White' -BackgroundColor $HostBackgroundColor -NoNewline
-    Write-Host '' -ForegroundColor $HostBackgroundColor -NoNewline
+    Write-Host "$WhiteOnGreen $user $GreenOnMagenta$WhiteOnMagenta $symbol $MagentaOnWhite$Reset" -NoNewline
 
     return ' '
 }
