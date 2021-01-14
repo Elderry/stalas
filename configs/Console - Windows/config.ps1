@@ -9,9 +9,14 @@ $cmdShortcut = 'CD.lnk'
 $cmdAdminShortcut = 'CDA.lnk'
 
 $colorTable = (
-    "Black", "DarkBlue", "DarkGreen", "DarkCyan", "DarkRed", "DarkMagenta", "DarkYellow", "Gray", "DarkGray", "Blue",
-    "Green", "Cyan", "Red", "Magenta", "Yellow", "White"
+    "Black", "DarkBlue", "DarkGreen", "DarkCyan", "DarkRed", "DarkMagenta", "DarkYellow", "DarkWhite", "BrightBlack",
+    "BrightBlue", "BrightGreen", "BrightCyan", "BrightRed", "BrightMagenta", "BrightYellow", "White"
 )
+
+function Convert-BGRString([string] $BGR) {
+    $RGB = $BGR.Substring(4, 2) + $BGR.Substring(2, 2) + $BGR.Substring(0, 2)
+    return '0X' + $RGB -as [int]
+}
 
 $config = @{}
 (Get-Content "$PSScriptRoot/settings.yml" -Raw | ConvertFrom-Yaml).GetEnumerator() | ForEach-Object {
@@ -19,7 +24,7 @@ $config = @{}
     $value = $_.Value
     switch ($name) {
         { $colorTable.Contains($name) } {
-            $config.Add('ColorTable' + ('{0:D2}' -f $colorTable.IndexOf($name)), '0X' + $value -as [int])
+            $config.Add('ColorTable' + ('{0:D2}' -f $colorTable.IndexOf($name)), (Convert-BGRString $value))
         }
         'CursorSize' { $config.Add($name, $(switch ($value) { 'small' { 25 } 'medium' { 50 } 'large' { 100 } })) }
         'FontFamily.Family' { $config.FontFamily += $(switch ($value) {
@@ -57,8 +62,10 @@ function Remove-Registry([String] $path) {
     if (Test-Path -LiteralPath $path) { Remove-Item -LiteralPath $path -Recurse }
 }
 
-Remove-Item -Path 'HKCU:/Console/*' -Recurse
-$config.GetEnumerator() | ForEach-Object {
+$HKCU_Console = 'HKCU:/Console'
+Remove-Item -Path "$HKCU_Console/*" -Recurse
+Remove-ItemProperty -Path $HKCU_Console -Name '*'
+$config.GetEnumerator().ForEach({
 
     $name = $_.Name
     $value = $_.Value
@@ -66,16 +73,14 @@ $config.GetEnumerator() | ForEach-Object {
         { $_ -is [int] -or $_ -is [bool] } { $type = 'Dword' }
         { $_ -is [string] } { $type = 'String' }
     }
-    Set-Registry 'HKCU:/Console' $name $value $type
-}
+    Set-Registry $HKCU_Console $name $value $type
+})
 
 function Set-Shortcut([string] $Path, [string] $Target, [switch] $RequireAdmin) {
 
     $shortcut = $(New-Object -ComObject 'WScript.Shell').CreateShortcut($Path)
     $shortcut.TargetPath = $Target
     $shortcut.WorkingDirectory = $Home
-    # Icon location has to be specifically determined because otherwise PowerShell Core will fail to display it.
-    $shortcut.IconLocation = "$Target, 0"
     $shortcut.Save()
 
     if ($RequireAdmin) {
@@ -85,7 +90,7 @@ function Set-Shortcut([string] $Path, [string] $Target, [switch] $RequireAdmin) 
     }
 }
 
-$pwshPath = "$PSHOME/pwsh.exe"
+$pwshPath = '%USERPROFILE%/AppData/Local/Microsoft/WindowsApps/pwsh.exe'
 $pwshNativePath = "$Env:SystemRoot/System32/WindowsPowerShell/v1.0/powershell.exe"
 $cmdPath = "$Env:SystemRoot/System32/cmd.exe"
 

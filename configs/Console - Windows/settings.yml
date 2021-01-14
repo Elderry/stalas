@@ -7,26 +7,25 @@
 
 # Defines the colors in the color well on the Colors tab of the console Properties or Defaults dialog box.
 # Each of the 16 ColorTable x entries corresponds to one of the registry entries ColorTable00-ColorTable15.
-# References: https://blogs.msdn.microsoft.com/commandline/2017/08/02/updating-the-windows-console-colors/ (default),
-#             https://github.com/microsoft/vscode/blob/master/src/vs/workbench/contrib/terminal/common/terminalColorRegistry.ts (vscode)
-#             Committed on Mar 27, 2020
-#            'BBGGRR' (original value commented)
-Black      : '0C0C0C' # Black
-DarkBlue   : 'DA3700' # Blue
-DarkGreen  : '0EA113' # Green
-DarkCyan   : 'DD963A' # Cyan
-DarkRed    : '1F0FC5' # Red
-DarkMagenta: '981788' # Magenta
-DarkYellow : '009CC1' # Yellow
-Gray       : 'CCCCCC' # 767676 DarkWhite
-DarkGray   : '767676' # CCCCCC BrightBlack
-Blue       : 'FF783B' # BrightBlue
-Green      : '0CC616' # BrightGreen
-Cyan       : 'D6D661' # BrightCyan
-Red        : '5648E7' # BrightRed
-Magenta    : '9E00B4' # BrightMagenta
-Yellow     : '00BAB5' # A5F1F9 BrightYellow
-White      : 'F2F2F2' # White
+# References: https://devblogs.microsoft.com/commandline/updating-the-windows-console-colors/ (default)
+#             https://github.com/microsoft/terminal/blob/main/src/cascadia/TerminalSettingsModel/defaults.json#L166 (One Half Light)
+#             Committed on Dec 16, 2020
+Black        : '383A42'
+DarkBlue     : '0184BC'
+DarkGreen    : '50A14F'
+DarkCyan     : '0997B3'
+DarkRed      : 'E45649'
+DarkMagenta  : 'A626A4'
+DarkYellow   : 'C18301'
+DarkWhite    : 'FAFAFA'
+BrightBlack  : '4F525D'
+BrightBlue   : '61AFEF'
+BrightGreen  : '98C379'
+BrightCyan   : '56B5C1'
+BrightRed    : 'DF6C75'
+BrightMagenta: 'C577DD'
+BrightYellow : 'E4C07A'
+White        : 'FFFFFF'
 
 # 'false' enables new key shortcuts; 'true' disables them.
 CtrlKeyShortcutsDisabled: false
