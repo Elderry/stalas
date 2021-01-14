@@ -1,12 +1,12 @@
 Import-Module powershell-yaml
 
 $desktop = "$Home/OneDrive/Collections/AppBackup/Desktop"
-$pwshShortcut = 'PS.lnk'
-$pwshAdminShortcut = 'PSA.lnk'
-$pwshNativeShortcut = 'PN.lnk'
-$pwshNativeAdminShortcut = 'PNA.lnk'
-$cmdShortcut = 'CD.lnk'
-$cmdAdminShortcut = 'CDA.lnk'
+$PwshShortcut = 'PS.lnk'
+$PwshAdminShortcut = 'PSA.lnk'
+$PwshNativeShortcut = 'PN.lnk'
+$PwshNativeAdminShortcut = 'PNA.lnk'
+$CmdShortcut = 'CD.lnk'
+$CmdAdminShortcut = 'CDA.lnk'
 
 $colorTable = (
     "Black", "DarkBlue", "DarkGreen", "DarkCyan", "DarkRed", "DarkMagenta", "DarkYellow", "DarkWhite", "BrightBlack",
@@ -76,12 +76,15 @@ $config.GetEnumerator().ForEach({
     Set-Registry $HKCU_Console $name $value $type
 })
 
-function Set-Shortcut([string] $Path, [string] $Target, [switch] $RequireAdmin) {
+function Set-Shortcut([string] $Path, [string] $Target, [string] $IconLocation, [switch] $RequireAdmin) {
 
-    $shortcut = $(New-Object -ComObject 'WScript.Shell').CreateShortcut($Path)
-    $shortcut.TargetPath = $Target
-    $shortcut.WorkingDirectory = $Home
-    $shortcut.Save()
+    if (Test-Path $Path) { Remove-Item $Path }
+
+    $Shortcut = $(New-Object -ComObject 'WScript.Shell').CreateShortcut($Path)
+    $Shortcut.TargetPath = $Target
+    $Shortcut.WorkingDirectory = '%USERPROFILE%'
+    if ($IconLocation) { $Shortcut.IconLocation = $IconLocation }
+    $Shortcut.Save()
 
     if ($RequireAdmin) {
         $bytes = [System.IO.File]::ReadAllBytes($Path)
@@ -90,21 +93,14 @@ function Set-Shortcut([string] $Path, [string] $Target, [switch] $RequireAdmin) 
     }
 }
 
-$pwshPath = '%USERPROFILE%/AppData/Local/Microsoft/WindowsApps/pwsh.exe'
-$pwshNativePath = "$Env:SystemRoot/System32/WindowsPowerShell/v1.0/powershell.exe"
-$cmdPath = "$Env:SystemRoot/System32/cmd.exe"
+$PwshPath = '%USERPROFILE%/AppData/Local/Microsoft/WindowsApps/pwsh.exe'
+$PwshIcon = '%USERPROFILE%/OneDrive/Collections/AppBackup/Desktop/Resources/PS.exe, 0'
+$PwshNativePath = '%SYSTEMROOT%/System32/WindowsPowerShell/v1.0/powershell.exe'
+$CmdPath = '%SYSTEMROOT%/System32/cmd.exe'
 
-function Update-Shortcut([string] $Path) {
-    $shortcut = $(New-Object -ComObject 'WScript.Shell').CreateShortcut($Path)
-    $target = $pwshPath
-    if ($shortcut.TargetPath -eq $target) { return }
-    $shortcut.TargetPath = $target
-    $shortcut.Save()
-}
-
-Set-Shortcut "$desktop/$pwshShortcut" $pwshPath
-Set-Shortcut "$desktop/$pwshAdminShortcut" $pwshPath -RequireAdmin
-Set-Shortcut "$desktop/$pwshNativeShortcut" $pwshNativePath
-Set-Shortcut "$desktop/$pwshNativeAdminShortcut" $pwshNativePath -RequireAdmin
-Set-Shortcut "$desktop/$cmdShortcut" $cmdPath
-Set-Shortcut "$desktop/$cmdAdminShortcut" $cmdPath -RequireAdmin
+Set-Shortcut "$desktop/$PwshShortcut" $PwshPath $PwshIcon
+Set-Shortcut "$desktop/$PwshAdminShortcut" $PwshPath $PwshIcon -RequireAdmin
+Set-Shortcut "$desktop/$PwshNativeShortcut" $PwshNativePath
+Set-Shortcut "$desktop/$PwshNativeAdminShortcut" $PwshNativePath -RequireAdmin
+Set-Shortcut "$desktop/$CmdShortcut" $CmdPath
+Set-Shortcut "$desktop/$CmdAdminShortcut" $CmdPath -RequireAdmin
