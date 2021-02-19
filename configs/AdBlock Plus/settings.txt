@@ -2,7 +2,7 @@
 ! Title: Elderry's List
 ! Expires: 1 days
 ! Homepage: https://github.com/Elderry/stalas/blob/master/configs/AdBlock%20Plus/settings.txt
-!
+! Syntax reference: https://help.eyeo.com/adblockplus/how-to-write-filters
 
 @@||atlassian.*/$document
 @@||github.com/$document
@@ -140,6 +140,14 @@ gamersky.com##DIV.bdshare-slide-button-box
 gamersky.com##DIV.Mid2_R
 
 pan.baidu.com##.phone-banner
+! 顶栏 VIP 诱导延长按钮
+pan.baidu.com##DD.gOIbzPb
+! 侧边栏多平台客户端下载按钮
+pan.baidu.com##DIV.feNMdtb
+! 侧边栏扩容按钮
+pan.baidu.com##DIV.GELdyA
+! 侧边栏功能广告
+pan.baidu.com##DIV.wp-side-options
 pan.baidu.com##DL.module-hot-rec
 
 okta.com##SPAN.input-tooltip
