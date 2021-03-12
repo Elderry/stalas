@@ -11,36 +11,34 @@ Remove-Item Alias:ls
 function ls { Get-ChildItem | Format-Wide -AutoSize -Property 'Name' }
 
 # Modules
-if (!$global:GitPromptSettings) { Import-Module 'posh-git' }
-$global:GitPromptSettings.BeforeText = ' ['
-$global:GitPromptSettings.AfterText  = '] '
+if (!$GitPromptSettings) { Import-Module 'posh-git' }
+$GitPromptSettings.AfterStatus.Text = '] '
 
 $GitBackgroundColor = [ConsoleColor]::DarkBlue
-$global:GitPromptSettings.BeforeBackgroundColor = $GitBackgroundColor
-$global:GitPromptSettings.DelimBackgroundColor = $GitBackgroundColor
-$global:GitPromptSettings.AfterBackgroundColor = $GitBackgroundColor
-$global:GitPromptSettings.LocalDefaultStatusBackgroundColor = $GitBackgroundColor
-$global:GitPromptSettings.LocalWorkingStatusBackgroundColor = $GitBackgroundColor
-$global:GitPromptSettings.LocalStagedStatusBackgroundColor = $GitBackgroundColor
-$global:GitPromptSettings.BranchBackgroundColor = $GitBackgroundColor
-$global:GitPromptSettings.BranchGoneStatusBackgroundColor = $GitBackgroundColor
-$global:GitPromptSettings.BranchIdenticalStatusToBackgroundColor = $GitBackgroundColor
-$global:GitPromptSettings.BranchAheadStatusBackgroundColor = $GitBackgroundColor
-$global:GitPromptSettings.BranchBehindStatusBackgroundColor = $GitBackgroundColor
-$global:GitPromptSettings.BranchBehindAndAheadStatusBackgroundColor = $GitBackgroundColor
-$global:GitPromptSettings.BeforeIndexBackgroundColor = $GitBackgroundColor
-$global:GitPromptSettings.IndexBackgroundColor = $GitBackgroundColor
-$global:GitPromptSettings.WorkingBackgroundColor = $GitBackgroundColor
-$global:GitPromptSettings.BeforeStashBackgroundColor = $GitBackgroundColor
-$global:GitPromptSettings.AfterStashBackgroundColor = $GitBackgroundColor
-$global:GitPromptSettings.StashBackgroundColor = $GitBackgroundColor
-$global:GitPromptSettings.ErrorBackgroundColor = $GitBackgroundColor
+$GitPromptSettings.DefaultColor.BackgroundColor = $GitBackgroundColor
+$GitPromptSettings.BranchColor.BackgroundColor = $GitBackgroundColor
+$GitPromptSettings.IndexColor.BackgroundColor = $GitBackgroundColor
+$GitPromptSettings.WorkingColor.BackgroundColor = $GitBackgroundColor
+$GitPromptSettings.StashColor.BackgroundColor = $GitBackgroundColor
+$GitPromptSettings.ErrorColor.BackgroundColor = $GitBackgroundColor
+$GitPromptSettings.PathStatusSeparator.BackgroundColor = $GitBackgroundColor
+$GitPromptSettings.BeforeStatus.BackgroundColor = $GitBackgroundColor
+$GitPromptSettings.DelimStatus.BackgroundColor = $GitBackgroundColor
+$GitPromptSettings.AfterStatus.BackgroundColor = $GitBackgroundColor
+$GitPromptSettings.BeforeStash.BackgroundColor = $GitBackgroundColor
+$GitPromptSettings.AfterStash.BackgroundColor = $GitBackgroundColor
+$GitPromptSettings.LocalWorkingStatusSymbol.BackgroundColor = $GitBackgroundColor
+$GitPromptSettings.LocalStagedStatusSymbol.BackgroundColor = $GitBackgroundColor
+$GitPromptSettings.BranchGoneStatusSymbol.BackgroundColor = $GitBackgroundColor
+$GitPromptSettings.BranchIdenticalStatusSymbol.BackgroundColor = $GitBackgroundColor
+$GitPromptSettings.BranchAheadStatusSymbol.BackgroundColor = $GitBackgroundColor
+$GitPromptSettings.BranchBehindStatusSymbol.BackgroundColor = $GitBackgroundColor
+$GitPromptSettings.BranchBehindAndAheadStatusSymbol.BackgroundColor = $GitBackgroundColor
 
-$global:GitPromptSettings.LocalDefaultStatusForegroundColor = [ConsoleColor]::Green
-$global:GitPromptSettings.LocalWorkingStatusForegroundColor = [ConsoleColor]::Red
-$global:GitPromptSettings.BeforeIndexForegroundColor = [ConsoleColor]::Green
-$global:GitPromptSettings.IndexForegroundColor = [ConsoleColor]::Green
-$global:GitPromptSettings.WorkingForegroundColor = [ConsoleColor]::Red
+$GitPromptSettings.LocalDefaultStatusSymbol.ForegroundColor = [ConsoleColor]::Green
+$GitPromptSettings.LocalWorkingStatusSymbol.ForegroundColor = [ConsoleColor]::Red
+$GitPromptSettings.IndexColor.ForegroundColor = [ConsoleColor]::Green
+$GitPromptSettings.WorkingColor.ForegroundColor = [ConsoleColor]::Red
 
 Set-PSReadLineOption -Colors @{
     'Number' = [ConsoleColor]::Green
@@ -67,19 +65,19 @@ $Reset          = "`e[0m"
 function prompt {
 
     # Git
-    Write-VcsStatus
-    if (Get-GitDirectory) { Write-Host "$DarkBlueOnBlue" -NoNewline }
+    $prompt += Write-VcsStatus
+    if (Get-GitDirectory) { $prompt += "$DarkBlueOnBlue" }
 
     # Path
-    $path = "$($PWD.Path -replace ($HOME -replace '\\', '\\'), '~' -replace '\\', '/')"
-    Write-Host "$WhiteOnBlue $path $BlueOnWhite"
+    $path = " $($PWD.Path -replace ($HOME -replace '\\', '\\'), '~' -replace '\\', '/') "
+    $prompt += "$WhiteOnBlue $path $BlueOnWhite`n"
 
     # User and symbol
     $user = "$Env:USERNAME@$((Get-Culture).TextInfo.ToTitleCase($env:COMPUTERNAME.ToLower()))"
     $symbol = if (IsAdmin) { '#' } else { '$' }
-    Write-Host "$WhiteOnGreen $user $GreenOnMagenta$WhiteOnMagenta $symbol $MagentaOnWhite$Reset" -NoNewline
+    $prompt += "$WhiteOnGreen $user $GreenOnMagenta$WhiteOnMagenta $symbol $MagentaOnWhite$Reset "
 
-    return ' '
+    return $prompt
 }
 # This has to be after prompt function because zLocation alters prompt to work.
 Import-Module -Name 'zLocation'
