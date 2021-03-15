@@ -69,7 +69,7 @@ function prompt {
     if (Get-GitDirectory) { $prompt += "$DarkBlueOnBlue" }
 
     # Path
-    $path = " $($PWD.Path -replace ($HOME -replace '\\', '\\'), '~' -replace '\\', '/') "
+    $path = "$($PWD.Path -replace ($HOME -replace '\\', '\\'), '~' -replace '\\', '/')"
     $prompt += "$WhiteOnBlue $path $BlueOnWhite`n"
 
     # User and symbol
