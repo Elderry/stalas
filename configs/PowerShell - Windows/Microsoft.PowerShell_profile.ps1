@@ -6,6 +6,10 @@ Personal PowerShell profile for Elderry.
 # Custom Variables
 Set-Alias config '~/Projects/Personal/stalas/config.ps1'
 
+Set-Alias au Archive-Update
+Set-Alias ci Compress-Image
+Set-Alias sj Simplify-JpegName
+
 # *nux like ls
 Remove-Item Alias:ls
 function ls { Get-ChildItem | Format-Wide -AutoSize -Property 'Name' }
