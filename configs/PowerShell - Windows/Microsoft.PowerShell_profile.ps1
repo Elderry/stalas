@@ -74,12 +74,12 @@ function prompt {
 
     # Path
     $path = "$($PWD.Path -replace ($HOME -replace '\\', '\\'), '~' -replace '\\', '/')"
-    $prompt += "$WhiteOnBlue $path $BlueOnWhite`n"
+    $prompt += "$WhiteOnBlue 📁 $path $BlueOnWhite`n"
 
     # User and symbol
     $user = "$Env:USERNAME@$((Get-Culture).TextInfo.ToTitleCase($env:COMPUTERNAME.ToLower()))"
     $symbol = if (IsAdmin) { '#' } else { '$' }
-    $prompt += "$WhiteOnGreen $user $GreenOnMagenta$WhiteOnMagenta $symbol $MagentaOnWhite$Reset "
+    $prompt += "$WhiteOnGreen 💻 $user $GreenOnMagenta$WhiteOnMagenta $symbol $MagentaOnWhite$Reset "
 
     return $prompt
 }
