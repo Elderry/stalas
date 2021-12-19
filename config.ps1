@@ -1,5 +1,6 @@
 param (
     [ValidateSet(
+        'BaiduYun',
         'Console',
         'PowerShell',
         'Bash',
@@ -52,29 +53,7 @@ Write-Host "`n$banner" -ForegroundColor 'DarkBlue'
 $script = Get-ChildItem "$PSScriptRoot/configs" |
     Select-Object -ExpandProperty 'Name' |
     ForEach-Object { $_ -replace '\.ps1' } |
-    Where-Object { $_ -match "$target( - Windows| - macOS)?" } |
     Select-Object -First 1
-
-switch -wildcard ($script) {
-    "* - Windows" {
-        if (-not $IsWindows) {
-            Write-Error "$target's config is Windows only."
-            exit
-        }
-    }
-    "* - macOS" {
-        if (-not $IsMacOS) {
-            Write-Error "$target's config is macOS only."
-            exit
-        }
-    }
-    "* - Linux" {
-        if (-not $IsLinux) {
-            Write-Error "$target's config is Linux only."
-            exit
-        }
-    }
-}
 
 Start-Config $script $args
 
