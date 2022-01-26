@@ -53,6 +53,7 @@ Write-Host "`n$banner" -ForegroundColor 'DarkBlue'
 $script = Get-ChildItem "$PSScriptRoot/configs" |
     Select-Object -ExpandProperty 'Name' |
     ForEach-Object { $_ -replace '\.ps1' } |
+    Where-Object { $_ -match $target } |
     Select-Object -First 1
 
 Start-Config $script $args

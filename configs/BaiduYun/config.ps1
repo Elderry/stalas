@@ -9,5 +9,5 @@ $RemoveList = @(
 )
 
 $RemoveList.ForEach({
-    Remove-Item $_
+    Remove-Item $_ -ErrorAction 'SilentlyContinue'
 })
